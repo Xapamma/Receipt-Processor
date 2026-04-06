@@ -1,0 +1,16 @@
+{
+    "store_name": "Walmart",
+    "store_phone": "4804571158",
+    "address": "Queen Creek, AZ",
+    "date": "02/20/26",
+    "time": "18:36:48",
+    "total_amount": 20.31,
+    "items_sold_count": 5,
+    "transactions": [
+      {"item_name": "TYS SS TNDR", "price": 8.47},
+      {"item_name": "CFA SAUCE", "price": 3.97},
+      {"item_name": "GV OLIVES", "price": 1.97},
+      {"item_name": "LG PIT OLIV", "price": 2.47},
+      {"item_name": "BHF STRAWBA", "price": 2.98}
+    ]
+  }

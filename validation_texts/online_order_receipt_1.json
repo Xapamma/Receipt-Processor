@@ -1,0 +1,24 @@
+{
+    "store_name": "Walmart",
+    "store_phone": "",
+    "address": "",
+    "date": "Mar 24, 2026",
+    "time": "",
+    "total_amount": 93.73,
+    "items_sold_count": 13,
+    "transactions": [
+      {"item_name": "Similac Alimentum With 2'-FL HMO, Baby Formula Powder, 19.8-oz Value Can", "price": 57.98},
+      {"item_name": "Fresh Gala Apples, Each", "price": 4.20},
+      {"item_name": "Fresh Banana, Each", "price": 1.42},
+      {"item_name": "Great Value No Stir Creamy Natural Peanut Butter Spread, 40 oz", "price": 3.88},
+      {"item_name": "Fresh Hass Avocados, Each", "price": 1.10},
+      {"item_name": "Great Value Bowties, 12 oz", "price": 0.98},
+      {"item_name": "Great Value Whole Strawberries, 16 oz (Frozen)", "price": 2.62},
+      {"item_name": "Great Value Blueberries, 16 oz (Frozen)", "price": 3.12},
+      {"item_name": "Great Value Medium Soft Taco Flour Tortillas, 17.5 oz Bag, 10 Count (Shelf Stable)", "price": 1.98},
+      {"item_name": "Great Value Crunchy Peanut Butter, 40 oz", "price": 3.88},
+      {"item_name": "Great Value Original Premium Sausage Roll, 16 oz, Plastic Wrapped (Refrigerated)", "price": 5.88},
+      {"item_name": "Almond Breeze Unsweetened Original Almond Milk, 96 oz", "price": 4.67},
+      {"item_name": "Great Value Whole Vitamin D Milk, Gallon, 128 fl oz", "price": 2.02}
+    ]
+  }
