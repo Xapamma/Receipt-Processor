@@ -108,6 +108,9 @@ def extract_text_from_images(image_paths, receipt_id=None):
         - date: Transaction date (YYYY-MM-DD) (if visible).
         - time: Transaction time (HH:MM:SS) (if visible).
         - total_amount: The final grand total paid (numeric, if visible).
+            - Look for 'TOTAL', 'TEND', or 'GRAND TOTAL'.
+           - IMPORTANT: Ignore the 'SUBTOTAL' or 'TAX' amounts.
+           - Only extract the final, largest amount at the bottom of the calculation block.
         - items_sold_count: The total number of items purchased (if visible).
         - transactions: A list of objects with 'item_name' and 'price' (numeric) visible ON THIS PAGE.
             - Extract 'item_name' and 'price'. 
@@ -206,4 +209,4 @@ def process_image_folder(input_folder, output_folder):
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
 
 # Run
-process_image_folder("receipts_pngs", "texts4")
+process_image_folder("receipts_pngs", "texts5")
