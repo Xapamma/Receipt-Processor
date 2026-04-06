@@ -1,0 +1,11 @@
+{ 
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ",
+    "date": "01/30/26",
+    "time": "15:35:52",
+    "total_amount": 4.98,
+    "items_sold_count": 1,
+    "transactions": [
+        {"item_name": "RK 18OZ 14C", "price": 4.98}
+    ]
+}
