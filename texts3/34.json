@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": null,
+    "time": null,
+    "total_amount": 2.78,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "KING SIZE",
+            "price": 2.78
+        }
+    ]
+}
