@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": "21055 E RITENHOUSET RD, QUEEN CREEK, AZ 85142",
+    "date": "07/26/25",
+    "time": "13:58:43",
+    "total_amount": 6.48,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "TW CAR WASH",
+            "price": 5.97
+        }
+    ]
+}

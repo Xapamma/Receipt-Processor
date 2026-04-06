@@ -4,9 +4,38 @@ import os
 from ollama import chat 
 from tqdm import tqdm
 from collections import defaultdict
-from PIL import Image # for image merging
-from collections import defaultdict
-import re
+from PIL import Image, ImageChops # for image merging
+
+
+
+
+def autocrop_image(img, border_color=(255, 255, 255)):
+    """
+    Crops white/blank margins from an image.
+    Assumes white background by default.
+    """
+    # Convert to RGB just in case
+    img = img.convert("RGB")
+    
+    # Create mask of non-background
+    bg = Image.new("RGB", img.size, border_color)
+    diff = ImageChops.difference(img, bg)
+    bbox = diff.getbbox()  # bounding box of non-white area
+    
+    if bbox:
+        return img.crop(bbox)
+    else:
+        # Image is all white
+        return img
+
+
+def resize_if_needed(img, max_width=1000):
+    if img.width > max_width:
+        w_percent = max_width / float(img.width)
+        h_size = int(float(img.height) * w_percent)
+        return img.resize((max_width, h_size))
+    return img
+
 
 def group_receipt_images(image_paths):
     """
@@ -20,7 +49,7 @@ def group_receipt_images(image_paths):
         name = path.stem.lower()
 
         # Match pattern like "11_page1"
-        match = re.match(r"(\d+)_page(\d+)", name)
+        match = re.match(r"(.+)_page(\d+)", name)
 
         if match:
             receipt_id = match.group(1)   # "11"
@@ -42,35 +71,53 @@ def group_receipt_images(image_paths):
     return sorted_groups
 
 
-def merge_images_vertically(image_paths, output_temp_path):
+def merge_images_vertically(image_paths, output_path, max_width=1000):
     images = [Image.open(p) for p in image_paths]
-    widths = [img.width for img in images]
-    heights = [img.height for img in images]
 
-    total_height = sum(heights)
-    max_width = max(widths)
-
-    merged_image = Image.new("RGB", (max_width, total_height), color=(255, 255, 255))
-
-    y_offset = 0
+    # Crop and resize
+    processed_images = []
     for img in images:
-        merged_image.paste(img, (0, y_offset))
-        y_offset += img.height
+        img = autocrop_image(img)
+        img = resize_if_needed(img, max_width)
+        processed_images.append(img)
 
-    merged_image.save(output_temp_path)
-    return output_temp_path
+    # Calculate total height and max width for merged image
+    padding = 20 # 20 pixels of white space between pages
+    total_height = sum(img.height for img in processed_images) + (len(processed_images) - 1) * padding
+    merged_width = max(img.width for img in processed_images)
+
+    # Create the merged image
+    merged_img = Image.new("RGB", (merged_width, total_height))
+
+    # Paste images one by one
+    y_offset = 0
+    for img in processed_images:
+        merged_img.paste(img, (0, y_offset))
+        y_offset += img.height + padding
+
+    # Final resize if merged image is still too wide
+    merged_img = resize_if_needed(merged_img, max_width)
+
+    merged_img.save(output_path)
+    return output_path
 
 
-def extract_text_from_images(image_paths):
+def extract_text_from_images(image_paths, receipt_id=None):
 
     """
-    Extracts receipt data into JSON using llama3.2-vision.
-    Passes the image path directly to Ollama.
+    Handles:
+    - single page → just process
+    - multi-page → crop + resize + merge first
     """
+
+    # Create unique temp filename per receipt (IMPORTANT)
+    if receipt_id:
+        temp_path = Path(f"temp_{receipt_id}.png")
+    else:
+        temp_path = Path("temp_merged_receipt.png")
 
     # If more than one image, merge first
     if len(image_paths) > 1:
-        temp_path = Path("temp_merged_receipt.png")
         merged_path = merge_images_vertically(image_paths, temp_path)
         final_paths = [str(merged_path.resolve())]
     else:
@@ -124,7 +171,11 @@ def extract_text_from_images(image_paths):
             "images": final_paths  
         }],
         format="json",  # This forces the model to output valid JSON
-        options={"temperature": 0}  # This makes the output deterministic and less "creative
+        options={"temperature": 0,  # This makes the output deterministic and less "creative
+                 "num_ctx": 4096,      # Give it enough "memory" for long receipts
+                 "num_predict": 2048,   # Stop it if it starts looping forever
+                 "repeat_penalty": 1.2  # Discourage repeating the same line (Dill Pickles!)
+    }
     )
 
     # The `.message.content` field contains the model output
@@ -174,4 +225,20 @@ def process_image_folder(input_folder, output_folder):
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
 # Run
-process_image_folder("receipts_pngs", "texts2")
+# process_image_folder("receipts_pngs", "texts2")
+
+
+
+
+# Image test
+# --- Set your receipt 25 folder/files ---
+image_paths = sorted(Path("receipts_pngs").glob("25*.png"))  # e.g., 25_page1.png, 25_page2.png
+output_path = Path("receipts_pngs/25_processed.png")
+
+# Merge, crop, resize
+merged_path = merge_images_vertically(image_paths, output_path, max_width=1000)
+
+print(f"Processed merged image saved to: {merged_path}")
+
+# Optional: open the image to check
+Image.open(merged_path).show()

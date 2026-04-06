@@ -1,0 +1,94 @@
+{
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ  3751",
+    "date": "11/14/25",
+    "time": "20:01:56",
+    "total_amount": 54.65,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "GV FSW",
+            "price": 2.82
+        },
+        {
+            "item_name": "GV RICE SQ",
+            "price": 2.72
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 1.83
+        },
+        {
+            "item_name": "HNY GRM PS",
+            "price": 6.94
+        },
+        {
+            "item_name": "GV PENNE 32",
+            "price": 1.94
+        },
+        {
+            "item_name": "GV SPAG 160",
+            "price": 0.98
+        },
+        {
+            "item_name": "GV CK SH 32",
+            "price": 6.96
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.08
+        },
+        {
+            "item_name": "BLUEBERRIES",
+            "price": 2.97
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.24
+        },
+        {
+            "item_name": "NAVEL ORANG",
+            "price": 2.49
+        },
+        {
+            "item_name": "AVOCADO",
+            "price": 2.04
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 0.33
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.33
+        },
+        {
+            "item_name": "SWT POTATOE",
+            "price": 2.49
+        },
+        {
+            "item_name": "BLD PEANUTS",
+            "price": 2.97
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "price": 3.67
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.98
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "price": 2.92
+        },
+        {
+            "item_name": "1LB ROLL SS",
+            "price": 3.97
+        }
+    ]
+}

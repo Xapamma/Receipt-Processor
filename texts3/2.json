@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": null,
+    "time": "19:46:24",
+    "total_amount": 3.17,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "BLACKBERRY MANGO",
+            "price": 0.88
+        },
+        {
+            "item_name": "BLACKBERRY",
+            "price": 2.22
+        }
+    ]
+}

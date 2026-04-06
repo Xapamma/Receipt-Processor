@@ -1,0 +1,26 @@
+{
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ  3751 OP# 9039 TE# 39 TR# 3825",
+    "date": "07/11/25",
+    "time": "13:30:50",
+    "total_amount": 26.11,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "FAB LEM 56Z",
+            "price": 4.47
+        },
+        {
+            "item_name": "CLEANER",
+            "price": 3.88
+        },
+        {
+            "item_name": "GV UNSLT BT",
+            "price": 3.96
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "price": 13.24
+        }
+    ]
+}

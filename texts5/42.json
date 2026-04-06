@@ -1,0 +1,94 @@
+{
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ  3751",
+    "date": "09/16/25",
+    "time": "19:42:07",
+    "total_amount": 70.57,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "CORNCHEX",
+            "price": 4.93
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94
+        },
+        {
+            "item_name": "FLAX",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV CHPPD WA",
+            "price": 14.86
+        },
+        {
+            "item_name": "PARCHMENT",
+            "price": 2.96
+        },
+        {
+            "item_name": "GV RIGATONI",
+            "price": 0.98
+        },
+        {
+            "item_name": "GV FLR FJTA",
+            "price": 2.12
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.05
+        },
+        {
+            "item_name": "NATURAL PB",
+            "price": 3.98
+        },
+        {
+            "item_name": "BABY CARROT",
+            "price": 2.48
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 1.02
+        },
+        {
+            "item_name": "CUCUMBER",
+            "price": 0.48
+        },
+        {
+            "item_name": "AVOCADO",
+            "price": 2.4
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 2.22
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV RICE SQ",
+            "price": 2.72
+        },
+        {
+            "item_name": "2.25 80 GB",
+            "price": 14.83
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.12
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.12
+        }
+    ]
+}

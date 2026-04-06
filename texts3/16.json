@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": "01/03/26",
+    "time": "16:59:25",
+    "total_amount": 7.94,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "VIO MOZZ SH",
+            "price": 3.97
+        },
+        {
+            "item_name": "BG DF SH MO",
+            "price": 3.97
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "store_name": "WALM",
+    "address": "WALM",
+    "date": "2023-02-15",
+    "time": "09:47:04",
+    "total_amount": 13.98,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "WALM",
+            "price": 13.98
+        }
+    ]
+}

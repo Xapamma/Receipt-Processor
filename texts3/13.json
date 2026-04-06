@@ -1,0 +1,102 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": "01/30/26",
+    "time": "15:40:49",
+    "total_amount": 71.56,
+    "items_sold_count": 23,
+    "transactions": [
+        {
+            "item_name": "GV FSW",
+            "price": 2.82
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "price": 3.98
+        },
+        {
+            "item_name": "GV MINCED G",
+            "price": 5.42
+        },
+        {
+            "item_name": "POTATOES",
+            "price": 3.47
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV PINTO",
+            "price": 0.86
+        },
+        {
+            "item_name": "GRANNY APPL",
+            "price": 1.95
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 2.86
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.02
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.62
+        },
+        {
+            "item_name": "TOMATO",
+            "price": 0.85
+        },
+        {
+            "item_name": "GV BF HAM",
+            "price": 5.97
+        },
+        {
+            "item_name": "AUSSIE",
+            "price": 4.25
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "price": 15.38
+        },
+        {
+            "item_name": "GV 1 SSG",
+            "price": 2.94
+        }
+    ]
+}

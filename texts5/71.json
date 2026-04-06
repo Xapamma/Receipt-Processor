@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ  3751 OP# 9044 TE# 44 TR# 3441",
+    "date": "04/23/25",
+    "time": "21:02:23",
+    "total_amount": 1.32,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "PG MASKING",
+            "price": 1.24
+        }
+    ]
+}

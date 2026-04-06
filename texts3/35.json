@@ -1,0 +1,22 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": null,
+    "time": null,
+    "total_amount": 11.51,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "EQ LIQ BAND",
+            "price": 2.97
+        },
+        {
+            "item_name": "IODINE",
+            "price": 6.56
+        },
+        {
+            "item_name": "EQ FF XL 10",
+            "price": 1.98
+        }
+    ]
+}
