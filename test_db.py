@@ -6,7 +6,7 @@ import sqlite3
 # Step 1: initialize DB
 init_db()
 
-folder_path = "texts2"
+folder_path = "texts5"
 
 # Step 2: loop through all JSON files 
 for filename in os.listdir(folder_path):

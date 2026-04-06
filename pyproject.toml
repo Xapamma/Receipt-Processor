@@ -16,5 +16,6 @@ dependencies = [
     "setuptools>=81.0.0",
     "tqdm>=4.67.3",
     "streamlit",
-    "streamlit-elements>=0.1.0"
+    "streamlit-elements>=0.1.0",
+    "matplotlib>=3.10.8",
 ]
