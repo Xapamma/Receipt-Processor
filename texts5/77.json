@@ -1,0 +1,42 @@
+{
+    "store_name": "Walmart",
+    "address": "SHOW LOW, AZ",
+    "date": "03/20/25",
+    "time": "23:03:04",
+    "total_amount": 79.85,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "THROWS",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "price": 3.44
+        },
+        {
+            "item_name": "OT 50 SB",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "price": 14.97
+        }
+    ]
+}

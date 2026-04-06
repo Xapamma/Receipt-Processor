@@ -1,0 +1,130 @@
+{
+    "store_name": "Walmart",
+    "address": "4804571158 MGI. ANGELA QUEEN CREEK, AZ",
+    "date": "02/10/26",
+    "time": "10:33:49",
+    "total_amount": 106.37,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "GV TOASTED",
+            "price": 2.47
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "price": 2.72
+        },
+        {
+            "item_name": "GV RSN BRAN",
+            "price": 2.47
+        },
+        {
+            "item_name": "SV SH ROSM2",
+            "price": 4.97
+        },
+        {
+            "item_name": "BODY WASH",
+            "price": 4.97
+        },
+        {
+            "item_name": "SV CN ROSM2",
+            "price": 4.18
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "price": 4.18
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97
+        },
+        {
+            "item_name": "SHEET SET",
+            "price": 9.97
+        },
+        {
+            "item_name": "SHEET SET",
+            "price": 9.97
+        },
+        {
+            "item_name": "GV FL BRTO",
+            "price": 2.12
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.02
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.02
+        },
+        {
+            "item_name": "GV FANCHED32",
+            "price": 6.92
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "price": 3.44
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.04
+        },
+        {
+            "item_name": "AB ORG 960Z",
+            "price": 4.67
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67
+        },
+        {
+            "item_name": "AB VAN 960Z",
+            "price": 4.67
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "price": 2.92
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "store_name": "Walmart",
+    "address": "Queen Creek, AZ \u00a0[not provided]",
+    "date": "02/27/25",
+    "time": "21:00:09",
+    "total_amount": 44.54,
+    "items_sold_count": 9,
+    "transactions": [
+        {
+            "item_name": "PLUMS",
+            "price": 1.52
+        },
+        {
+            "item_name": "PAPAYA",
+            "price": 10.21
+        },
+        {
+            "item_name": "DRAGON FRUIT",
+            "price": 3.97
+        },
+        {
+            "item_name": "GV CLC 0025",
+            "price": 9.74
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "price": 3.96
+        },
+        {
+            "item_name": "GV UNSLT BT",
+            "price": 2.16
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.16
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 0.76
+        },
+        {
+            "item_name": "MED T C SAL",
+            "price": 7.28
+        }
+    ]
+}

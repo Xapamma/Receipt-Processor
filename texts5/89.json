@@ -1,0 +1,117 @@
+{
+    "store_name": "Walmart",
+    "address": "4804571158 Mgr. Angela Queen Creek, AZ",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRY DET. SOU.",
+            "price": 7.67
+        },
+        {
+            "item_name": "LAUNDRY DET. SOU.",
+            "price": 7.67
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98
+        },
+        {
+            "item_name": "VERM. SOU.",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERM. SOU.",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERM. SOU.",
+            "price": 0.5
+        },
+        {
+            "item_name": "ELP. SAUC.",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELP. SAUC.",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELP. SAUC.",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELP. SAUC.",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELP. SAUC.",
+            "price": 0.98
+        },
+        {
+            "item_name": "AL. LINE",
+            "price": 4.67
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BLK. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BL. BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV. BL. BEAN",
+            "price": 0.86
+        },
+        {
+            "item. CT. CH.,": "2.94"
+        },
+        {
+            "item_name": "GV. MAYO 300",
+            "price": 3.38
+        },
+        {
+            "item_name": "ICE. BERG",
+            "price": 1.84
+        },
+        {
+            "item_name": "PK. SAL. ",
+            "price": 2.18
+        },
+        {
+            "item_name": "T. ROMA",
+            "price": 1.88
+        },
+        {
+            "item_name": "F. B. REA",
+            "price": 1.0
+        },
+        {
+            "item_name": "GV. A. P. F. LOU",
+            "price": 4.57
+        }
+    ]
+}

@@ -1,0 +1,182 @@
+{
+    "store_name": "Walmart",
+    "address": "48067 72149 Mgr. Paul, San Tan Valley, AZ",
+    "date": "07/19/25",
+    "time": "19:35:45",
+    "total_amount": 93.07,
+    "items_sold_count": 33,
+    "transactions": [
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94
+        },
+        {
+            "item_name": "PST GRAPENU",
+            "price": 4.93
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "price": 4.12
+        },
+        {
+            "item_name": "GV MPLSYRP3",
+            "price": 15.98
+        },
+        {
+            "item_name": "NATURAL PB",
+            "price": 3.98
+        },
+        {
+            "item_name": "GV COCOA",
+            "price": 4.92
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98
+        },
+        {
+            "item_name": "GV BASIL",
+            "price": 1.24
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.22
+        },
+        {
+            "item_name": "GREEN GRAPE",
+            "price": 5.48
+        },
+        {
+            "item_name": "PKG SALAD",
+            "price": 1.98
+        },
+        {
+            "item_name": "WHL CARROTS",
+            "price": 1.32
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.48
+        },
+        {
+            "item_name": "AVOCADO",
+            "price": 2.72
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 1.76
+        },
+        {
+            "item_name": "POTATOES",
+            "price": 3.54
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "price": 3.97
+        },
+        {
+            "item_name": "NUGGETS",
+            "price": 6.42
+        },
+        {
+            "item_name": "GV PLNYOG32",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item: name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.92
+        },
+        {
+            "item_name": "GAL",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.22
+        }
+    ]
+}

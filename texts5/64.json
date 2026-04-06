@@ -1,0 +1,110 @@
+{
+    "store_name": "Walmart",
+    "address": "48067 72149 Mgr. Paul, San Tan Valley, AZ",
+    "date": "06/18/25",
+    "time": "21:09:21",
+    "total_amount": 114.79,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "MNTRL STEAK",
+            "price": 2.12
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "price": 1.96
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "price": 1.96
+        },
+        {
+            "item_name": "OMEGA 180CT",
+            "price": 14.64
+        },
+        {
+            "item_name": "SV PRENATAL",
+            "price": 5.38
+        },
+        {
+            "item_name": "DEODORANT",
+            "price": 11.97
+        },
+        {
+            "item_name": "MIRROR",
+            "price": 4.22
+        },
+        {
+            "item_name": "GV NRTH BEA",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "price": 6.96
+        },
+        {
+            "item_name": "ASPARAGUS",
+            "price": 3.32
+        },
+        {
+            "item_name": "AVOCADO BAG",
+            "price": 3.17
+        },
+        {
+            "item_name": "TOM CHERUB",
+            "price": 4.48
+        },
+        {
+            "item_name": "PK SALAD",
+            "price": 1.98
+        },
+        {
+            "item_name": "PINEAPPLE",
+            "price": 2.04
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 0.83
+        },
+        {
+            "item_name": "PEACHES",
+            "price": 0.83
+        },
+        {
+            "item_name": "CORN TORT",
+            "price": 1.98
+        },
+        {
+            "item_name": "1LB 80 GB R",
+            "price": 5.93
+        },
+        {
+            "item_name": "SRLN TENDER",
+            "price": 14.34
+        },
+        {
+            "item_name": "GV A-P FLOU",
+            "price": 4.57
+        },
+        {
+            "item_name": "XTRA",
+            "price": 9.98
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.06
+        }
+    ]
+}

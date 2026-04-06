@@ -1,0 +1,94 @@
+{
+    "store_name": "Walmart",
+    "address": "4804571158 Mgr. Angela Queen Creek, AZ ST# 4451 OP# 9007 TE# 7 TR# 3125",
+    "date": "01/18/25",
+    "time": "18:50:37",
+    "total_amount": 76.23,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "GV STRAW CR",
+            "price": 3.48
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.82
+        },
+        {
+            "item_name": "GV WOVEN WH",
+            "price": 2.42
+        },
+        {
+            "item_name": "CHKN N BISK",
+            "price": 4.98
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "price": 3.98
+        },
+        {
+            "item_name": "GREEN GRAPE",
+            "price": 4.77
+        },
+        {
+            "item_name": "PKG SALAD",
+            "price": 1.98
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.72
+        },
+        {
+            "item_name": "STRAWBERRIE",
+            "price": 2.97
+        },
+        {
+            "item_name": "GUAVA CELAM",
+            "price": 3.37
+        },
+        {
+            "item_name": "GV LF CT CH",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV PLNYOG32",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV HANT SR C",
+            "price": 1.97
+        },
+        {
+            "item_name": "GV NS MNST",
+            "price": 2.24
+        },
+        {
+            "item_name": "GV BF HAM",
+            "price": 5.97
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98
+        },
+        {
+            "item_name": "GV 18 LG AA",
+            "price": 8.02
+        },
+        {
+            "item_name": "GV HWC 32OZ",
+            "price": 5.67
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.29
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.22
+        }
+    ]
+}
