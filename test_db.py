@@ -1,22 +1,24 @@
+import os
+import json
 from database import init_db, insert_receipt
 import sqlite3
 
 # Step 1: initialize DB
 init_db()
 
-# Step 2: insert test data
-test_data = {
-    "store_name": "Walmart",
-    "date": "2026-04-03",
-    "time": "14:30:00",
-    "total_amount": 5.50,
-    "transactions": [
-        {"item_name": "Milk", "price": 3.50},
-        {"item_name": "Bread", "price": 2.00}
-    ]
-}
+folder_path = "texts2"
 
-insert_receipt(test_data)
+# Step 2: loop through all JSON files 
+for filename in os.listdir(folder_path):
+    if filename.endswith(".json"):
+        file_path = os.path.join(folder_path, filename)
+
+        with open(file_path, "r") as f:
+            data = json.load(f)
+
+        insert_receipt(data)
+
+print("All receipts inserted.")
 
 # Step 3: check what's inside
 conn = sqlite3.connect("receipts.db")

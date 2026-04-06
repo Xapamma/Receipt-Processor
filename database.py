@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime 
 
 DB_NAME = "receipts.db"
 
@@ -11,8 +12,7 @@ def init_db():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS receipts (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date TEXT,
-        time TEXT,
+        datetime TEXT,
         vendor TEXT,
         total_amount REAL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -39,20 +39,29 @@ def insert_receipt(data):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
+    # Combine date + time safely
+    date_str = data.get("date")
+    time_str = data.get("time")
+
+    try:
+        dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
+        dt_str = dt.isoformat()
+    except:
+        dt_str = None  # fallback if format is weird
+
     # Insert into receipts
     cursor.execute("""
-    INSERT INTO receipts (date, time, vendor, total_amount)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO receipts (datetime, vendor, total_amount)
+    VALUES (?, ?, ?)
     """, (
-        data.get("date"),
-        data.get("time"),
+        dt_str,
         data.get("store_name"),
         data.get("total_amount")
     ))
 
     receipt_id = cursor.lastrowid
 
-    # Insert items (from transactions)
+    # Insert items
     for item in data.get("transactions", []):
         cursor.execute("""
         INSERT INTO items (receipt_id, item_name, price, category)
@@ -66,4 +75,3 @@ def insert_receipt(data):
 
     conn.commit()
     conn.close()
-
