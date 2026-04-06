@@ -35,19 +35,37 @@ def init_db():
     conn.close()
 
 
+
+def parse_datetime(date_str, time_str):
+    if not date_str or not time_str:
+        return None
+
+    date_str = date_str.strip()
+    time_str = time_str.strip()
+
+    formats = [
+        "%Y-%m-%d %H:%M:%S",
+        "%m/%d/%y %H:%M:%S",
+        "%m/%d/%Y %H:%M:%S"
+    ]
+
+    for fmt in formats:
+        try:
+            return datetime.strptime(f"{date_str} {time_str}", fmt).isoformat()
+        except:
+            continue
+
+    return None
+
+
 def insert_receipt(data):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
-    # Combine date + time safely
-    date_str = data.get("date")
-    time_str = data.get("time")
-
-    try:
-        dt = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
-        dt_str = dt.isoformat()
-    except:
-        dt_str = None  # fallback if format is weird
+    dt_str = parse_datetime(
+        data.get("date"),
+        data.get("time")
+    )
 
     # Insert into receipts
     cursor.execute("""
