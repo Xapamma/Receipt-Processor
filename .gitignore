@@ -1,3 +1,5 @@
 receipts_pngs/
 online_receipts_pngs/
 uploads/
+__pycache__/
+*.pyc

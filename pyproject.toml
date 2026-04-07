@@ -1,9 +1,8 @@
 [project]
 name = "receipt-processor"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11,<3.12"
+
 dependencies = [
     "numpy>=2.4.3",
     "ollama>=0.6.1",
@@ -16,4 +15,7 @@ dependencies = [
     "regex>=2026.2.28",
     "setuptools>=81.0.0",
     "tqdm>=4.67.3",
+    "streamlit",
+    "streamlit-elements>=0.1.0",
+    "matplotlib>=3.10.8",
 ]

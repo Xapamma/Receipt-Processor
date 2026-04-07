@@ -88,7 +88,7 @@ def insert_receipt(data):
             receipt_id,
             item.get("item_name"),
             item.get("price"),
-            None
+            item.get("category")
         ))
 
     conn.commit()
