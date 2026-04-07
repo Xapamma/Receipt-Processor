@@ -1,0 +1,13 @@
+{
+  "store_name": "Walmart",
+  "store_phone": "4804571158",
+  "address": "Queen Creek, AZ",
+  "date": "02/24/26",
+  "time": "19:46:24",
+  "total_amount": 3.17,
+  "items_sold_count": 2,
+  "transactions": [
+    {"item_name": "BLACKBERRY", "price": 2.22},
+    {"item_name": "MANGO", "price": 0.88}
+  ]
+}
