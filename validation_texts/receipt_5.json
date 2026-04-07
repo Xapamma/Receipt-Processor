@@ -1,0 +1,13 @@
+{
+    "store_name": "Walmart",
+    "store_phone": "4804571158",
+    "address": "Queen Creek, AZ",
+    "date": "02/13/26",
+    "time": "14:12:36",
+    "total_amount": 8.35,
+    "items_sold_count": 2,
+    "transactions": [
+      {"item_name": "8 ZINC ANCH", "price": 5.72},
+      {"item_name": "OOK 30LB PI", "price": 1.97}
+    ]
+  }
