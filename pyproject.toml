@@ -19,6 +19,7 @@ dependencies = [
     "streamlit-elements>=0.1.0",
     "matplotlib>=3.10.8",
     "deepdiff>=9.0.0",
+    "quartodoc>=0.11.1",
 ]
 
 [dependency-groups]

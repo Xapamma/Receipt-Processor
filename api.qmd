@@ -1,0 +1,9 @@
+---
+title: "Documentation"
+---
+
+## Overview
+
+The `receipt_processor` package provides a suite of functions for adding, processing, and analyzing receipt data. This page documents the main functions available in the package. 
+
+## Main Functions
