@@ -1,6 +1,5 @@
 {
     "store_name": "Walmart",
-    "address": "5401 S WHITE MOUNTAIN RD, SHOW LOW, AZ 85901",
     "date": "06/07/25",
     "time": "18:02:04",
     "total_amount": 252.23,
@@ -8,31 +7,38 @@
     "transactions": [
         {
             "item_name": "TIREROTATION",
-            "price": 5.0
+            "price": 5.0,
+            "sku": "007874224341"
         },
         {
             "item_name": "TIRE FEE",
-            "price": 4.0
+            "price": 4.0,
+            "sku": "000003700848"
         },
         {
             "item_name": "ROT BAL-LIFE",
-            "price": 30.0
+            "price": 30.0,
+            "sku": "068113124592"
         },
         {
             "item_name": "NEW TIRE",
-            "price": 0.0
+            "price": 0.0,
+            "sku": "060538899928"
         },
         {
             "item_name": "DTAS21560R16",
-            "price": 73.0
+            "price": 73.0,
+            "sku": "074131796308"
         },
         {
             "item_name": "DTAS21560R16",
-            "price": 73.0
+            "price": 73.0,
+            "sku": "074131796308"
         },
         {
             "item_name": "ROT BAL",
-            "price": 52.0
+            "price": 52.0,
+            "sku": "068113194456"
         }
     ]
 }

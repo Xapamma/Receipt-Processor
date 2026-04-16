@@ -1,0 +1,16 @@
+---
+title: "Receipt Processor"
+---
+
+## Overview
+
+This package provides tools for processing and analyzing receipts. It automates the collection of receipt data, including vendor information, item details, and financial summaries for analysis.
+
+Test this out with our streamlit app [here](https://receipt-processor.streamlit.app/)!
+
+## Key Features
+
+
+
+## Main Pipeline
+

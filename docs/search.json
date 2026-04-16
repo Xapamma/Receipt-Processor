@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Receipt Processor",
+    "section": "",
+    "text": "This package provides tools for processing and analyzing receipts. It automates the collection of receipt data, including vendor information, item details, and financial summaries for analysis.\nTest this out with our streamlit app here!"
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Receipt Processor",
+    "section": "",
+    "text": "This package provides tools for processing and analyzing receipts. It automates the collection of receipt data, including vendor information, item details, and financial summaries for analysis.\nTest this out with our streamlit app here!"
+  },
+  {
+    "objectID": "index.html#key-features",
+    "href": "index.html#key-features",
+    "title": "Receipt Processor",
+    "section": "Key Features",
+    "text": "Key Features"
+  },
+  {
+    "objectID": "index.html#main-pipeline",
+    "href": "index.html#main-pipeline",
+    "title": "Receipt Processor",
+    "section": "Main Pipeline",
+    "text": "Main Pipeline"
+  },
+  {
+    "objectID": "api.html",
+    "href": "api.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "The receipt_processor package provides a suite of functions for adding, processing, and analyzing receipt data. This page documents the main functions available in the package."
+  },
+  {
+    "objectID": "api.html#overview",
+    "href": "api.html#overview",
+    "title": "Documentation",
+    "section": "",
+    "text": "The receipt_processor package provides a suite of functions for adding, processing, and analyzing receipt data. This page documents the main functions available in the package."
+  },
+  {
+    "objectID": "api.html#main-functions",
+    "href": "api.html#main-functions",
+    "title": "Documentation",
+    "section": "Main Functions",
+    "text": "Main Functions"
+  }
+]

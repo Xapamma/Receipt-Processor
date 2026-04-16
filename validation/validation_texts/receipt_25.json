@@ -1,330 +1,89 @@
 {
     "store_name": "Walmart",
-    "address": "QUEEN CREEK, AZ",
     "date": "12/13/25",
     "time": "16:17:23",
     "total_amount": 275.64,
     "items_sold_count": 80,
     "transactions": [
-        {
-            "item_name": "GV CUTGRBEA",
-            "price": 0.98
-        },
-        {
-            "item_name": "BROC FLOR 1",
-            "price": 1.16
-        },
-        {
-            "item_name": "GV CAL VG M",
-            "price": 1.16
-        },
-        {
-            "item_name": "SWEET PEAS",
-            "price": 0.98
-        },
-        {
-            "item_name": "GV BRD OKRA",
-            "price": 2.12
-        },
-        {
-            "item_name": "GV CAULI",
-            "price": 1.16
-        },
-        {
-            "item_name": "TRIPL BERRY",
-            "price": 10.74
-        },
-        {
-            "item_name": "MUSHRMMEDLY",
-            "price": 3.82
-        },
-        {
-            "item_name": "GV LIMA BNS",
-            "price": 1.62
-        },
-        {
-            "item_name": "GV EDAMAME",
-            "price": 1.92
-        },
-        {
-            "item_name": "GV CURLY FR",
-            "price": 2.97
-        },
-        {
-            "item_name": "TYS CKN STR",
-            "price": 12.44
-        },
-        {
-            "item_name": "GV FFSTICKS",
-            "price": 11.92
-        },
-        {
-            "item_name": "BABY CARROT",
-            "price": 1.82
-        },
-        {
-            "item_name": "BANANAS",
-            "price": 1.07
-        },
-        {
-            "item_name": "GALA APPLES",
-            "price": 0.96
-        },
-        {
-            "item_name": "1LB 73 GB R",
-            "price": 5.94
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV TOMATO S",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV DC TOM",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV DC TOM",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV DC TOM",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV DC TOM",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV FRE RSTE",
-            "price": 0.98
-        },
-        {
-            "item_name": "GV TOMA SC",
-            "price": 0.38
-        },
-        {
-            "item_name": "GV TOMA SC",
-            "price": 0.38
-        },
-        {
-            "item_name": "GV TOMA SC",
-            "price": 0.38
-        },
-        {
-            "item_name": "GV NAVY BNS",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV TOMATO S",
-            "price": 0.96
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV NAVY BNS",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV CANNELLI",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV GRN ENCH",
-            "price": 1.0
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.86
-        },
-        {
-            "item_name": "GV GRN ENCH",
-            "price": 1.0
-        },
-        {
-            "item_name": "GV GRN ENCH",
-            "price": 1.0
-        },
-        {
-            "item_name": "GV GRN ENCH",
-            "price": 1.0
-        },
-        {
-            "item_name": "GV CANNELLI",
-            "price": 0.86
-        },
-        {
-            "item_name": "PRG TRAD 14",
-            "price": 2.28
-        },
-        {
-            "item_name": "GV TRAD SCE",
-            "price": 1.82
-        },
-        {
-            "item_name": "RAGU TRAD 1",
-            "price": 1.86
-        },
-        {
-            "item_name": "GV GAR ALFR",
-            "price": 1.92
-        },
-        {
-            "item_name": "SMKR RED RS",
-            "price": 7.47
-        },
-        {
-            "item_name": "CAMP CONDEN",
-            "price": 0.58
-        },
-        {
-            "item_name": "CAMP CONDEN",
-            "price": 0.58
-        },
-        {
-            "item_name": "DRY YEAST",
-            "price": 5.38
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.86
-        },
-        {
-            "item_name": "KOSHER DILL",
-            "price": 3.97
-        },
-        {
-            "item_name": "GV 24KETCHU",
-            "price": 1.47
-        },
-        {
-            "item_name": "GV MAYO 30O",
-            "price": 3.14
-        },
-        {
-            "item_name": "YELLOW MSTD",
-            "price": 0.68
-        },
-        {
-            "item_name": "HVRANCH 36O",
-            "price": 6.27
-        },
-        {
-            "item_name": "GV PNT BUTT",
-            "price": 3.98
-        },
-        {
-            "item_name": "MARUCHAN 12",
-            "price": 3.97
-        },
-        {
-            "item_name": "GV OLD FA 4",
-            "price": 4.18
-        },
-        {
-            "item_name": "GREAT VALUE",
-            "price": 2.94
-        },
-        {
-            "item_name": "GV STRAW CR",
-            "price": 2.72
-        },
-        {
-            "item_name": "GV RICE SQ",
-            "price": 2.72
-        },
-        {
-            "item_name": "GV STRAW CR",
-            "price": 2.72
-        },
-        {
-            "item_name": "BREAD",
-            "price": 6.42
-        },
-        {
-            "item_name": "GV FL BRTO",
-            "price": 2.12
-        },
-        {
-            "item_name": "PLAIN BAGEL",
-            "price": 1.88
-        },
-        {
-            "item_name": "GV LT BR 2",
-            "price": 1.97
-        },
-        {
-            "item_name": "NATURAL PB",
-            "price": 3.98
-        },
-        {
-            "item_name": "FS WT ORG",
-            "price": 5.24
-        },
-        {
-            "item_name": "CHKN N BISK",
-            "price": 5.24
-        },
-        {
-            "item_name": "GV CK MLD 3",
-            "price": 6.96
-        },
-        {
-            "item_name": "CREAM CHEES",
-            "price": 1.56
-        },
-        {
-            "item_name": "GV BF HAM",
-            "price": 5.97
-        },
-        {
-            "item_name": "BURRITO",
-            "price": 5.32
-        },
-        {
-            "item_name": "GV BACON 12",
-            "price": 4.24
-        },
-        {
-            "item_name": "1LB ROLL SS",
-            "price": 3.97
-        },
-        {
-            "item_name": "MKT HNY SPR",
-            "price": 23.49
-        },
-        {
-            "item_name": "GV WHOLE GA",
-            "price": 2.08
-        },
-        {
-            "item_name": "BG ALM UN O",
-            "price": 2.63
-        },
-        {
-            "item_name": "BG ALM UNVA",
-            "price": 2.63
-        },
-        {
-            "item_name": "MED T C SAL",
-            "price": 7.93
-        },
-        {
-            "item_name": "GV CLC OO10",
-            "price": 29.97
-        },
-        {
-            "item_name": "EGGS 18CT",
-            "price": 2.92
-        }
+        {"item_name": "GV CUTGRBEA", "price": 0.98, "sku": "007874223734"},
+        {"item_name": "BROC FLOR 1", "price": 1.16, "sku": "007874223732"},
+        {"item_name": "GV CAL VG M", "price": 1.16, "sku": "007874223739"},
+        {"item_name": "SWEET PEAS", "price": 0.98, "sku": "007874223736"},
+        {"item_name": "GV BRD OKRA", "price": 2.12, "sku": "007874229587"},
+        {"item_name": "GV CAULI", "price": 1.16, "sku": "007874223741"},
+        {"item_name": "TRIPL BERRY", "price": 10.74, "sku": "007874202250"},
+        {"item_name": "MUSHRMMEDLY", "price": 3.82, "sku": "019434646973"},
+        {"item_name": "GV LIMA BNS", "price": 1.62, "sku": "007874223744"},
+        {"item_name": "GV EDAMAME", "price": 1.92, "sku": "007874235099"},
+        {"item_name": "GV CURLY FR", "price": 2.97, "sku": "019434644718"},
+        {"item_name": "TYS CKN STR", "price": 12.44, "sku": "002370018666"},
+        {"item_name": "GV FFSTICKS", "price": 11.92, "sku": "007874202125"},
+        {"item_name": "BABY CARROT", "price": 1.82, "sku": "003338366604"},
+        {"item_name": "BANANAS", "price": 1.07, "sku": "064312604011"},
+        {"item_name": "GALA APPLES", "price": 0.96, "sku": "000000004135"},
+        {"item_name": "1LB 73 GB R", "price": 5.94, "sku": "007874212310"},
+        {"item_name": "GV BLK BEAN", "price": 0.86, "sku": "007874206200"},
+        {"item_name": "GV TOMATO S", "price": 0.96, "sku": "007874236952"},
+        {"item_name": "GV DC TOM", "price": 0.96, "sku": "007874243352"},
+        {"item_name": "GV DC TOM", "price": 0.96, "sku": "007874243352"},
+        {"item_name": "GV DC TOM", "price": 0.96, "sku": "007874243352"},
+        {"item_name": "GV DC TOM", "price": 0.96, "sku": "007874243352"},
+        {"item_name": "GV FRE RSTE", "price": 0.98, "sku": "019434609815"},
+        {"item_name": "GV TOMA SC", "price": 0.38, "sku": "007874236950"},
+        {"item_name": "GV TOMA SC", "price": 0.38, "sku": "007874236950"},
+        {"item_name": "GV TOMA SC", "price": 0.38, "sku": "007874236950"},
+        {"item_name": "GV NAVY BNS", "price": 0.86, "sku": "007874200224"},
+        {"item_name": "GV TOMATO S", "price": 0.96, "sku": "007874236952"},
+        {"item_name": "GV BLK BEAN", "price": 0.86, "sku": "007874206200"},
+        {"item_name": "GV NAVY BNS", "price": 0.86, "sku": "007874200224"},
+        {"item_name": "GV CANNELLI", "price": 0.86, "sku": "007874200225"},
+        {"item_name": "GV GRN ENCH", "price": 1.00, "sku": "019434615439"},
+        {"item_name": "GV BLK BEAN", "price": 0.86, "sku": "007874206200"},
+        {"item_name": "GV BLK BEAN", "price": 0.86, "sku": "007874206200"},
+        {"item_name": "GV GRN ENCH", "price": 1.00, "sku": "019434615439"},
+        {"item_name": "GV GRN ENCH", "price": 1.00, "sku": "019434615439"},
+        {"item_name": "GV GRN ENCH", "price": 1.00, "sku": "019434615439"},
+        {"item_name": "GV CANNELLI", "price": 0.86, "sku": "007874200225"},
+        {"item_name": "PRG TRAD 14", "price": 2.28, "sku": "005100002548"},
+        {"item_name": "GV TRAD SCE", "price": 1.82, "sku": "007874200020"},
+        {"item_name": "RAGU TRAD 1", "price": 1.86, "sku": "003620000050"},
+        {"item_name": "GV GAR ALFR", "price": 1.92, "sku": "019434605291"},
+        {"item_name": "SMKR RED RS", "price": 7.47, "sku": "005150002219"},
+        {"item_name": "CAMP CONDEN", "price": 0.58, "sku": "005100001261"},
+        {"item_name": "CAMP CONDEN", "price": 0.58, "sku": "005100001261"},
+        {"item_name": "DRY YEAST", "price": 5.38, "sku": "001792900021"},
+        {"item_name": "GV BLK BEAN", "price": 0.86, "sku": "007874206200"},
+        {"item_name": "KOSHER DILL", "price": 3.97, "sku": "005410000360"},
+        {"item_name": "GV 24KETCHU", "price": 1.47, "sku": "007874211771"},
+        {"item_name": "GV MAYO 30O", "price": 3.14, "sku": "007874206531"},
+        {"item_name": "YELLOW MSTD", "price": 0.68, "sku": "007874209197"},
+        {"item_name": "HVRANCH 36O", "price": 6.27, "sku": "007110000668"},
+        {"item_name": "GV PNT BUTT", "price": 3.98, "sku": "007874237002"},
+        {"item_name": "MARUCHAN 12", "price": 3.97, "sku": "004178900232"},
+        {"item_name": "GV OLD FA 4", "price": 4.18, "sku": "007874237104"},
+        {"item_name": "GREAT VALUE", "price": 2.94, "sku": "007874203092"},
+        {"item_name": "GV STRAW CR", "price": 2.72, "sku": "007874218159"},
+        {"item_name": "GV RICE SQ", "price": 2.72, "sku": "007874218395"},
+        {"item_name": "GV STRAW CR", "price": 2.72, "sku": "007874218159"},
+        {"item_name": "BREAD", "price": 6.42, "sku": "001376402705"},
+        {"item_name": "GV FL BRTO", "price": 2.12, "sku": "007874229474"},
+        {"item_name": "PLAIN BAGEL", "price": 1.88, "sku": "007874230713"},
+        {"item_name": "GV LT BR 2", "price": 1.97, "sku": "007874237221"},
+        {"item_name": "NATURAL PB", "price": 3.98, "sku": "007874200831"},
+        {"item_name": "FS WT ORG", "price": 5.24, "sku": "004400006921"},
+        {"item_name": "CHKN N BISK", "price": 5.24, "sku": "004400002093"},
+        {"item_name": "GV CK MLD 3", "price": 6.96, "sku": "007874206773"},
+        {"item_name": "CREAM CHEES", "price": 1.56, "sku": "007874237047"},
+        {"item_name": "GV BF HAM", "price": 5.97, "sku": "007874211039"},
+        {"item_name": "BURRITO", "price": 5.32, "sku": "007100701868"},
+        {"item_name": "GV BACON 12", "price": 4.24, "sku": "007874203089"},
+        {"item_name": "1LB ROLL SS", "price": 3.97, "sku": "007790011553"},
+        {"item_name": "MKT HNY SPR", "price": 23.49, "sku": "020735600000"},
+        {"item_name": "GV WHOLE GA", "price": 2.08, "sku": "007874235186"},
+        {"item_name": "BG ALM UN O", "price": 2.63, "sku": "019434619388"},
+        {"item_name": "BG ALM UNVA", "price": 2.63, "sku": "019434619389"},
+        {"item_name": "MED T C SAL", "price": 7.93, "sku": "004156514164"},
+        {"item_name": "GV CLC OO10", "price": 29.97, "sku": "007874206666"},
+        {"item_name": "EGGS 18CT", "price": 2.92, "sku": "007874214839"}
     ]
 }

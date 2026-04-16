@@ -1,6 +1,5 @@
 {
     "store_name": "Walmart",
-    "address": "5290 S POWER RD GILBERT AZ 85295",
     "date": "07/15/25",
     "time": "13:08:19",
     "total_amount": 215.52,
@@ -8,13 +7,15 @@
     "transactions": [
         {
             "item_name": "AIRPOD PRO2",
-            "price": 199.0
+            "price": 199.0,
+            "sku": "019594970452"
         }
     ],
     "refunds": [
         {
             "item_name": "AIRPOD PRO2",
-            "price": -199.0
+            "price": -199.0,
+            "sku": "019594970452"
         }
     ]
 }
