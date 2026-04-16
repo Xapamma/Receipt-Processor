@@ -1,8 +1,9 @@
 import json
 import os
 import sqlite3
+from datetime import datetime
 
-from receipt_processor.main_functions import initialize_database
+from src.receipt_processor.main_functions import initialize_database
 
 DB_NAME = "receipts.db"
 
@@ -12,8 +13,54 @@ def init_db(db_path=DB_NAME):
     initialize_database(db_path=db_path)
 
 
+def _normalize_date(raw_date):
+    """Normalize date to YYYY-MM-DD for database storage."""
+    if not raw_date:
+        return None
+
+    date_str = str(raw_date).strip()
+    formats = [
+        "%Y-%m-%d",
+        "%m/%d/%y",
+        "%m/%d/%Y",
+        "%b %d, %Y",
+        "%B %d, %Y",
+    ]
+    for fmt in formats:
+        try:
+            return datetime.strptime(date_str, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+
+    return date_str
+
+
+def _normalize_time(raw_time):
+    """Normalize time to HH:MM:SS for database storage."""
+    if not raw_time:
+        return None
+
+    time_str = str(raw_time).strip()
+    formats = [
+        "%H:%M:%S",
+        "%H:%M",
+        "%I:%M:%S %p",
+        "%I:%M %p",
+    ]
+    for fmt in formats:
+        try:
+            return datetime.strptime(time_str, fmt).strftime("%H:%M:%S")
+        except ValueError:
+            continue
+
+    return time_str
+
+
 def insert_receipt(data, db_path=DB_NAME):
     """Insert one parsed receipt dict into receipts/items tables."""
+    normalized_date = _normalize_date(data.get("date"))
+    normalized_time = _normalize_time(data.get("time"))
+
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -23,8 +70,8 @@ def insert_receipt(data, db_path=DB_NAME):
             VALUES (?, ?, ?, ?)
             """,
             (
-                data.get("date"),
-                data.get("time"),
+                normalized_date,
+                normalized_time,
                 data.get("store_name"),
                 data.get("total_amount"),
             ),

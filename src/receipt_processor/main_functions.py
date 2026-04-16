@@ -56,6 +56,26 @@ def initialize_database(db_path="receipts.db"):
         )
         """)
 
+        # Budget settings table (one total budget per month)
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS monthly_budgets (
+            month_key TEXT PRIMARY KEY,
+            total_budget REAL NOT NULL DEFAULT 0,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+        """)
+
+        # Category budget settings table (multiple categories per month)
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS category_budgets (
+            month_key TEXT NOT NULL,
+            category TEXT NOT NULL,
+            budget REAL NOT NULL DEFAULT 0,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (month_key, category)
+        )
+        """)
+
         conn.commit()
 
 def reset_database(db_path="receipts.db", confirm=False):
@@ -422,3 +442,116 @@ def export_receipts_to_csv(file_path, db_path="receipts.db"):
     """
     df = export_receipts_to_dataframe(db_path)
     df.to_csv(file_path, index=False)
+
+
+def get_monthly_budget(month_key, db_path="receipts.db"):
+    """
+    Get saved total budget for a month.
+
+    Parameters
+    ----------
+    month_key : str
+        Month key in YYYY-MM format.
+    db_path : str, optional
+        Path to SQLite DB.
+
+    Returns
+    -------
+    float or None
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT total_budget FROM monthly_budgets WHERE month_key = ?",
+            (month_key,),
+        )
+        row = cursor.fetchone()
+    return float(row[0]) if row else None
+
+
+def save_monthly_budget(month_key, total_budget, db_path="receipts.db"):
+    """
+    Save/update total budget for a month. 
+
+    Parameters
+    ----------
+    month_key : str
+        Month key in YYYY-MM format.
+    total_budget : float
+        Total budget amount to save.
+    db_path : str, optional
+        Path to SQLite DB.
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            INSERT INTO monthly_budgets (month_key, total_budget, updated_at)
+            VALUES (?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(month_key) DO UPDATE SET
+                total_budget = excluded.total_budget,
+                updated_at = CURRENT_TIMESTAMP
+            """,
+            (month_key, float(total_budget)),
+        )
+        conn.commit()
+
+
+def get_category_budgets(month_key, db_path="receipts.db"):
+    """
+    Get saved category budgets for a month.
+
+    Parameters
+    ----------
+    month_key : str
+        Month key in YYYY-MM format.
+    db_path : str, optional
+        Path to SQLite DB.
+
+    Returns
+    -------
+    dict
+        {category: budget}
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT category, budget
+            FROM category_budgets
+            WHERE month_key = ?
+            """,
+            (month_key,),
+        )
+        rows = cursor.fetchall()
+    return {category: float(budget) for category, budget in rows}
+
+
+def save_category_budget(month_key, category, budget, db_path="receipts.db"):
+    """
+    Save/update one category budget for a month.
+
+    Parameters
+    ----------
+    month_key : str
+        Month key in YYYY-MM format.
+    category : str
+        Category name.
+    budget : float
+        Budget amount to save.
+    db_path : str, optional
+        Path to SQLite DB.
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            INSERT INTO category_budgets (month_key, category, budget, updated_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(month_key, category) DO UPDATE SET
+                budget = excluded.budget,
+                updated_at = CURRENT_TIMESTAMP
+            """,
+            (month_key, category, float(budget)),
+        )
+        conn.commit()
