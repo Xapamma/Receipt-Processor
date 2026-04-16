@@ -56,7 +56,21 @@ def initialize_database(db_path="receipts.db"):
         )
         """)
 
-        # Budget settings table (one total budget per month)
+        conn.commit()
+
+
+def initialize_budget_database(db_path="budget.db"):
+    """
+    Initialize a dedicated SQLite database for budget settings.
+
+    Parameters
+    ----------
+    db_path : str, optional
+        Path to the budget database file (default is "budget.db").
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS monthly_budgets (
             month_key TEXT PRIMARY KEY,
@@ -65,7 +79,6 @@ def initialize_database(db_path="receipts.db"):
         )
         """)
 
-        # Category budget settings table (multiple categories per month)
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS category_budgets (
             month_key TEXT NOT NULL,
@@ -444,7 +457,7 @@ def export_receipts_to_csv(file_path, db_path="receipts.db"):
     df.to_csv(file_path, index=False)
 
 
-def get_monthly_budget(month_key, db_path="receipts.db"):
+def get_monthly_budget(month_key, db_path="budget.db"):
     """
     Get saved total budget for a month.
 
@@ -459,6 +472,7 @@ def get_monthly_budget(month_key, db_path="receipts.db"):
     -------
     float or None
     """
+    initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -469,7 +483,7 @@ def get_monthly_budget(month_key, db_path="receipts.db"):
     return float(row[0]) if row else None
 
 
-def save_monthly_budget(month_key, total_budget, db_path="receipts.db"):
+def save_monthly_budget(month_key, total_budget, db_path="budget.db"):
     """
     Save/update total budget for a month. 
 
@@ -482,6 +496,7 @@ def save_monthly_budget(month_key, total_budget, db_path="receipts.db"):
     db_path : str, optional
         Path to SQLite DB.
     """
+    initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -497,7 +512,7 @@ def save_monthly_budget(month_key, total_budget, db_path="receipts.db"):
         conn.commit()
 
 
-def get_category_budgets(month_key, db_path="receipts.db"):
+def get_category_budgets(month_key, db_path="budget.db"):
     """
     Get saved category budgets for a month.
 
@@ -513,6 +528,7 @@ def get_category_budgets(month_key, db_path="receipts.db"):
     dict
         {category: budget}
     """
+    initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -527,7 +543,7 @@ def get_category_budgets(month_key, db_path="receipts.db"):
     return {category: float(budget) for category, budget in rows}
 
 
-def save_category_budget(month_key, category, budget, db_path="receipts.db"):
+def save_category_budget(month_key, category, budget, db_path="budget.db"):
     """
     Save/update one category budget for a month.
 
@@ -542,6 +558,7 @@ def save_category_budget(month_key, category, budget, db_path="receipts.db"):
     db_path : str, optional
         Path to SQLite DB.
     """
+    initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(

@@ -11,21 +11,25 @@ from database import insert_receipt
 from llm_pdf_to_text import extract_text_from_images
 from src.receipt_processor.main_functions import (
     export_receipts_to_dataframe,
-    get_category_breakdown,
+    get_category_budgets,
+    get_monthly_budget,
     get_receipt_details,
     get_recent_receipts,
     get_total_spending,
-    get_vendor_breakdown,
     initialize_database,
+    initialize_budget_database,
+    save_category_budget,
+    save_monthly_budget,
 )
 
 
-st.set_page_config(page_title="Receipt Processor Demo", layout="wide")
-st.title("Receipt Processor Demo (main_functions.py)")
-st.caption("This demo app uses helper functions from receipt_processor/main_functions.py.")
+st.set_page_config(page_title="Receipt Processor", layout="wide")
+st.title("Receipt Processor")
 
 db_path = st.sidebar.text_input("Database path", value="receipts.db")
 initialize_database(db_path=db_path)
+budget_db_path = st.sidebar.text_input("Budget DB path", value="budget.db")
+initialize_budget_database(db_path=budget_db_path)
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -75,8 +79,6 @@ if uploaded_file is not None:
 
 df = export_receipts_to_dataframe(db_path=db_path)
 recent = get_recent_receipts(limit=10, db_path=db_path)
-category_breakdown = get_category_breakdown(db_path=db_path)
-vendor_breakdown = get_vendor_breakdown(db_path=db_path)
 total_spend = get_total_spending(db_path=db_path)
 
 if df.empty:
@@ -153,7 +155,6 @@ trend_fig.update_layout(
     margin=dict(l=20, r=20, t=20, b=20),
 )
 st.plotly_chart(trend_fig, use_container_width=True)
-st.caption("Missing months are included as $0.00 in the chart and in the average.")
 
 window_receipts = receipts_df[receipts_df["month_label"].isin(window_index)].copy()
 window_total_spending = window_receipts["total_amount"].sum()
@@ -165,7 +166,7 @@ w1.metric("Window Receipts", f"{len(window_receipts):,}")
 w2.metric("Window Spending", f"${window_total_spending:,.2f}")
 w3.metric("Window Avg Receipt", f"${window_avg_receipt:,.2f}")
 
-st.subheader("Monthly Spend Area by Category")
+st.subheader("Monthly Spend Stacked Bar by Category")
 category_monthly = df[["date", "vendor", "category", "price"]].copy()
 category_monthly["date"] = pd.to_datetime(category_monthly["date"], errors="coerce")
 category_monthly["month_label"] = category_monthly["date"].dt.to_period("M").dt.to_timestamp()
@@ -186,7 +187,7 @@ else:
     selected_categories = []
     selected_vendors = []
 
-    with st.expander("Choose categories for area chart", expanded=False):
+    with st.expander("Choose filters for stacked bar chart", expanded=False):
         st.markdown("**Vendors**")
         v_select_col, v_clear_col = st.columns(2)
         if v_select_col.button("Select all vendors"):
@@ -245,9 +246,9 @@ else:
         ]
 
     if not selected_vendors:
-        st.info("Select at least one vendor to display the area chart.")
+        st.info("Select at least one vendor to display the chart.")
     elif not selected_categories:
-        st.info("Select at least one category to display the area chart.")
+        st.info("Select at least one category to display the chart.")
     else:
         filtered = category_monthly[
             category_monthly["vendor"].isin(selected_vendors)
@@ -271,34 +272,6 @@ else:
             .tolist()
         )
 
-        area_fig = go.Figure()
-        for i, category in enumerate(ordered_categories):
-            cat_data = grouped[grouped["category"] == category].copy()
-            cat_data["month_name"] = cat_data["month_label"].dt.strftime("%b %Y")
-            area_fig.add_trace(
-                go.Scatter(
-                    x=cat_data["month_label"],
-                    y=cat_data["price"],
-                    mode="lines",
-                    name=category,
-                    stackgroup="one",
-                    fill="tozeroy" if i == 0 else "tonexty",
-                    customdata=cat_data["month_name"],
-                    hovertemplate="Month: %{customdata}<br>Category: %{fullData.name}<br>Spend: $%{y:,.2f}<extra></extra>",
-                )
-            )
-
-        area_fig.update_layout(
-            hovermode="x unified",
-            xaxis_title="Month",
-            yaxis_title="Spend ($)",
-            xaxis=dict(tickformat="%b %Y"),
-            margin=dict(l=20, r=20, t=20, b=20),
-        )
-        st.plotly_chart(area_fig, use_container_width=True)
-        st.caption("Category area chart is zero-filled for missing months so gaps still count as $0.00.")
-
-        st.subheader("Monthly Spend Stacked Bar by Category")
         bar_fig = go.Figure()
         for category in ordered_categories:
             cat_data = grouped[grouped["category"] == category].copy()
@@ -322,16 +295,71 @@ else:
             margin=dict(l=20, r=20, t=20, b=20),
         )
         st.plotly_chart(bar_fig, use_container_width=True)
-        st.caption("Stacked bar chart uses the same vendor/category selections and zero-filled missing months.")
+        st.caption("Stacked bar chart is zero-filled for missing months so gaps still count as $0.00.")
+
+st.subheader("Spend by Category and Vendor")
+bar_base_df = df[["date", "vendor", "category", "price"]].copy()
+bar_base_df["date"] = pd.to_datetime(bar_base_df["date"], errors="coerce")
+bar_base_df["month_label"] = bar_base_df["date"].dt.to_period("M").dt.to_timestamp()
+bar_base_df["category"] = bar_base_df["category"].fillna("Uncategorized")
+bar_base_df["vendor"] = bar_base_df["vendor"].fillna("Unknown Vendor")
+bar_base_df["price"] = pd.to_numeric(bar_base_df["price"], errors="coerce").fillna(0.0)
+
+available_months = sorted(
+    [m for m in receipts_df["month_label"].dropna().unique().tolist()],
+    reverse=True,
+)
+bar_period_mode = st.radio(
+    "Bar chart time filter",
+    options=["Current month", "Specific month", "Last N months"],
+    horizontal=True,
+    key="bar_time_filter_mode",
+)
+bar_current_month = pd.Timestamp.today().to_period("M").to_timestamp()
+
+if bar_period_mode == "Current month":
+    bar_start = bar_current_month
+    bar_end = bar_current_month
+    bar_filter_label = bar_current_month.strftime("%b %Y")
+elif bar_period_mode == "Specific month":
+    month_options = available_months if available_months else [bar_current_month]
+    selected_month = st.selectbox(
+        "Choose month",
+        options=month_options,
+        format_func=lambda d: pd.Timestamp(d).strftime("%b %Y"),
+        key="bar_specific_month",
+    )
+    bar_start = pd.Timestamp(selected_month)
+    bar_end = pd.Timestamp(selected_month)
+    bar_filter_label = bar_start.strftime("%b %Y")
+else:
+    bar_months = st.slider(
+        "How many months",
+        min_value=1,
+        max_value=24,
+        value=12,
+        step=1,
+        key="bar_last_n_months",
+    )
+    bar_end = bar_current_month
+    bar_start = bar_end - pd.DateOffset(months=bar_months - 1)
+    bar_filter_label = f"Last {bar_months} months"
+
+filtered_items = bar_base_df[
+    (bar_base_df["month_label"] >= bar_start) & (bar_base_df["month_label"] <= bar_end)
+].copy()
+filtered_receipts = receipts_df[
+    (receipts_df["month_label"] >= bar_start) & (receipts_df["month_label"] <= bar_end)
+].copy()
 
 left, right = st.columns(2)
 with left:
-    st.subheader("Spend by Category")
-    if category_breakdown:
+    st.subheader(f"Spend by Category ({bar_filter_label})")
+    if not filtered_items.empty:
         cat_df = (
-            pd.DataFrame(
-                [{"category": k, "amount": v} for k, v in category_breakdown.items()]
-            )
+            filtered_items.groupby("category", as_index=False)["price"]
+            .sum()
+            .rename(columns={"price": "amount"})
             .sort_values("amount", ascending=False)
         )
         cat_fig = go.Figure(
@@ -348,15 +376,15 @@ with left:
         )
         st.plotly_chart(cat_fig, use_container_width=True)
     else:
-        st.write("No category data yet.")
+        st.write("No category data for this time selection.")
 
 with right:
-    st.subheader("Spend by Vendor")
-    if vendor_breakdown:
+    st.subheader(f"Spend by Vendor ({bar_filter_label})")
+    if not filtered_receipts.empty:
         ven_df = (
-            pd.DataFrame(
-                [{"vendor": k, "amount": v} for k, v in vendor_breakdown.items()]
-            )
+            filtered_receipts.groupby("vendor", as_index=False)["total_amount"]
+            .sum()
+            .rename(columns={"total_amount": "amount"})
             .sort_values("amount", ascending=False)
         )
         ven_fig = go.Figure(
@@ -373,7 +401,103 @@ with right:
         )
         st.plotly_chart(ven_fig, use_container_width=True)
     else:
-        st.write("No vendor data yet.")
+        st.write("No vendor data for this time selection.")
+
+st.subheader("Monthly Budget Dashboard")
+budget_items_df = df[["date", "category", "price"]].copy()
+budget_items_df["date"] = pd.to_datetime(budget_items_df["date"], errors="coerce")
+budget_items_df["month_label"] = budget_items_df["date"].dt.to_period("M").dt.to_timestamp()
+budget_items_df["category"] = budget_items_df["category"].fillna("Uncategorized")
+budget_items_df["price"] = pd.to_numeric(budget_items_df["price"], errors="coerce").fillna(0.0)
+
+available_budget_months = sorted(
+    [m for m in receipts_df["month_label"].dropna().unique().tolist()],
+    reverse=True,
+)
+current_month = pd.Timestamp.today().to_period("M").to_timestamp()
+if current_month not in available_budget_months:
+    available_budget_months = [current_month] + available_budget_months
+
+selected_budget_month = st.selectbox(
+    "Select month for budget",
+    options=available_budget_months,
+    format_func=lambda d: pd.Timestamp(d).strftime("%b %Y"),
+    key="monthly_budget_selected_month",
+)
+selected_budget_month = pd.Timestamp(selected_budget_month)
+selected_budget_key = selected_budget_month.strftime("%Y-%m")
+
+selected_month_receipts = receipts_df[receipts_df["month_label"] == selected_budget_month].copy()
+selected_month_spend = selected_month_receipts["total_amount"].sum()
+
+selected_month_category_totals = (
+    budget_items_df[budget_items_df["month_label"] == selected_budget_month]
+    .groupby("category", as_index=False)["price"]
+    .sum()
+    .rename(columns={"price": "spent"})
+    .sort_values("spent", ascending=False)
+)
+
+saved_total_budget = get_monthly_budget(selected_budget_key, db_path=budget_db_path)
+saved_category_budgets = get_category_budgets(selected_budget_key, db_path=budget_db_path)
+
+total_budget_state_key = f"budget_total_{selected_budget_key}"
+if total_budget_state_key not in st.session_state:
+    st.session_state[total_budget_state_key] = (
+        float(saved_total_budget) if saved_total_budget is not None else 1000.0
+    )
+
+total_budget_value = st.number_input(
+    "Total monthly budget ($)",
+    min_value=0.0,
+    value=float(st.session_state[total_budget_state_key]),
+    step=50.0,
+    key=total_budget_state_key,
+)
+
+b1, b2, b3 = st.columns(3)
+b1.metric("Month spend", f"${selected_month_spend:,.2f}")
+b2.metric("Budget", f"${total_budget_value:,.2f}")
+b3.metric("Remaining", f"${(total_budget_value - selected_month_spend):,.2f}")
+st.progress(min(selected_month_spend / total_budget_value, 1.0) if total_budget_value > 0 else 0.0)
+
+category_names = sorted(
+    set(selected_month_category_totals["category"].tolist()) | set(saved_category_budgets.keys())
+)
+category_budget_values = {}
+
+if category_names:
+    st.markdown("**Category Budgets**")
+    for category in category_names:
+        spent_row = selected_month_category_totals[selected_month_category_totals["category"] == category]
+        spent = float(spent_row["spent"].iloc[0]) if not spent_row.empty else 0.0
+
+        cat_state_key = f"budget_{selected_budget_key}_{category}"
+        if cat_state_key not in st.session_state:
+            st.session_state[cat_state_key] = float(saved_category_budgets.get(category, 0.0))
+
+        c1, c2 = st.columns([2, 1])
+        with c1:
+            cat_budget = st.number_input(
+                f"{category} budget ($)",
+                min_value=0.0,
+                value=float(st.session_state[cat_state_key]),
+                step=10.0,
+                key=cat_state_key,
+            )
+        with c2:
+            st.metric("Spent", f"${spent:,.2f}")
+
+        st.progress(min(spent / cat_budget, 1.0) if cat_budget > 0 else 0.0)
+        category_budget_values[category] = float(cat_budget)
+else:
+    st.info("No category data available for this month yet.")
+
+if st.button("Save Budget", key=f"save_budget_{selected_budget_key}"):
+    save_monthly_budget(selected_budget_key, total_budget_value, db_path=budget_db_path)
+    for category, budget in category_budget_values.items():
+        save_category_budget(selected_budget_key, category, budget, db_path=budget_db_path)
+    st.success(f"Saved budget for {selected_budget_month.strftime('%b %Y')} to {budget_db_path}.")
 
 st.subheader("Recent Receipts")
 recent_df = pd.DataFrame(recent)
