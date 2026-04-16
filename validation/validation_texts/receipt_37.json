@@ -1,158 +1,46 @@
 {
     "store_name": "Walmart",
-    "address": "Queen Creek, AZ",
     "date": "10/06/25",
     "time": "17:11:29",
     "total_amount": 109.32,
     "items_sold_count": 37,
     "transactions": [
-        {
-            "item_name": "GV WHOLE GA",
-            "price": 2.12
-        },
-        {
-            "item_name": "GV CAL VG M",
-            "price": 1.16
-        },
-        {
-            "item_name": "BURRITO",
-            "price": 5.32
-        },
-        {
-            "item_name": "GV RF 2 GAL",
-            "price": 2.12
-        },
-        {
-            "item_name": "HMBRGR OVAL",
-            "price": 2.54
-        },
-        {
-            "item_name": "GV PNT BUTT",
-            "price": 3.98
-        },
-        {
-            "item_name": "MINI CORN D",
-            "price": 6.97
-        },
-        {
-            "item_name": "BANQUET",
-            "price": 1.0
-        },
-        {
-            "item_name": "3LB 80 GB R",
-            "price": 17.93
-        },
-        {
-            "item_name": "GV NAT SR C",
-            "price": 2.74
-        },
-        {
-            "item_name": "CREAM CHEES",
-            "price": 1.56
-        },
-        {
-            "item_name": "BREAD",
-            "price": 5.98
-        },
-        {
-            "item_name": "BREAD",
-            "price": 5.98
-        },
-        {
-            "item_name": "GREAT VALUE",
-            "price": 2.94
-        },
-        {
-            "item_name": "GV STRAW CR",
-            "price": 2.72
-        },
-        {
-            "item_name": "RAISIN BAGE",
-            "price": 3.54
-        },
-        {
-            "item_name": "GV FL BRTO",
-            "price": 2.12
-        },
-        {
-            "item_name": "FRENCH BREA",
-            "price": 1.0
-        },
-        {
-            "item_name": "GV SPAG 16O",
-            "price": 0.98
-        },
-        {
-            "item_name": "GV PENNE 16",
-            "price": 0.98
-        },
-        {
-            "item_name": "GV COOK SPR",
-            "price": 2.52
-        },
-        {
-            "item_name": "GV RICE 80O",
-            "price": 3.34
-        },
-        {
-            "item_name": "GV RICE 80O",
-            "price": 3.98
-        },
-        {
-            "item_name": "12Z GV MSC",
-            "price": 2.54
-        },
-        {
-            "item_name": "12Z GV MSC",
-            "price": 2.54
-        },
-        {
-            "item_name": "GV PINTO",
-            "price": 0.92
-        },
-        {
-            "item_name": "GV NRTH BEA",
-            "price": 0.92
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.92
-        },
-        {
-            "item_name": "GV BLK BEAN",
-            "price": 0.92
-        },
-        {
-            "item_name": "GV NS DRBEA",
-            "price": 0.92
-        },
-        {
-            "item_name": "GV PINTO",
-            "price": 0.92
-        },
-        {
-            "item_name": "TOMATO ROMA",
-            "price": 0.29
-        },
-        {
-            "item_name": "BANANAS",
-            "price": 0.94
-        },
-        {
-            "item_name": "PLUMS",
-            "price": 5.28
-        },
-        {
-            "item_name": "BELL PEPPER",
-            "price": 0.64
-        },
-        {
-            "item_name": "ASPARAGUS",
-            "price": 3.67
-        },
-        {
-            "item_name": "GV 13 OZ CA",
-            "price": 1.97
-        }
+        {"item_name": "GV WHOLE GA", "price": 2.12, "sku": "007874235186"},
+        {"item_name": "GV CAL VG M", "price": 1.16, "sku": "007874223739"},
+        {"item_name": "BURRITO", "price": 5.32, "sku": "007100701868"},
+        {"item_name": "GV RF 2 GAL", "price": 2.12, "sku": "007874235187"},
+        {"item_name": "HMBRGR OVAL", "price": 2.54, "sku": "005410001160"},
+        {"item_name": "GV PNT BUTT", "price": 3.98, "sku": "007874237002"},
+        {"item_name": "MINI CORN D", "price": 6.97, "sku": "007874236165"},
+        {"item_name": "BANQUET", "price": 1.0, "sku": "003100010102"},
+        {"item_name": "3LB 80 GB R", "price": 17.93, "sku": "007874212319"},
+        {"item_name": "GV NAT SR C", "price": 2.74, "sku": "007874211909"},
+        {"item_name": "CREAM CHEES", "price": 1.56, "sku": "007874237047"},
+        {"item_name": "BREAD", "price": 5.98, "sku": "001376402705"},
+        {"item_name": "BREAD", "price": 5.98, "sku": "001376402705"},
+        {"item_name": "GREAT VALUE", "price": 2.94, "sku": "007874203092"},
+        {"item_name": "GV STRAW CR", "price": 2.72, "sku": "007874218159"},
+        {"item_name": "RAISIN BAGE", "price": 3.54, "sku": "007294535070"},
+        {"item_name": "GV FL BRTO", "price": 2.12, "sku": "007874229474"},
+        {"item_name": "FRENCH BREA", "price": 1.0, "sku": "020098900000"},
+        {"item_name": "GV SPAG 16O", "price": 0.98, "sku": "007874223037"},
+        {"item_name": "GV PENNE 16", "price": 0.98, "sku": "007874220998"},
+        {"item_name": "GV COOK SPR", "price": 2.52, "sku": "007874222941"},
+        {"item_name": "GV RICE 80O", "price": 3.34, "sku": "007874235206"},
+        {"item_name": "GV RICE 80O", "price": 3.98, "sku": "007874207622"},
+        {"item_name": "12Z GV MSC", "price": 2.54, "sku": "007874208262"},
+        {"item_name": "12Z GV MSC", "price": 2.54, "sku": "007874208262"},
+        {"item_name": "GV PINTO", "price": 0.92, "sku": "007874237086"},
+        {"item_name": "GV NRTH BEA", "price": 0.92, "sku": "007874211418"},
+        {"item_name": "GV BLK BEAN", "price": 0.92, "sku": "007874207576"},
+        {"item_name": "GV BLK BEAN", "price": 0.92, "sku": "007874206200"},
+        {"item_name": "GV NS DRBEA", "price": 0.92, "sku": "007874203676"},
+        {"item_name": "GV PINTO", "price": 0.92, "sku": "007874237086"},
+        {"item_name": "TOMATO ROMA", "price": 0.29, "sku": "000000004087"},
+        {"item_name": "BANANAS", "price": 0.94, "sku": "064312604011"},
+        {"item_name": "PLUMS", "price": 5.28, "sku": "000000004040"},
+        {"item_name": "BELL PEPPER", "price": 0.64, "sku": "000000004065"},
+        {"item_name": "ASPARAGUS", "price": 3.67, "sku": "085029000217"},
+        {"item_name": "GV 13 OZ CA", "price": 1.97, "sku": "007874223702"}
     ]
 }
