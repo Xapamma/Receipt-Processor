@@ -12,7 +12,11 @@ website:
       - href: index.qmd
         text: Home
       - href: api.qmd
-        text: API
+        text: Documentation
+      - href: tutorial.qmd
+        text: Tutorial
+      - href: technical-report.qmd
+        text: Technical Report
 
 format:
   html:
