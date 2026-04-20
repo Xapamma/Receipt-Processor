@@ -1,8 +1,0 @@
-{
-    "receipt_id": "62",
-    "status": "refund_detected",
-    "reason": "contains refund keywords",
-    "image_paths": [
-        "receipts_pngs/62_page1.png"
-    ]
-}

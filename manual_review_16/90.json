@@ -1,9 +1,0 @@
-{
-    "receipt_id": "90",
-    "status": "failed_parse",
-    "reason": "empty_or_invalid_merge",
-    "failed_pages": 1,
-    "image_paths": [
-        "receipts_pngs/90_page1.png"
-    ]
-}
