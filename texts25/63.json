@@ -1,0 +1,59 @@
+{
+    "store_name": "Walmart",
+    "date": "06/25/2025",
+    "time": "17:58:58",
+    "total_amount": 24.79,
+    "items_sold_count": 10,
+    "transactions": [
+        {
+            "item_name": "GV PLNYOG 32",
+            "sku": "007874201685",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV SC CT CH",
+            "sku": "007874237236",
+            "price": 2.94
+        },
+        {
+            "item_name": "YLW ONION 3",
+            "sku": "088567771110",
+            "price": 2.84
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": null
+        },
+        {
+            "item_name": "FLOUR TORT",
+            "sku": "007874229473",
+            "price": 1.98
+        },
+        {
+            "item_name": "BLACKBERRY",
+            "sku": "085487700723",
+            "price": 4.94
+        },
+        {
+            "item_name": "BLUEBERRIES",
+            "sku": "003338322201",
+            "price": 2.97
+        },
+        {
+            "item_name": "GRANNY APPL",
+            "sku": "088828900031",
+            "price": 1.89
+        },
+        {
+            "item_name": "ICEBERG",
+            "sku": "003338365020",
+            "price": 1.87
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "sku": "000000004087",
+            "price": 1.04
+        }
+    ]
+}

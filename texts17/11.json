@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "02/03/26",
+    "time": "15:50:46",
+    "total_amount": 13.92,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "SR APPLI WHI",
+            "sku": "002006678818",
+            "price": 6.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SR APPLI WHI",
+            "sku": "002006678818",
+            "price": 6.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TERMINAL",
+            "sku": "28171575",
+            "price": 0.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "REF",
+            "sku": "603449302521",
+            "price": 0.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TERMINAL",
+            "sku": "28171575",
+            "price": 0.0,
+            "type": "purchase"
+        }
+    ]
+}

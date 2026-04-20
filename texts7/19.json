@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": "San Tan Valley, AZ",
+    "date": "01/26/2026",
+    "time": "13:53:15",
+    "total_amount": 1.5,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "POTATOES",
+            "price": 1.5
+        }
+    ]
+}

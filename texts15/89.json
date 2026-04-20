@@ -1,0 +1,118 @@
+{
+    "store_name": "Walmart",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRY DET. SO. 1",
+            "price": 7.67,
+            "sku": "019434618902",
+            "type": "purchase"
+        },
+        {
+            "item_name": "LAUN. DET. SO. 2",
+            "price": 7.67,
+            "sku": "019434618900",
+            "type": "purchase"
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98,
+            "sku": "001376402705",
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 1",
+            "price": 0.5,
+            "sku": "002924300001",
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 2",
+            "price": 0.5,
+            "sku": "002924300001",
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 3",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 1",
+            "price": 0.98,
+            "sku": "007236000203",
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 2",
+            "price": 0.98,
+            "sku": "007236000201",
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 3",
+            "price": 0.98,
+            "sku": "007236000201",
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 4",
+            "price": 0.98,
+            "sku": "007236000201",
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 1",
+            "price": 4.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 2",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 3",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 4",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 5",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 6",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 7",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 8",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 9",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AL. W. L. 10",
+            "price": 0.86,
+            "type": "purchase"
+        }
+    ]
+}

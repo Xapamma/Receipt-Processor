@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": "Show Low, AZ",
+    "date": "2023-03-21",
+    "time": "06:25:24",
+    "total_amount": 3.22,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "SHRPIECSL2C",
+            "price": 2.97
+        }
+    ]
+}

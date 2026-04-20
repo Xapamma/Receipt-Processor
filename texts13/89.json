@@ -1,0 +1,84 @@
+{
+    "store_name": "Walmart",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRY DET. SO. 19.99",
+            "price": 7.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "LAUN. DET. SO. 7.67",
+            "price": 7.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "type": "p"
+        }
+    ]
+}

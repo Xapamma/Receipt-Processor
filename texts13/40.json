@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "09/18/25",
+    "time": "16:35:42",
+    "total_amount": 19.14,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "PUREX LIQUI",
+            "price": 9.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ALWAYS LINE",
+            "price": 7.97,
+            "type": "purchase"
+        }
+    ]
+}

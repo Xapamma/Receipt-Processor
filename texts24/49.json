@@ -1,0 +1,44 @@
+{
+    "store_name": "Walmart",
+    "date": "08/22/25",
+    "time": "14:16:28",
+    "total_amount": 21.19,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22
+        },
+        {
+            "item_name": "AVOCADO",
+            "sku": "000000004046",
+            "price": null
+        },
+        {
+            "item_name": "GRAPEFRUIT",
+            "sku": "600916320877",
+            "price": 1.37
+        },
+        {
+            "item_name": "PEACHES",
+            "sku": "084580804044",
+            "price": 1.37
+        },
+        {
+            "item_name": "SM ORNGE BA",
+            "sku": "081865401171",
+            "price": 5.97
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 1.34
+        }
+    ]
+}

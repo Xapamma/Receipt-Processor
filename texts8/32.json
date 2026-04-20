@@ -1,0 +1,286 @@
+{
+    "store_name": "Walmart",
+    "address": "4804571158 Mgr. Angela Queen Creek, AZ",
+    "date": "11/03/25",
+    "time": "18:10:15",
+    "total_amount": 114.27,
+    "items_sold_count": 31,
+    "transactions": [
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 18.96
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98
+        },
+        {
+            "item_name": "GV FL BRTO",
+            "price": 2.12
+        },
+        {
+            "item_name": "TROFAN RIB",
+            "price": 15.97
+        },
+        {
+            "item_name": "TRDNT WHITE",
+            "price": 3.78
+        },
+        {
+            "item_name": "2.25 80 GB",
+            "price": 14.93
+        },
+        {
+            "item_name": "MUSHROOMS",
+            "price": 2.98
+        },
+        {
+            "item_name": "SRLN TENDER",
+            "price": 12.85
+        },
+        {
+            "item_name": "GV CK CJ 16",
+            "price": 3.78
+        },
+        {
+            "item_name": "GV 12 LG AA",
+            "price": 1.97
+        },
+        {
+            "item_name": "GV BF HAM",
+            "price": 5.97
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86
+        },
+        {
+            "item_name": "POTATOES",
+            "price": 1.68
+        },
+        {
+            "item_name": "TYS CKN STR",
+            "price": 12.44
+        },
+        {
+            "item_name": "CUCUMBER",
+            "price": 0.76
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.58
+        },
+        {
+            "item_name": "SWT POTATO",
+            "price": 3.74
+        }
+    ]
+}

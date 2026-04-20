@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "02/06/25",
+    "time": "16:08:52",
+    "total_amount": 4.01,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "ICEBERG",
+            "price": 1.84,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV FL BRTO",
+            "price": 2.08,
+            "type": "purchase"
+        }
+    ]
+}

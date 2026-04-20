@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "01/01/26",
+    "time": "13:48:07",
+    "total_amount": 47.29,
+    "items_sold_count": 17,
+    "transactions": [
+        {
+            "item_name": "GV CRN RB",
+            "sku": "007874218393",
+            "price": 2.76
+        },
+        {
+            "item_name": "GV FSW",
+            "sku": "007874207527",
+            "price": 2.82
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218150",
+            "price": 2.67
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874203092",
+            "price": 2.94
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 6.42
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "sku": "007874214839",
+            "price": 2.92
+        }
+    ]
+}

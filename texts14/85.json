@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "02/11/25",
+    "time": "16:27:58",
+    "total_amount": 5.39,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "VD MINI ROS",
+            "price": 4.97,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-11-29",
+    "time": "13:20:43",
+    "total_amount": 4.24,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "GE SM FOAM",
+            "price": 3.97,
+            "type": "purchase"
+        }
+    ]
+}

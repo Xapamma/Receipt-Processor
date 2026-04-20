@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": "San Tan Valley, AZ",
+    "date": "2023-05-30",
+    "time": "21:18:07",
+    "total_amount": 27.58,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "HT 2PC PLIE",
+            "price": 8.97
+        },
+        {
+            "item_name": "HT 132PC KI",
+            "price": 16.88
+        }
+    ]
+}

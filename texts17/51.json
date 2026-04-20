@@ -1,0 +1,45 @@
+{
+    "store_name": "Walmart",
+    "date": "08/13/25",
+    "time": "18:22:14",
+    "total_amount": 78.7,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "AH SEED HAM",
+            "sku": "007082130849",
+            "price": 3.74,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 5.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV CHICK CK",
+            "sku": "007874215998",
+            "price": 2.72,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SNACKCRACKE",
+            "sku": "019434613601",
+            "price": 4.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CHILI PWDR",
+            "sku": "007874225460",
+            "price": 1.24,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV ORE-GANO",
+            "sku": "007874225462",
+            "price": 1.24,
+            "type": "purchase"
+        }
+    ]
+}

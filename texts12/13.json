@@ -1,0 +1,119 @@
+{
+    "store_name": "Walmart",
+    "date": "01/30/26",
+    "time": "15:40:49",
+    "total_amount": 71.56,
+    "items_sold_count": 23,
+    "transactions": [
+        {
+            "item_name": "GV FSW",
+            "price": 2.82,
+            "sku": "007874207527"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67,
+            "sku": "007874218150"
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "price": 3.98,
+            "sku": "007874237002"
+        },
+        {
+            "item_name": "GV MINCED G",
+            "price": 5.42,
+            "sku": "007874223127"
+        },
+        {
+            "item_name": "POTATOES",
+            "price": 3.47,
+            "sku": "0033353010"
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "price": 0.86,
+            "sku": "007874209989"
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "price": 0.86,
+            "sku": "007874200224"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86,
+            "sku": "007874206200"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86,
+            "sku": "007874206200"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86,
+            "sku": "007874206200"
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "price": 0.86,
+            "sku": "007874200224"
+        },
+        {
+            "item_name": "GV PINTO",
+            "price": 0.86,
+            "sku": "007874237086"
+        },
+        {
+            "item_name": "GRANNY APPL",
+            "price": 1.95,
+            "sku": "088828900031"
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 2.86,
+            "sku": "00000004138"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.02,
+            "sku": "007874235186"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67,
+            "sku": "004157011019"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67,
+            "sku": "004157011019"
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 4.67,
+            "sku": "064312604011"
+        },
+        {
+            "item_name": "TOMATO",
+            "price": 1.62,
+            "sku": "00000004087"
+        },
+        {
+            "item_name": "GV BF HAM",
+            "price": 0.85,
+            "sku": "007874211039"
+        },
+        {
+            "item_name": "AUSSIE",
+            "price": 4.25,
+            "sku": "0381918825"
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "price": 15.38,
+            "sku": "026163800000"
+        }
+    ]
+}

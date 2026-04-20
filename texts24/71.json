@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "04/23/25",
+    "time": "21:02:23",
+    "total_amount": 1.32,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "PG MASKING",
+            "sku": "694409499608",
+            "price": 1.24
+        }
+    ]
+}

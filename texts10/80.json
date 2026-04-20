@@ -1,0 +1,50 @@
+{
+    "store_name": "Walmart",
+    "address": "Claypool, AZ",
+    "date": "2023-03-20",
+    "time": "16:47:58",
+    "total_amount": 87.21,
+    "items_sold_count": 11,
+    "transactions": [
+        {
+            "item_name": "PLASTIC CUP",
+            "price": 3.98
+        },
+        {
+            "item_name": "VEG TRAY",
+            "price": 10.97
+        },
+        {
+            "item_name": "VEG TRAY",
+            "price": 10.97
+        },
+        {
+            "item_name": "BUNS",
+            "price": 3.87
+        },
+        {
+            "item_name": "BUNS",
+            "price": 3.87
+        },
+        {
+            "item_name": "BUNS",
+            "price": 3.87
+        },
+        {
+            "item_name": "CLR CUTLERY",
+            "price": 9.98
+        },
+        {
+            "item_name": "FRUIT TRAY",
+            "price": 13.62
+        },
+        {
+            "item_name": "FRUIT TRAY",
+            "price": 13.62
+        },
+        {
+            "item_name": "VIEWS 7 PAC",
+            "price": 2.37
+        }
+    ]
+}

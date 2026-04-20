@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-02-06",
+    "time": "16:08:52",
+    "total_amount": 4.01,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "ICEBERG",
+            "price": 1.84,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GROCERY",
+            "price": 2.08,
+            "type": "purchase"
+        }
+    ]
+}

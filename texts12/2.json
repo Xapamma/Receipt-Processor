@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "02/24/26",
+    "time": "19:46:24",
+    "total_amount": 3.17,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "BLACKBERRY MANGO",
+            "price": 2.22,
+            "sku": "750301951903"
+        },
+        {
+            "item_name": "MANGO",
+            "price": 0.88,
+            "sku": "085218600308"
+        }
+    ]
+}

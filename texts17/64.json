@@ -1,0 +1,128 @@
+{
+    "store_name": "Walmart",
+    "date": "06/18/25",
+    "time": "21:09:21",
+    "total_amount": 114.79,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "MNTRL STEAK",
+            "sku": "005210069313",
+            "price": 2.12,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874203092",
+            "price": 2.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "sku": "003700051160",
+            "price": 1.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "sku": "003700051160",
+            "price": 1.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "OMEGA 180CT",
+            "sku": "019434611222",
+            "price": 14.64,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SV PRENATAL",
+            "sku": "007874243656",
+            "price": 5.38,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DEODORANT",
+            "sku": "001204402036",
+            "price": 11.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "MIRRO",
+            "sku": "068113136243",
+            "price": 4.22,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV NRTH BEA",
+            "sku": "007874211418",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874206200",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "sku": "007874212278",
+            "price": 6.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ASPARAGUS",
+            "sku": "085029000217",
+            "price": 3.32,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AVOCADO BAG",
+            "sku": "007074018482",
+            "price": 3.17,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TOM CHERUB",
+            "sku": "075166677365",
+            "price": 4.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PCKSALAD",
+            "sku": " 068113132946",
+            "price": 1.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PINEAPLE",
+            "sku": "000000004430",
+            "price": 2.04,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": " 064312604011",
+            "price": 0.83,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PECHES",
+            "sku": " 08458080404",
+            "price": 3.32,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CORN TORT",
+            "sku": " 007874229475",
+            "price": 1.98
+        }
+    ]
+}

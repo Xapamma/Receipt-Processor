@@ -1,0 +1,114 @@
+{
+    "store_name": "Walmart",
+    "date": "09/16/25",
+    "time": "19:42:07",
+    "total_amount": 70.57,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "CORNCHEX",
+            "sku": "001600017108",
+            "price": 4.93
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000201",
+            "price": 0.0
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000201",
+            "price": 0.0
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000201",
+            "price": 0.0
+        },
+        {
+            "item_name": "FLAX",
+            "sku": "007874214161",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV CHPPD WA",
+            "sku": "007874220136",
+            "price": null
+        },
+        {
+            "item_name": "PARCHMENT",
+            "sku": "007874235299",
+            "price": null
+        },
+        {
+            "item_name": "GV RIGATONI",
+            "sku": "007874223051",
+            "price": 0.98
+        },
+        {
+            "item_name": "GV FLR FJTA",
+            "sku": "007874229472",
+            "price": 2.12
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": null
+        },
+        {
+            "item_name": "NATURAL PB",
+            "sku": "007874200831",
+            "price": null
+        },
+        {
+            "item_name": "BABY CARROT",
+            "sku": "003338366604",
+            "price": 2.48
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "sku": "000000004087",
+            "price": null
+        },
+        {
+            "item_name": "CUCUMBER",
+            "sku": "081200002019",
+            "price": 0.48
+        },
+        {
+            "item_name": "AVOCADO",
+            "sku": "007074012111",
+            "price": null
+        },
+        {
+            "item_name": "GALA APPLES",
+            "sku": "088828900020",
+            "price": 2.4
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874203092",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV RICE sq",
+            "sku": "007874218395",
+            "price": 2.72
+        },
+        {
+            "item_name": "2 25 80 GB",
+            "sku": "007874226960",
+            "price": 14.83
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.12
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.12
+        }
+    ]
+}

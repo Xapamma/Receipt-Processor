@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "09/18/25",
+    "time": "16:35:42",
+    "total_amount": 19.14,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "Purex",
+            "sku": "002420005020",
+            "price": 9.97
+        },
+        {
+            "item_name": "Always",
+            "sku": "003077216351",
+            "price": 7.97
+        }
+    ]
+}

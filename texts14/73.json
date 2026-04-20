@@ -1,0 +1,59 @@
+{
+    "store_name": "Walmart",
+    "date": "03/21/25",
+    "time": "15:34:56",
+    "total_amount": 29.91,
+    "items_sold_count": 10,
+    "transactions": [
+        {
+            "item_name": "MILD SALSA",
+            "price": 2.82,
+            "type": "purchase"
+        },
+        {
+            "item_name": "MEDIUM SALS",
+            "price": 2.82,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV DICE JAL",
+            "price": 1.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV DICE JAL",
+            "price": 1.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BAN PEPPERS",
+            "price": 1.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ECAL MED PT",
+            "price": 2.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ECAL MED PT",
+            "price": 2.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "LRG PIT OLV",
+            "price": 2.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV 40PK",
+            "price": 5.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV 40PK",
+            "price": 5.47,
+            "type": "purchase"
+        }
+    ]
+}

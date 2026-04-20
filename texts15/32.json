@@ -1,0 +1,50 @@
+{
+    "store_name": "Walmart",
+    "date": "11/03/25",
+    "time": "18:10:15",
+    "total_amount": 114.27,
+    "items_sold_count": 31,
+    "transactions": [
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "sku": "002529300377",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "price": 1.25,
+            "S: 002529300377, ": "S: 002529300377, "
+        }
+    ]
+}

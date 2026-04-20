@@ -1,0 +1,33 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-03-06",
+    "time": "20:56:50",
+    "total_amount": 13.19,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "WATERMELON",
+            "price": 3.5,
+            "sku": "082757530170",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV HNYOATAL",
+            "price": 3.27,
+            "sku": "007874237335",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94,
+            "sku": "007874203092",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "price": 3.48,
+            "sku": "007874218158",
+            "type": "purchase"
+        }
+    ]
+}

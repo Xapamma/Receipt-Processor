@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-12-23",
+    "time": "09:48:52",
+    "total_amount": 16.96,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "BB Foot PUM",
+            "sku": "003501198535",
+            "price": 16.96,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "store_name": "Walmart",
+    "date": "06/07/25",
+    "time": "18:02:04",
+    "total_amount": 252.23,
+    "items_sold_count": 13,
+    "transactions": [
+        {
+            "item_name": "TIREROTATION",
+            "sku": "007874224341",
+            "price": 5.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TIRE FEE",
+            "sku": "000003700848",
+            "price": 4.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ROT BAL-LIFE",
+            "sku": "068113124592",
+            "price": 30.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "NEW TIRE",
+            "sku": "06053889928",
+            "price": 0.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DTAS2156OR16",
+            "sku": "074131796308",
+            "price": 73.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DTAS2156OR16",
+            "sku": "074131796308",
+            "price": 73.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ROT BAL",
+            "sku": "06811319456",
+            "price": 52.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TERMIRAL",
+            "sku": "21972851",
+            "price": 0.0,
+            "type": "purchase"
+        }
+    ]
+}

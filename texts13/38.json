@@ -1,0 +1,24 @@
+{
+    "store_name": "WALM",
+    "date": "2023-02-16",
+    "time": "09:45:00",
+    "total_amount": 23.0,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "WALM",
+            "price": 10.0,
+            "type": "p"
+        },
+        {
+            "item_name": "WALM",
+            "price": 10.0,
+            "type": "p"
+        },
+        {
+            "item_name": "WALM",
+            "price": 3.0,
+            "type": "p"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "store_name": "Walmart",
+    "date": "03/20/25",
+    "time": "23:03:04",
+    "total_amount": 79.85,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "THROWS",
+            "sku": "019750203308",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "sku": "019750203308",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "sku": "019750203308",
+            "price": 3.44
+        },
+        {
+            "item_name": "THROWS",
+            "sku": "019750203308",
+            "price": 3.44
+        },
+        {
+            "item_name": "OT 50 SB",
+            "sku": "063653313404",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "sku": "063653313404",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "sku": "063653313404",
+            "price": 14.97
+        },
+        {
+            "item_name": "OT 50 SB",
+            "sku": "063653313404",
+            "price": 14.97
+        }
+    ]
+}

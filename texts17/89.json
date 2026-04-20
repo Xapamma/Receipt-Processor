@@ -1,0 +1,51 @@
+{
+    "store_name": "Walmart",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRYDET",
+            "sku": "019434618902",
+            "price": 7.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "LAUNDRYDET",
+            "sku": "019434618900",
+            "price": 7.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 5.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5,
+            "type": "purchase"
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5,
+            "type": "purchase"
+        }
+    ]
+}

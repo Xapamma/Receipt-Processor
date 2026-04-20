@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-02-03",
+    "time": "15:50:46",
+    "total_amount": 13.92,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "SR APPLI WHI 002006678818",
+            "price": 6.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SR APPLI WHI 002006678818",
+            "price": 6.96,
+            "type": "purchase"
+        }
+    ]
+}

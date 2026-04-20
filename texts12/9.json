@@ -1,0 +1,94 @@
+{
+    "store_name": "Walmart",
+    "date": "02/10/26",
+    "time": "10:33:49",
+    "total_amount": 106.37,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "GV TOASTED",
+            "price": 2.47,
+            "sku": "019434652562"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67,
+            "sku": "007874218150"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.67,
+            "sku": "007874218148"
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "price": 2.72,
+            "sku": "007874218159"
+        },
+        {
+            "item_name": "GV RSN BRAN",
+            "price": 2.47,
+            "sku": "019434639045"
+        },
+        {
+            "item_name": "SV SH ROSM2",
+            "price": 4.97,
+            "sku": "0038500099661"
+        },
+        {
+            "item_name": "BODY WASH",
+            "price": 4.97,
+            "sku": "0038500099661"
+        },
+        {
+            "item_name": "SV CN ROSM2",
+            "price": 4.18,
+            "sku": "0038500099661"
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "price": 4.18,
+            "sku": "0078742371104"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97,
+            "sku": "082506312392"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97,
+            "sku": "082506312392"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97,
+            "sku": "082506312392"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97,
+            "sku": "082506312392"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "price": 3.97,
+            "Sku": "082506312392"
+        },
+        {
+            "item_name": "SHEET SET",
+            "price": 9.97,
+            "Sku": "084012593611"
+        },
+        {
+            "item_name": "SHEET SET",
+            "price": 9.97,
+            "Sku": "084012593611"
+        },
+        {
+            "item_name": "SHEET SET",
+            "price": 9.97,
+            "S": "S"
+        }
+    ]
+}

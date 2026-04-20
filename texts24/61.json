@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "07/06/25",
+    "time": "21:42:37",
+    "total_amount": 14.95,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "MOSEINSCTGB",
+            "sku": "002904960000",
+            "price": 0.64
+        },
+        {
+            "item_name": "MOSEINSCTGB",
+            "sku": "002904960000",
+            "price": 0.64
+        },
+        {
+            "item_name": "MOSEINSCTGB",
+            "sku": "002904960000",
+            "price": 0.64
+        },
+        {
+            "item_name": "MOSEINSCTGB",
+            "sku": "002904960000",
+            "price": 0.64
+        },
+        {
+            "item_name": "SCORP LIGHT",
+            "sku": "001528630009",
+            "price": 9.97
+        },
+        {
+            "item_name": "MOUSE TRAP",
+            "sku": "007286813035",
+            "price": 1.48
+        }
+    ]
+}

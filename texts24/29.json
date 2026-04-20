@@ -1,0 +1,44 @@
+{
+    "store_name": "Walmart",
+    "date": "11/15/25",
+    "time": "10:59:11",
+    "total_amount": 83.65,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "MOUSE WFIN",
+            "sku": "008235403753",
+            "price": 4.38
+        },
+        {
+            "item_name": "HR 2  5 BRIS",
+            "sku": "084009261482",
+            "price": 9.88
+        },
+        {
+            "item_name": "DTL SANDER",
+            "sku": "088952639337",
+            "price": 29.88
+        },
+        {
+            "item_name": "CHALK LN WH",
+            "sku": "002006632630",
+            "price": 11.48
+        },
+        {
+            "item_name": "2X WHI PRI",
+            "sku": "00200663766",
+            "price": 5.86
+        },
+        {
+            "item_name": "HT 3 NUT D",
+            "sku": "088952636175",
+            "price": 5.44
+        },
+        {
+            "item_name": "CHALK LN WH",
+            "sku": "002006632630",
+            "price": 11.48
+        }
+    ]
+}

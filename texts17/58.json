@@ -1,0 +1,27 @@
+{
+    "store_name": "Walmart",
+    "date": "07/15/25",
+    "time": "13:08:19",
+    "total_amount": null,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "AIRPOD PRO2",
+            "sku": "019594970452",
+            "price": 199.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AIRPOD PRO2",
+            "sku": "019594970452",
+            "price": 199.0,
+            "type": "purchase"
+        },
+        {
+            "item_name": "REF",
+            "sku": "519670106521",
+            "price": 0.0,
+            "type": "ref"
+        }
+    ]
+}

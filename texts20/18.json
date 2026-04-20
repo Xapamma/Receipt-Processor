@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "01/01/26",
+    "time": "15:34:35",
+    "total_amount": 37.73,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "OSCILLATING",
+            "sku": "088952639342",
+            "price": 29.88
+        },
+        {
+            "item_name": "HT 1.25IN W",
+            "sku": "088952636190",
+            "price": 4.88
+        }
+    ]
+}

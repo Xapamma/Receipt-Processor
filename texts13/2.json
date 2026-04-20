@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "02/24/26",
+    "time": "19:46:24",
+    "total_amount": 3.17,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "BLACKBERRY MANGO",
+            "price": 2.22,
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GIFT CARD",
+            "price": 0.88,
+            "type": "purchase"
+        }
+    ]
+}

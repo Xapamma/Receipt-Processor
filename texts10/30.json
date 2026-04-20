@@ -1,0 +1,42 @@
+{
+    "store_name": "Walmart",
+    "address": "San Tan Valley, AZ",
+    "date": "11/14/25",
+    "time": "20:03:44",
+    "total_amount": 69.33,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "ORTHO",
+            "price": 17.34
+        },
+        {
+            "item_name": "PUREX LIQUI",
+            "price": 8.97
+        },
+        {
+            "item_name": "GV 13G TRAS",
+            "price": 16.73
+        },
+        {
+            "item_name": "GV DISH GEL",
+            "price": 4.48
+        },
+        {
+            "item_name": "EQB KERAT C",
+            "price": 2.74
+        },
+        {
+            "item_name": "PSSEN 7.250",
+            "price": 2.27
+        },
+        {
+            "item_name": "OS DEO",
+            "price": 7.97
+        },
+        {
+            "item_name": "FOCA 2KG",
+            "price": 4.48
+        }
+    ]
+}

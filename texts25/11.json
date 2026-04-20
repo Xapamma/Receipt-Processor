@@ -1,0 +1,19 @@
+{
+    "store_name": "WM Supercenter",
+    "date": "02/03/26",
+    "time": "15:50:46",
+    "total_amount": 13.92,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "SR APPLI WHI",
+            "sku": "002006678818",
+            "price": 6.96
+        },
+        {
+            "item_name": "SR APPLI WHI",
+            "sku": "002006678818",
+            "price": 6.96
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "store_name": "Walmart",
+    "date": "11/14/25",
+    "time": "20:03:44",
+    "total_amount": 69.33,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "ORTHO",
+            "sku": "007154900061",
+            "price": 17.34
+        },
+        {
+            "item_name": "PUREX LIQUI",
+            "sku": "002420005020",
+            "price": 8.97
+        },
+        {
+            "item_name": "GV 13G TRAS",
+            "sku": "019434637823",
+            "price": 16.73
+        },
+        {
+            "item_name": "GV DISH GEL",
+            "sku": "007874227670",
+            "price": 4.48
+        },
+        {
+            "item_name": "EQB KERAT C",
+            "sku": "019434615955",
+            "price": 2.74
+        },
+        {
+            "item_name": "PSSEN 7  250",
+            "sku": "005100930993",
+            "price": 2.27
+        },
+        {
+            "item_name": "OS DEO",
+            "sku": "001204404817",
+            "price": 7.97
+        },
+        {
+            "item_name": "FOCA 2KG",
+            "sku": "001200542757",
+            "price": 4.48
+        }
+    ]
+}

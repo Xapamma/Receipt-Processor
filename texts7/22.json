@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": "4802246900 Mgr. Jason Gilbert, AZ",
+    "date": "12/24/25",
+    "time": "13:00:22",
+    "total_amount": 7.17,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "5X7 PRINT",
+            "price": 2.18
+        },
+        {
+            "item_name": "5X7 FRAME",
+            "price": 4.44
+        }
+    ]
+}

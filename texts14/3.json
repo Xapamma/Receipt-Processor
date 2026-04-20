@@ -1,0 +1,59 @@
+{
+    "store_name": "Walmart",
+    "date": "02/24/26",
+    "time": "19:42:38",
+    "total_amount": 46.11,
+    "items_sold_count": 10,
+    "transactions": [
+        {
+            "item_name": "SALAD KIT",
+            "price": 3.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GVSHRDCKN",
+            "price": 2.62,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GVSHRDCKN",
+            "price": 2.62,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 0.64,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 1.35,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DKB CINN BG",
+            "price": 6.34,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CREAM CHEES",
+            "price": 1.56,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV BF PATTI",
+            "price": 15.47,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "price": 4.67,
+            "type": "purchase"
+        },
+        {
+            "item_name": "APPLE 3 BAG",
+            "price": 4.98,
+            "type": "purchase"
+        }
+    ]
+}

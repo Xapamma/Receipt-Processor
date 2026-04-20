@@ -2,8 +2,12 @@ import easyocr
 import os
 from pathlib import Path
 import re
+import warnings
 
-reader = easyocr.Reader(['en'])
+
+warnings.filterwarnings("ignore", message=".*pin_memory.*")
+
+reader = easyocr.Reader(['en'], gpu=False)
 
 def fix_prices_safe(text):
     """
@@ -72,15 +76,41 @@ def process_image_folder(input_folder, output_folder):
 
     output_folder.mkdir(parents=True, exist_ok=True)
 
-    for image_path in input_folder.glob("*.png"):
-        print(f"Processing: {image_path.name}")
+    all_images = list(input_folder.glob("*.png"))
 
-        text = extract_text_from_image(image_path)
+    to_process = []
 
+    # Build list of images that still need processing
+    for image_path in all_images:
         output_file = output_folder / (image_path.stem + ".txt")
 
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(text)
+        # Skip if already processed
+        if output_file.exists():
+            continue
+
+        to_process.append(image_path)
+
+    skipped = len(all_images) - len(to_process)
+    if skipped > 0:
+        print(f"Skipping {skipped} already processed images...")
+
+    if not to_process:
+        print("Everything is already up to date!")
+        return
+
+    for image_path in to_process:
+        print(f"Processing: {image_path.name}")
+
+        try:
+            text = extract_text_from_image(image_path)
+
+            output_file = output_folder / (image_path.stem + ".txt")
+
+            with open(output_file, "w", encoding="utf-8") as f:
+                f.write(text)
+
+        except Exception as e:
+            print(f"Error processing {image_path.name}: {e}")
 
     print("✅ Done processing all images.")
 

@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-05-30",
+    "time": "21:18:07",
+    "total_amount": 25.85,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "HT 2PC PLIE",
+            "sku": "082090909018",
+            "price": 8.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "HT 132PC KI",
+            "sku": "088952626197",
+            "price": 16.88,
+            "type": "purchase"
+        }
+    ]
+}

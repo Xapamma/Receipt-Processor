@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": "4802246900 Mgr. Jason, Gilbert, AZ",
+    "date": "08/01/25",
+    "time": "11:01:44",
+    "total_amount": 1.29,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 1.29
+        }
+    ]
+}

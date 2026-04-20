@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "01/03/26",
+    "time": "16:59:25",
+    "total_amount": 7.94,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "VIO MOZZ SH",
+            "sku": "081093403020",
+            "price": 3.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BG DF SH MO",
+            "sku": "019434619391",
+            "price": 3.97,
+            "type": "purchase"
+        }
+    ]
+}

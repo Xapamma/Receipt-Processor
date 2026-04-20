@@ -1,0 +1,29 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-11-15",
+    "time": "10:59:11",
+    "total_amount": 83.65,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "Mouse W/Fin",
+            "sku": "008235403753",
+            "price": 4.38
+        },
+        {
+            "item_name": "HR 2.5 Bris",
+            "sku": "084009261482",
+            "price": 9.88
+        },
+        {
+            "item_name": "DTL Sander",
+            "sku": "088952639337",
+            "price": 29.88
+        },
+        {
+            "item_name": "Chalk L. N. W. H. (2)",
+            "sku": "002006632630",
+            "price": 11.48
+        }
+    ]
+}

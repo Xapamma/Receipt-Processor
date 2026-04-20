@@ -1,0 +1,30 @@
+{
+    "store_name": "Walmart",
+    "address": "Queen Creek, AZ",
+    "date": "08/26/25",
+    "time": "12:55:56",
+    "total_amount": 34.5,
+    "items_sold_count": 5,
+    "transactions": [
+        {
+            "item_name": "GV CK MLD 3",
+            "price": 6.96
+        },
+        {
+            "item_name": "GV RICTT 32",
+            "price": 4.76
+        },
+        {
+            "item_name": "GVAPCLEM320",
+            "price": 2.77
+        },
+        {
+            "item_name": "GV CLC 0051",
+            "price": 16.54
+        },
+        {
+            "item_name": "CHK BOUILLO",
+            "price": 2.54
+        }
+    ]
+}

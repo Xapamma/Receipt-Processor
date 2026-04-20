@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-09-25",
+    "time": "18:06:56",
+    "total_amount": 2.78,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "KING SIZE",
+            "sku": "003400000480",
+            "price": 2.78
+        }
+    ]
+}

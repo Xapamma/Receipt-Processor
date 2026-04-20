@@ -1,0 +1,104 @@
+{
+    "store_name": "Walmart",
+    "date": "11/14/25",
+    "time": "20:01:56",
+    "total_amount": "Not found",
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "GV FSW",
+            "price": 2.82,
+            "sku": "007874207527"
+        },
+        {
+            "item_name": "GV RICE SQ",
+            "price": 2.72,
+            "sku": "007874218395"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 1.83,
+            "sku": "007874218155"
+        },
+        {
+            "item_name": "HNY GRM PS",
+            "price": 6.94,
+            "sku": "004400007467"
+        },
+        {
+            "item_name": "GV PENNE 32",
+            "price": 1.94,
+            "sku": "019434615783"
+        },
+        {
+            "item_name": "GV CK SH 32",
+            "price": 6.96,
+            "sku": "007874214878"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.08,
+            "sku": "007874235186"
+        },
+        {
+            "item_name": "BLUEBERRIES",
+            "price": 2.97,
+            "sku": "775104300030"
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.24,
+            "sku": "088828900020"
+        },
+        {
+            "item_name": "NAVEL ORANG",
+            "price": 2.49,
+            "sku": "060504903107"
+        },
+        {
+            "item_name": "AVOCADO",
+            "price": 2.04,
+            "sku": "750301775300"
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 0.33,
+            "sku": "00000004087"
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.33,
+            "sku": "00000004011"
+        },
+        {
+            "item_name": "SWT POTATOE",
+            "price": 2.49,
+            "sku": "00000004074"
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "price": 3.67,
+            "S:": "007874237419"
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.98,
+            "S:": "007236000201"
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.98,
+            "S:": "007236000201"
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "price": 2.92,
+            "S:": "007874214839"
+        },
+        {
+            "item_name": "1LB ROLL SS",
+            "price": 3.97,
+            "S:": "007790011553"
+        }
+    ]
+}

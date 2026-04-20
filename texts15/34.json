@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "10/09/2025",
+    "time": "18:06:56",
+    "total_amount": 2.78,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "King Size",
+            "price": 2.78,
+            "type": "purchase"
+        }
+    ]
+}

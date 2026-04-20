@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "03/08/25",
+    "time": "16:39:06",
+    "total_amount": 27.41,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.16,
+            "sku": "007874235187"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.16,
+            "sku": "007874235186"
+        },
+        {
+            "item_name": "GV CK SH 32",
+            "price": 8.24,
+            "sku": "007874214878"
+        },
+        {
+            "item_name": "SOY SAUCE",
+            "price": 2.18,
+            "sku": "004139000009"
+        },
+        {
+            "item_name": "SV PRENATAL",
+            "price": 4.88,
+            "sku": "007874243656"
+        },
+        {
+            "item_name": "MAHATMA JAS",
+            "price": 6.88,
+            "sku": "001740010951"
+        }
+    ]
+}

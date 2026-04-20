@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-02-16",
+    "time": "21:39:26",
+    "total_amount": 32.82,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 15.38,
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 15.38,
+            "type": "purchase"
+        }
+    ]
+}

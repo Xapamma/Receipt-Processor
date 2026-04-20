@@ -18,4 +18,8 @@ dependencies = [
     "streamlit",
     "streamlit-elements>=0.1.0",
     "matplotlib>=3.10.8",
-]
+    "pydantic>=2.12.5",
+    "typing>=3.10.0.0",
+    "easyocr>=1.7.2",
+    "json-repair>=0.59.4",
+    ]

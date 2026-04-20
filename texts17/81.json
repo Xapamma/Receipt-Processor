@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "03/08/25",
+    "time": "16:39:06",
+    "total_amount": 27.41,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.16,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV WHOLGA",
+            "sku": "007874235186",
+            "price": 2.16,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV CK SH 32",
+            "sku": "007874214878",
+            "price": 8.24,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SOY SAUC",
+            "sku": "00413900009",
+            "price": 2.18,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SV PRENAT",
+            "sku": "007874243656",
+            "price": 4.88,
+            "type": "purchase"
+        }
+    ]
+}

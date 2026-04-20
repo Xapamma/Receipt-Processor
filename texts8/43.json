@@ -1,0 +1,58 @@
+{
+    "store_name": "Walmart",
+    "address": "SAN TAN VALLEY, AZ",
+    "date": "09/13/25",
+    "time": "08:15:19",
+    "total_amount": 166.97,
+    "items_sold_count": 12,
+    "transactions": [
+        {
+            "item_name": "DCK ALM TAP",
+            "price": 9.98
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "price": 5.48
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "price": 5.48
+        },
+        {
+            "item_name": "DR. ROOTEER H",
+            "price": 21.88
+        },
+        {
+            "item_name": "DR. DRAINHOS",
+            "price": 9.44
+        },
+        {
+            "item_name": "10X4 DRY CR",
+            "price": 29.88
+        },
+        {
+            "item_name": "3 RANGE COR",
+            "price": 21.92
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "price": 5.48
+        },
+        {
+            "item_name": "10X4 DRY CR",
+            "price": 29.88
+        },
+        {
+            "item_name": "3 RANGE COR",
+            "price": 21.92
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "price": 5.48
+        },
+        {
+            "item_name": "10X4 DRY CR",
+            "price": 29.88
+        }
+    ]
+}

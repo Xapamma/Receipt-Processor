@@ -1,0 +1,45 @@
+{
+    "store_name": "Walmart",
+    "date": "02/07/26",
+    "time": "11:03:48",
+    "total_amount": 67.61,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "DR AP HOSEZP",
+            "sku": "085002990524",
+            "price": 15.38,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DR AP HOSEZ P",
+            "sku": "085002990524",
+            "price": 15.38,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "sku": "007991670016",
+            "price": 5.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "sku": "007991670016",
+            "price": 5.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRYR VNT DCT",
+            "sku": "007991643048",
+            "price": 10.82,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRYR VNT DCT",
+            "sku": "007991643048",
+            "price": 10.82,
+            "type": "purchase"
+        }
+    ]
+}

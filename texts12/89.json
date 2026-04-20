@@ -1,0 +1,89 @@
+{
+    "store_name": "Walmart",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRY DET. SO. 19.99",
+            "price": 7.67,
+            "sku": "019434618902"
+        },
+        {
+            "item_name": "LAUN. DET. SO. 7.67",
+            "price": 7.67,
+            "sku": "019434618900"
+        },
+        {
+            "item_name": "BREAD",
+            "price": 5.98,
+            "sku": "001376402705"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "sku": "002924300001"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "sku": "002924300001"
+        },
+        {
+            "item_name": "VERM. CL. SO. 0.50",
+            "price": 0.5,
+            "sku": "002924300001"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "sku": "007236000203"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "sku": "007236000201"
+        },
+        {
+            "item_name": "EL. P. SA. 0.98",
+            "price": 0.98,
+            "sku": "007236000201"
+        },
+        {
+            "item_name": "AL. W. L. 4.67",
+            "price": 4.67,
+            "sku": "003077216352"
+        },
+        {
+            "item_name": "GV. BLK. BE. 0.86",
+            "price": 0.86,
+            "sku": "007874207576"
+        },
+        {
+            "item_name": "GV. BLK. BE. 0.86",
+            "price": 0.86,
+            "sku": "007874207576"
+        },
+        {
+            "item_name": "GV. BLK. BE. 0.86",
+            "price": 0.86,
+            "S.": "007874207576"
+        },
+        {
+            "item_name": "GV. BLK. BE. 0.86",
+            "price": 0.86,
+            "S.": "007874207576"
+        },
+        {
+            "item_name": "GV. BL. BE. 0.86",
+            "price": 0.86,
+            "S.": "007874207576"
+        },
+        {
+            "item_name": "GV. BL. BE. 0.86",
+            "price": 0.86,
+            "S.": "007874207576"
+        }
+    ]
+}

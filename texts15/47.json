@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "08/26/25",
+    "time": "12:55:56",
+    "total_amount": 34.5,
+    "items_sold_count": 5,
+    "transactions": [
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 6.96,
+            "sku": "48045711158",
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 4.76,
+            "sku": "007874206521",
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 2.77,
+            "sku": "007874202311",
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 16.54,
+            "sku": "007874206667",
+            "type": "purchase"
+        },
+        {
+            "item_name": "WALMART GROCERY",
+            "price": 2.54,
+            "sku": "004800171104",
+            "type": "purchase"
+        }
+    ]
+}

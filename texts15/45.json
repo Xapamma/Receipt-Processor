@@ -1,0 +1,33 @@
+{
+    "store_name": "Walmart",
+    "date": "09/02/25",
+    "time": "17:48:14",
+    "total_amount": 9.6,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "BANANAS",
+            "price": 1.38,
+            "sku": "064312604011",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.12,
+            "sku": "007874235186",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "price": 2.12,
+            "sku": "007874235186",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "price": 3.98,
+            "sku": "007874237002",
+            "type": "purchase"
+        }
+    ]
+}

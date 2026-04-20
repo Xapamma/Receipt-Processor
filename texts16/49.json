@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "08/22/25",
+    "time": "14:16:28",
+    "total_amount": 21.19,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AVOCAD",
+            "sku": "000000004046",
+            "price": 0.68,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GRAPEFRUIT",
+            "sku": "600916320877",
+            "price": 2.72,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PEACHES",
+            "sku": "084580804044",
+            "price": 1.37,
+            "type": "purchase"
+        }
+    ]
+}

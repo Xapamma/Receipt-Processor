@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-01-27",
+    "time": "16:30:18",
+    "total_amount": 15.97,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "CARPET CLNR",
+            "sku": "007874220429",
+            "price": 15.97,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "store_name": "Walmart",
+    "date": "2022-12-22",
+    "time": "13:25:16",
+    "total_amount": 35.41,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "AB VAN 9602",
+            "sku": "004157005772",
+            "price": 4.67
+        },
+        {
+            "item_name": "AB UNS VN 9",
+            "sku": "004157011008",
+            "price": 4.67
+        },
+        {
+            "item_name": "SUAVE",
+            "sku": "038371100142",
+            "price": 2.97
+        },
+        {
+            "item_name": "OXICL N WR P",
+            "sku": "075703751525",
+            "price": 8.98
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 0.75
+        },
+        {
+            "item_name": "GV WHOLGA",
+            "sku": "007874235186",
+            "price": 2.07
+        },
+        {
+            "item_name": "ROMA POWDER",
+            "sku": "001200540463",
+            "price": 9.84
+        }
+    ]
+}

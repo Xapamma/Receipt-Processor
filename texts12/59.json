@@ -1,0 +1,29 @@
+{
+    "store_name": "Walmart",
+    "date": "07/11/25",
+    "time": "13:30:50",
+    "total_amount": 26.11,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "FAB LEM 56Z",
+            "price": 4.47,
+            "sku": "003500047041"
+        },
+        {
+            "item_name": "CLEANER",
+            "price": 3.88,
+            "sku": "068113130595"
+        },
+        {
+            "item_name": "GV UNSLT BT",
+            "price": 3.96,
+            "sku": "007874237427"
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "price": 13.24,
+            "sku": "026163800000"
+        }
+    ]
+}

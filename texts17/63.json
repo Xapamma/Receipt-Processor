@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "06/25/25",
+    "time": "17:58:58",
+    "total_amount": 24.79,
+    "items_sold_count": 10,
+    "transactions": [
+        {
+            "item_name": "GV PLNYOG 32",
+            "sku": "007874201685",
+            "price": 3.54,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV SC CT CH",
+            "sku": "007874237236",
+            "price": 2.94,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "store_name": "Walmart",
+    "date": "09/16/25",
+    "time": "19:42:07",
+    "total_amount": 70.57,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "CORNCHEX",
+            "price": 4.93,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "price": 0.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "FLAX",
+            "price": 3.54,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV CHPPD WA",
+            "price": 14.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PARCHMENT",
+            "price": 2.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV RIGATONI",
+            "price": 0.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV FLR FJTA",
+            "price": 2.12,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.05,
+            "type": "purchase"
+        },
+        {
+            "item_name": "NATURAL PB",
+            "price": 3.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BABY CARROT",
+            "price": 2.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "price": 1.02,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CUCUMBER",
+            "price": 0.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AVOCADO",
+            "price": 0.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 2.4,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV RICE SQ",
+            "price": 2.72,
+            "type": "purchase"
+        },
+        {
+            "item_name": "2.25 80 GB",
+            "price": 14.83,
+            "type": "purchase"
+        }
+    ]
+}

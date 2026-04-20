@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": "1725 W HUNT HWY SAN TAN VALLEY AZ 85143",
+    "date": "02/03/26",
+    "time": "15:50:46",
+    "total_amount": 13.92,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "SR APPLI WHI 002006678818",
+            "price": 6.96
+        },
+        {
+            "item_name": "SR APPLI WHI 002006678818",
+            "price": 6.96
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "2023-01-16",
+    "time": "21:39:26",
+    "total_amount": 30.76,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "DR AP HOSE2",
+            "sku": "085002990524",
+            "price": 15.38
+        },
+        {
+            "item_name": "DR AP HOSE2",
+            "sku": "085002990524",
+            "price": 15.38
+        }
+    ]
+}

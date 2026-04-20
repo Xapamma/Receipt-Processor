@@ -1,0 +1,42 @@
+{
+    "store_name": "Walmart",
+    "address": "San Tan Valley, AZ",
+    "date": "08/15/25",
+    "time": "13:53:25",
+    "total_amount": 29.99,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "HANHOO BLEM",
+            "price": 2.56
+        },
+        {
+            "item_name": "EQWINS BLD6C",
+            "price": 8.34
+        },
+        {
+            "item_name": "GV FNYOATAL",
+            "price": 3.27
+        },
+        {
+            "item_name": "GV FSW",
+            "price": 2.82
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "price": 3.48
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 1.67
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "price": 4.18
+        }
+    ]
+}

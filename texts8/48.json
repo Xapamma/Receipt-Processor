@@ -1,0 +1,26 @@
+{
+    "store_name": "Walmart",
+    "address": "21055 E RITTENHOUSE RD, QUEEN CREEK, AZ 85142",
+    "date": "08/22/25",
+    "time": "14:27:35",
+    "total_amount": 22.63,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "TOMATO-BEEFS",
+            "price": 7.88
+        },
+        {
+            "item_name": "BASIL-SWEET",
+            "price": 4.68
+        },
+        {
+            "item_name": "OREGANO- GRE",
+            "price": 4.68
+        },
+        {
+            "item_name": "EG PT MX 8QT",
+            "price": 4.97
+        }
+    ]
+}

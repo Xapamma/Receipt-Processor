@@ -1,0 +1,129 @@
+{
+    "store_name": "Walmart",
+    "date": "06/18/25",
+    "time": "21:09:21",
+    "total_amount": 114.79,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "MNTRL STEAK",
+            "price": 2.12,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "price": 2.94,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "price": 1.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "price": 1.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "OMEGA 180CT",
+            "price": 14.64,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SV PRENATAL",
+            "price": 5.38,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DEODORANT",
+            "price": 11.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "MIRROR",
+            "price": 4.22,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV NRTH BEA",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "price": 0.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "price": 6.96,
+            "type": "purchase"
+        },
+        {
+            "item_name": "ASPARAGUS",
+            "price": 3.32,
+            "type": "purchase"
+        },
+        {
+            "item_name": "AVOCAD0 BAG",
+            "price": 3.17,
+            "type": "purchase"
+        },
+        {
+            "item_name": "TOM CHERUB",
+            "price": 4.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PK SALAD",
+            "price": 1.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PINEAPPLE",
+            "price": 2.04,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 0.83,
+            "type": "purchase"
+        },
+        {
+            "item_name": "PEACHES",
+            "price": 0.83,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CORN TORT",
+            "price": 1.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "1LB 80 GB R",
+            "price": 5.93,
+            "type": "purchase"
+        },
+        {
+            "item_name": "SRLN TENDER",
+            "price": 14.34,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV A-P FLOU",
+            "price": 4.57,
+            "type": "purchase"
+        },
+        {
+            "item_name": "XTRA",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.06,
+            "type": "purchase"
+        }
+    ]
+}

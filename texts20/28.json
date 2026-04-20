@@ -1,0 +1,69 @@
+{
+    "store_name": "Walmart",
+    "date": "11/28/25",
+    "time": "14:55:52",
+    "total_amount": 16.44,
+    "items_sold_count": 12,
+    "transactions": [
+        {
+            "item_name": "GV HNYOATCR",
+            "sku": "007874237340",
+            "price": 3.27
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874205685",
+            "price": 2.98
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.08
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218150",
+            "price": 2.67
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "SOU": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "SOU": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "SOU": "007236000201",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "SOU": "007236000201",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "SOU": "007236000201",
+            "price": 0.98
+        }
+    ]
+}

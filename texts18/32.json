@@ -1,0 +1,84 @@
+{
+    "store_name": "Walmart",
+    "date": "11/03/25",
+    "time": "18:10:15",
+    "total_amount": 114.27,
+    "items_sold_count": 31,
+    "transactions": [
+        {
+            "item_name": "SILK AL 960",
+            "sku": "002529300377",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "sku": "002529300377",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "sku": "002529300377",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "sku": "003663207615",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "sku": "002529300379",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "sku": "003663207615",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK ALMOND",
+            "sku": "003663207615",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "sku": "002529300377",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "SILK AL 960": "002529300379",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "SILK AL 960": "002529300377",
+            "price": 1.25
+        },
+        {
+            "item_name": "SILK AL 960",
+            "SILK AL 960": "002529300379",
+            "price": 1.25
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "SILK AL 960": "002529300379",
+            "price": 2.12
+        },
+        {
+            "item_name": "PKG SALAD",
+            "SILK AL 960": "068113132946",
+            "price": 1.84
+        },
+        {
+            "item_name": "BANANAS",
+            "SILK AL 960": "064312604011",
+            "price": 0.81
+        },
+        {
+            "item_name": "BREAD",
+            "SILK AL 960": "001376402705",
+            "price": 5.98
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "02/13/26",
+    "time": "14:12:36",
+    "total_amount": 8.35,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "8 ZINC ANCH",
+            "price": 5.72,
+            "sku": "003890244333"
+        },
+        {
+            "item_name": "OOK 30LB PI",
+            "price": 1.97,
+            "sku": "003890240588"
+        }
+    ]
+}

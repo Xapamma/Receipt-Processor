@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "05/30/2025",
+    "time": "17:33:52",
+    "total_amount": 46.63,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "LOC THREDLO",
+            "price": 7.87,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DUK 60 ELCT",
+            "price": 1.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "4P HEX DRL",
+            "price": 5.44,
+            "type": "purchase"
+        },
+        {
+            "item_name": "6-32X1 MACH",
+            "price": 1.24,
+            "type": "purchase"
+        },
+        {
+            "item_name": "CONNECTS",
+            "price": 5.73,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DUAL BACKUP",
+            "price": 21.94,
+            "type": "purchase"
+        }
+    ]
+}

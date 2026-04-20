@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "date": "01/02/26",
+    "time": "16:41:28",
+    "total_amount": 25.27,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "COMMUTER KI",
+            "sku": "068113104991",
+            "price": 23.33
+        }
+    ]
+}

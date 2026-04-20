@@ -1,0 +1,14 @@
+{
+    "store_name": "Walmart",
+    "address": null,
+    "date": null,
+    "time": null,
+    "total_amount": 6.75,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "BANANAS",
+            "price": 0.8
+        }
+    ]
+}

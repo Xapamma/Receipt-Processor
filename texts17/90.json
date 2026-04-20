@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "01/18/25",
+    "time": "18:50:37",
+    "total_amount": 76.23,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "GV STRAW CR",
+            "sku": "007874218158",
+            "price": 3.48,
+            "type": "purchase"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874207527",
+            "price": 2.82,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,129 @@
+{
+    "store_name": "Walmart",
+    "date": "01/24/25",
+    "time": "16:06:15",
+    "total_amount": 56.47,
+    "items_sold_count": 24,
+    "transactions": [
+        {
+            "item_name": "LAUNDRYDET",
+            "sku": "019434618902",
+            "price": 7.67
+        },
+        {
+            "item_name": "LAUNDRYDET",
+            "sku": "019434618900",
+            "price": 7.67
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 5.98
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "VERMCLI SOU",
+            "sku": "002924300001",
+            "price": 0.5
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000203",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000207",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000201",
+            "price": 0.98
+        },
+        {
+            "item_name": "ELPATO SAUC",
+            "sku": "007236000201",
+            "price": 0.98
+        },
+        {
+            "item_name": "ALWAYS LINE",
+            "sku": "003077216352",
+            "price": 4.67
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV SC CT CH",
+            "sku": "007874237236",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV MAYO 300",
+            "sku": "007874206531",
+            "price": 3.38
+        },
+        {
+            "item_name": "ICEBERG",
+            "sku": "003338365020",
+            "price": 1.84
+        },
+        {
+            "item_name": "PKG SALAD",
+            "sku": "068113102790",
+            "price": 2.18
+        },
+        {
+            "item_name": "TOM ROMA",
+            "sku": "082466020006",
+            "price": 1.88
+        },
+        {
+            "item_name": "FRENCH BREA",
+            "sku": "020098900000",
+            "price": 1.0
+        },
+        {
+            "item_name": "GV AP FLOU",
+            "sku": "007874215204",
+            "price": 4.57
+        }
+    ]
+}

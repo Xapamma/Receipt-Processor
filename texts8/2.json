@@ -1,0 +1,18 @@
+{
+    "store_name": "Walmart",
+    "address": "4804571158 Mgr. Angela Queen Creek, AZ ST# 4451 OP# 9002 TE# 2 TR# 1383",
+    "date": "02/24/26",
+    "time": "19:46:24",
+    "total_amount": 3.17,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "Blackberry",
+            "price": 2.22
+        },
+        {
+            "item_name": "Mango",
+            "price": 0.88
+        }
+    ]
+}

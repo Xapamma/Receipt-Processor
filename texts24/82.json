@@ -1,0 +1,54 @@
+{
+    "store_name": "Walmart",
+    "date": "02/27/2025",
+    "time": "21:00:09",
+    "total_amount": 44.54,
+    "items_sold_count": 9,
+    "transactions": [
+        {
+            "item_name": "PLUMS",
+            "sku": "78001250002",
+            "price": 1.52
+        },
+        {
+            "item_name": "PAPAYA",
+            "sku": "085376400415",
+            "price": 10.21
+        },
+        {
+            "item_name": "DRAGON FRUI",
+            "sku": "085972300338",
+            "price": 3.97
+        },
+        {
+            "item_name": "GV CLC 0025",
+            "sku": "007874208335",
+            "price": 9.74
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "sku": "007874237419",
+            "price": 3.96
+        },
+        {
+            "item_name": "GV UNSLT BT",
+            "sku": "007874237427",
+            "price": 3.96
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.16
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 0.76
+        },
+        {
+            "item_name": "MED T C SAL",
+            "sku": "004156514164",
+            "price": 7.28
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "store_name": "Walmart",
+    "address": "San Tan Valley, AZ",
+    "date": "08/07/25",
+    "time": "17:51:09",
+    "total_amount": 36.58,
+    "items_sold_count": 9,
+    "transactions": [
+        {
+            "item_name": "GV RF 2 GAL",
+            "price": 2.16
+        },
+        {
+            "item_name": "BANANAS",
+            "price": 1.35
+        },
+        {
+            "item_name": "GALA APPLES",
+            "price": 1.35
+        },
+        {
+            "item_name": "MANGO",
+            "price": 3.17
+        },
+        {
+            "item_name": "CUCUMBER",
+            "price": 0.52
+        },
+        {
+            "item_name": "CELERY STAL",
+            "price": 2.12
+        },
+        {
+            "item_name": "SMK STBY JA",
+            "price": 4.92
+        },
+        {
+            "item_name": "GV HWC 32OZ",
+            "price": 5.67
+        },
+        {
+            "item_name": "2.25 80 GB",
+            "price": 14.83
+        }
+    ]
+}

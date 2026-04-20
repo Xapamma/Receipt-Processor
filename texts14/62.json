@@ -1,0 +1,44 @@
+{
+    "store_name": "Walmart",
+    "date": "07/01/25",
+    "time": "10:21:15",
+    "total_amount": 43.29,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        },
+        {
+            "item_name": "DRESS",
+            "price": 9.98,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "store_name": "Walmart",
+    "date": "03/22/25",
+    "time": "06:55:56",
+    "total_amount": 35.6,
+    "items_sold_count": 6,
+    "transactions": [
+        {
+            "item_name": "NV VRTY 24C",
+            "sku": "001600017394",
+            "price": 9.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "NV VRTY 24C",
+            "sku": "001600017394",
+            "price": 9.86,
+            "type": "purchase"
+        },
+        {
+            "item_name": "MINI BAGELS",
+            "sku": "004812121681",
+            "price": 3.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "THMS EVR MN",
+            "sku": "004812190078",
+            "price": 3.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "MINI BAGELS",
+            "sku": "004812121681",
+            "price": 3.97,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BAGEL",
+            "sku": "004812121657",
+            "price": 3.97,
+            "type": "purchase"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "store_name": "Walmart",
+    "date": "08/22/25",
+    "time": "14:27:35",
+    "total_amount": 22.63,
+    "items_sold_count": null,
+    "transactions": [
+        {
+            "item_name": "TOMATO-BEEF",
+            "price": 7.88,
+            "type": "purchase"
+        },
+        {
+            "item_name": "BASIL-SWEET",
+            "price": 4.68,
+            "type": "purchase"
+        },
+        {
+            "item_name": "OREGANO-GRE",
+            "price": 4.68,
+            "type": "purchase"
+        }
+    ]
+}

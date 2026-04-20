@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "12/24/24",
+    "time": "12:15:14",
+    "total_amount": 8.1,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "WALMART GIFT CARD",
+            "price": 3.96,
+            "sku": "007874237427"
+        },
+        {
+            "item_name": "WALMART GIFT CARD",
+            "price": 3.96,
+            "sku": "007874237419"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "store_name": "Walmart",
+    "date": "03/21/25",
+    "time": "06:20:54",
+    "total_amount": 40.89,
+    "items_sold_count": 7,
+    "transactions": [
+        {
+            "item_name": "FLOUR TORT",
+            "price": 4.18,
+            "sku": "007153800141",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV SLD FR H",
+            "price": 4.48,
+            "sku": "007874235301",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV SLD FR H",
+            "price": 4.48,
+            "sku": "007874235301",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SIMPLY OJ 8",
+            "price": 6.97,
+            "sku": "0025000013422",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SIMPLY OJ 8",
+            "price": 6.97,
+            "sku": "0025000013422",
+            "type": "purchase"
+        },
+        {
+            "item_name": "SIMPLY OJ 8",
+            "price": 6.97,
+            "sku": "0025000013422",
+            "type": "purchase"
+        },
+        {
+            "item_name": "GV 40PK",
+            "price": 5.47,
+            "sku": "007874227909",
+            "type": "purchase"
+        }
+    ]
+}

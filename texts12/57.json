@@ -1,0 +1,8 @@
+{
+    "store_name": "string",
+    "date": "string",
+    "time": "string",
+    "total_amount": null,
+    "items_sold_count": null,
+    "transactions": []
+}
