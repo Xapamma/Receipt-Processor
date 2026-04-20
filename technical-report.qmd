@@ -1,0 +1,137 @@
+---
+title: "Receipt Data Technical Report"
+---
+
+## Introduction
+
+This report provides a comprehensive overview of the receipt data used in our Receipt Processor project. It includes details about the data collection process, data structure, and key insights derived from the analysis of the receipt data.
+
+
+## Project Overview
+
+The Receipt Processor project aims to develop a tool for processing and analyzing receipt data. Managing and understanding personal spending can be time-consuming and error-prone when receipts exist as unstructured images or PDFs. Converting this unstructured data into a usable format presents a key challenge, and automating this process enables more efficient tracking, improved accuracy, and deeper insight into spending behavior over time.
+
+Using over a year’s worth of personal receipts from Walmart, this project seeks to answer questions such as: How much was spent in total over the past year, and how does spending vary by month? How does spending in one month compare to the previous month? Additionally, how does spending differ across categories, both monthly and over the entire year?
+
+To address these questions, we developed a pipeline that collects receipt data, parses and structures it, stores it in a database, and enables analysis through a user-friendly interface. The receipt_processor Python package, along with a corresponding Streamlit application, allows users to upload their own receipt data and generate insights into spending patterns, category-level expenditures, and trends over time, making it useful for individuals and businesses interested in financial tracking and expense management.
+
+## System Architecture
+
+The system architecture of the Receipt Processor consists of several key components:
+1. File Upload/Manual Entry: Users can upload receipt data in various formats (PDF, JPEG, PNG) or manually enter receipt details through the Streamlit app interface. 
+2. Extraction/Parsing: The uploaded receipt data is processed using OCR and LLM techniques to extract relevant information such as vendor name, purchase date, item details, and financial summaries. This is handled by the `main_functions.py` module in the `src/receipt_processor` directory. 
+3. Database: The extracted receipt data is stored in a SQLite database, which includes tables for receipts, items, receipt images, and budget information. The database schema is designed to capture both receipt-level and item-level data for comprehensive analysis. 
+4. Analytics and Budget Dashboard: The Streamlit app provides an analytics dashboard that allows users to visualize their spending patterns, category-level spend, and trends over time. The dashboard includes features such as time filters, trend charts, category/vendor breakdowns, and a monthly budgeting aspect.
+
+## Data Collection
+
+The receipt data used in this project was collected from a personal Walmart account. The data includes a variety of receipts from different transactions, covering a range of products and purchase dates. Each receipt contains information such as the vendor name, purchase date, item details (including item name, price, and SKU), and financial summaries. 
+
+Receipts were collected using a combination of manual downloads and automated scraping techniques. The data was then processed to extract relevant information for analysis.
+
+## Data Model
+
+The data model for the Receipt Processor is structured to capture both receipt-level and item-level information. The database schema includes the following tables:
+1. Receipts: This table captures receipt-level information such as receipt ID, vendor name, purchase date, and total amount. 
+2. Items: This table captures item-level information such as item name, price, SKU, and the associated receipt ID. 
+3. Budget: A separate database contains a table designed to capture budget information, allowing users to set monthly spending limits and track their progress towards those limits. 
+
+## Core Processing Logic
+
+The core processing logic of the Receipt Processor involves several key steps:
+- PDF to Image Conversion: Uploaded PDF receipts are converted to image formats (JPEG/PNG) to facilitate OCR processing. This is handled by the `pdf_to_image.py` module in the `src/receipt_processor` directory. 
+- OCR and LLM Extraction: The receipt data is processed using OCR techniques to extract text from the uploaded receipt images, and LLM techniques are used to parse the extracted text into structured data fields.
+- Date/Time Normalization: The purchase date extracted from receipts is normalized to a consistent format for accurate analysis and comparison.
+- Weighted Tax Distribution: The total tax amount from a receipt is allocated to individual items based on their price, resulting in an allocated tax and price with tax for each item. This is necessary for accurate category-level spend analysis, as it allows for a more precise calculation of the total amount spent on each category, including the tax component.
+- Validation: The extracted receipt data is validated against ground-truth validation JSON files to ensure accuracy. The `score_validation.py` script uses pytest to check for differences between the extracted outputs and the ground-truth data, calculating metrics such as field match rate and item-level differences.
+- Some manual receipt data extracting and entry is also necessary to ensure the accuracy of the data, especially for receipts that may have inconsistent formats or for which OCR/LLM techniques may struggle to extract information accurately. The Streamlit app includes a manual receipt entry feature that allows users to input receipt details directly into the system, providing an additional layer of data accuracy and completeness.
+
+## Validation Approach
+
+The validation approach for the Receipt Processor involves comparing the extracted receipt data against ground-truth validation JSON files. These JSON files contain the expected values for various fields such as vendor name, purchase date, item details, and financial summaries. The `score_validation.py` script uses pytest to automate the validation process, checking for differences between the extracted outputs and the ground-truth data. Metrics such as field match rate and item-level differences are calculated to assess the accuracy of the extraction process and identify areas for improvement. This validation process is crucial for ensuring the reliability of the Receipt Processor and for identifying any issues with the OCR/LLM extraction techniques.
+
+## Dashboard and UX Features
+
+The dashboard provides a user-friendly interface for visualizing the extracted receipt data and performing various analyses. Users can view their spending patterns, track budget progress, and identify areas for improvement. The UX features include intuitive navigation, responsive design, and real-time data updates.
+
+## Design Decisions and Tradeoffs
+
+Several design decisions were made during the development of the Receipt Processor, including:
+- Choice of SQLite for the database: SQLite was chosen for its simplicity and ease of use, making it suitable for a project of this scale. However, it may not be the best choice for larger-scale applications with high concurrency requirements.
+
+
+## Results and Demonstration
+
+
+
+image 
+
+## Limitations
+
+- Dependency on OCR/LLM techniques: The accuracy of the receipt data extraction is heavily dependent on the performance of the OCR and LLM techniques used. Inconsistent input formats and poor image quality can lead to extraction errors.
+- Duplicate detection and multi-user authentication: The current implementation does not fully address duplicate receipt detection or multi-user authentication, which may be important for larger-scale applications or for users with multiple accounts.
+- Scalability: The current architecture may not be suitable for handling large volumes of receipt data or for applications with high concurrency requirements. Future work may involve exploring more robust database solutions and optimizing the extraction process for larger datasets.  
+
+## Future Work
+- Implementing stronger duplicate detection mechanisms to prevent the storage of duplicate receipts in the database.
+- Enhancing multi-user authentication to allow for secure access and data isolation for multiple users.
+- Exploring more robust database solutions (e.g., PostgreSQL) to improve scalability and performance for larger datasets.
+- Improving the OCR and LLM extraction techniques to enhance accuracy, especially for receipts with inconsistent formats or poor image quality.
+- Expanding testing coverage to include a wider range of receipt formats and edge cases to ensure the robustness of the Receipt Processor across various scenarios. 
+
+
+
+
+
+
+
+1. Project Overview
+- Problem you’re solving
+- Intended users
+- What the app does end-to-end (upload/parse/store/analyze receipts)
+2. System Architecture
+- High-level flow: file upload/manual entry → extraction/parsing → database → analytics dashboard
+- Components and files:
+app_demo.py
+database.py
+src/receipt_processor/main_functions.py
+validation scripts/files
+3. Data Model
+Database schema (receipts, items, receipt_images, budget tables)
+Key fields and relationships
+Why you separated receipt-level vs item-level data
+4. Core Processing Logic
+Date/time normalization
+Weighted tax distribution to items (allocated_tax, price_with_tax)
+Why this is necessary for category-level spend accuracy
+5. Validation Approach
+Ground-truth validation JSONs vs extracted outputs
+How score_validation.py / pytest checks differences
+Metrics used (field match rate, item-level differences, etc.)
+6. Dashboard & UX Features
+Time filters (last N months/calendar year)
+Trend chart + average line
+Stacked category/vendor chart
+Manual receipt entry
+Receipt detail inspection/editing
+Image preview + attachment behavior
+7. Design Decisions & Tradeoffs
+Why SQLite
+Why keep both file paths and image blobs
+Why fallback logic for images
+Simplicity vs scalability decisions
+8. Results / Demonstration
+Example outputs/screenshots
+A few concrete validation outcomes
+What improved after tax allocation and edit tools
+9. Limitations
+OCR/LLM dependency issues (e.g., Ollama not installed)
+Inconsistent input formats
+Duplicate detection / multi-user auth not fully implemented
+10. Future Work
+Better auth/user isolation
+Stronger duplicate handling
+More robust extraction pipeline
+Automated migration/backfill tools
+Expanded testing coverage
+
