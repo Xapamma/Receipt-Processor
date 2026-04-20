@@ -1,95 +1,122 @@
+import json
+import os
 import sqlite3
-from datetime import datetime 
+from datetime import datetime
+
+from src.receipt_processor.main_functions import initialize_database
 
 DB_NAME = "receipts.db"
 
 
-def init_db():
-    conn = sqlite3.connect(DB_NAME)
-    cursor = conn.cursor()
-
-    # Receipts table 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS receipts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        datetime TEXT,
-        vendor TEXT,
-        total_amount REAL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-    """)
-
-    # Items table 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS items (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        receipt_id INTEGER,
-        item_name TEXT,
-        price REAL,
-        category TEXT,
-        FOREIGN KEY (receipt_id) REFERENCES receipts(id)
-    )
-    """)
-
-    conn.commit()
-    conn.close()
+def init_db(db_path=DB_NAME):
+    """Initialize the app database using the package-level schema."""
+    initialize_database(db_path=db_path)
 
 
-
-def parse_datetime(date_str, time_str):
-    if not date_str or not time_str:
+def _normalize_date(raw_date):
+    """Normalize date to YYYY-MM-DD for database storage."""
+    if not raw_date:
         return None
 
-    date_str = date_str.strip()
-    time_str = time_str.strip()
-
+    date_str = str(raw_date).strip()
     formats = [
-        "%Y-%m-%d %H:%M:%S",
-        "%m/%d/%y %H:%M:%S",
-        "%m/%d/%Y %H:%M:%S"
+        "%Y-%m-%d",
+        "%m/%d/%y",
+        "%m/%d/%Y",
+        "%b %d, %Y",
+        "%B %d, %Y",
     ]
-
     for fmt in formats:
         try:
-            return datetime.strptime(f"{date_str} {time_str}", fmt).isoformat()
-        except:
+            return datetime.strptime(date_str, fmt).strftime("%Y-%m-%d")
+        except ValueError:
             continue
 
-    return None
+    return date_str
 
 
-def insert_receipt(data):
-    conn = sqlite3.connect(DB_NAME)
-    cursor = conn.cursor()
+def _normalize_time(raw_time):
+    """Normalize time to HH:MM:SS for database storage."""
+    if not raw_time:
+        return None
 
-    dt_str = parse_datetime(
-        data.get("date"),
-        data.get("time")
-    )
+    time_str = str(raw_time).strip()
+    formats = [
+        "%H:%M:%S",
+        "%H:%M",
+        "%I:%M:%S %p",
+        "%I:%M %p",
+    ]
+    for fmt in formats:
+        try:
+            return datetime.strptime(time_str, fmt).strftime("%H:%M:%S")
+        except ValueError:
+            continue
 
-    # Insert into receipts
-    cursor.execute("""
-    INSERT INTO receipts (datetime, vendor, total_amount)
-    VALUES (?, ?, ?)
-    """, (
-        dt_str,
-        data.get("store_name"),
-        data.get("total_amount")
-    ))
+    return time_str
 
-    receipt_id = cursor.lastrowid
 
-    # Insert items
-    for item in data.get("transactions", []):
-        cursor.execute("""
-        INSERT INTO items (receipt_id, item_name, price, category)
-        VALUES (?, ?, ?, ?)
-        """, (
-            receipt_id,
-            item.get("item_name"),
-            item.get("price"),
-            item.get("category")
-        ))
+def insert_receipt(data, db_path=DB_NAME):
+    """Insert one parsed receipt dict into receipts/items tables."""
+    normalized_date = _normalize_date(data.get("date"))
+    normalized_time = _normalize_time(data.get("time"))
 
-    conn.commit()
-    conn.close()
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            INSERT INTO receipts (date, time, vendor, total_amount)
+            VALUES (?, ?, ?, ?)
+            """,
+            (
+                normalized_date,
+                normalized_time,
+                data.get("store_name"),
+                data.get("total_amount"),
+            ),
+        )
+
+        receipt_id = cursor.lastrowid
+
+        for item in data.get("transactions", []):
+            cursor.execute(
+                """
+                INSERT INTO items (receipt_id, item_name, price, category)
+                VALUES (?, ?, ?, ?)
+                """,
+                (
+                    receipt_id,
+                    item.get("item_name"),
+                    item.get("price"),
+                    item.get("category"),
+                ),
+            )
+
+        conn.commit()
+
+
+def insert_receipts_from_folder(folder_path, db_path=DB_NAME):
+    """Bulk insert all JSON receipts from a folder."""
+    for filename in sorted(os.listdir(folder_path)):
+        if not filename.endswith(".json"):
+            continue
+
+        file_path = os.path.join(folder_path, filename)
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        insert_receipt(data, db_path=db_path)
+
+
+def print_db_snapshot(db_path=DB_NAME):
+    """Print receipts and items for quick manual validation."""
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+
+        print("\nReceipts:")
+        for row in cursor.execute("SELECT * FROM receipts"):
+            print(row)
+
+        print("\nItems:")
+        for row in cursor.execute("SELECT * FROM items"):
+            print(row)

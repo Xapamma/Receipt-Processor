@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+quartodoc:
+  package: receipt_processor
+
+website:
+  title: "Receipt Processor Docs"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: api.qmd
+        text: Documentation
+      - href: tutorial.qmd
+        text: Tutorial
+      - href: technical-report.qmd
+        text: Technical Report
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true

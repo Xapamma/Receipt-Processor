@@ -1,0 +1,29 @@
+{
+  "store_name": "Walmart",
+  "date": "03/07/26",
+  "time": "12:49:40",
+  "total_amount": 46.42,
+  "items_sold_count": 4,
+  "transactions": [
+    {
+      "item_name": "SR APPLI WHI",
+      "price": 6.96,
+      "sku": "002006678818"
+    },
+    {
+      "item_name": "SR APPLI WHI",
+      "price": 6.96,
+      "sku": "002006678818"
+    },
+    {
+      "item_name": "SR APPLI WHI",
+      "price": 6.96,
+      "sku": "002006678818"
+    },
+    {
+      "item_name": "DR ROOTER HE",
+      "price": 21.88,
+      "sku": "085002990542"
+    }
+  ]
+}
