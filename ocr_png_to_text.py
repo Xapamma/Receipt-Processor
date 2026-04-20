@@ -9,18 +9,6 @@ warnings.filterwarnings("ignore", message=".*pin_memory.*")
 
 reader = easyocr.Reader(['en'], gpu=False)
 
-def fix_prices_safe(text):
-    """
-    Only fix likely prices:
-    - 1-3 digits before decimal
-    - exactly 2 digits after decimal
-    - optional spaces or OCR splits
-    """
-    # Matches numbers that look like prices: e.g., 6 . 96, 1 5 . 38
-    # Only 1-3 digits before, 2 digits after
-    pattern = r"\b(\d{1,3})\s*[\.]?\s*(\d{2})\b"
-    return re.sub(pattern, r"\1.\2", text)
-
 def extract_text_from_image(image_path, y_tol=15):
     """
     Extracts text from an image (PNG, JPG, etc.) and returns a cleaned, 

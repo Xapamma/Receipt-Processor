@@ -8,7 +8,7 @@ from tqdm import tqdm
 from collections import defaultdict
 from PIL import Image, ImageChops
 from json_repair import repair_json
-from png_to_text import extract_text_from_image # for image merging
+from ocr_png_to_text import extract_text_from_image # for image merging
 
 
 def extract_items_using_sku_only(ocr_text):
