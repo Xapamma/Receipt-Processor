@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from database import insert_receipt, save_receipt_images
-from llm_pdf_to_text import extract_text_from_images
+from ocr_png_to_text import extract_text_from_image
 from src.receipt_processor.main_functions import (
     export_receipts_to_dataframe,
     get_category_budgets,
@@ -732,10 +732,19 @@ st.subheader("Recent Receipts")
 recent_df = pd.DataFrame(recent)
 st.dataframe(recent_df, use_container_width=True)
 
-if not recent_df.empty:
+all_receipt_ids = (
+    receipts_df["receipt_id"]
+    .dropna()
+    .astype(int)
+    .drop_duplicates()
+    .sort_values(ascending=False)
+    .tolist()
+)
+
+if all_receipt_ids:
     selected_receipt_id = st.selectbox(
         "Inspect receipt details",
-        options=recent_df["id"].tolist(),
+        options=all_receipt_ids,
         format_func=lambda x: f"Receipt #{x}",
     )
     details = get_receipt_details(selected_receipt_id, db_path=db_path)
