@@ -4,7 +4,7 @@ import re
 from deepdiff import DeepDiff
 
 VALIDATION_DIR = "validation/validation_texts"
-ACTUAL_DIR = "texts5"
+ACTUAL_DIR = "texts25"
 SHOW_DIFFS = True
 
 matches = 0
