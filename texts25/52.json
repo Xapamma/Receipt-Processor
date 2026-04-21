@@ -1,0 +1,54 @@
+{
+    "store_name": "Walmart",
+    "date": "08/07/25",
+    "time": "17:51:09",
+    "total_amount": 36.58,
+    "items_sold_count": 9,
+    "transactions": [
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.16
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 1.35
+        },
+        {
+            "item_name": "GALA APPLES",
+            "sku": "000000004135",
+            "price": 1.35
+        },
+        {
+            "item_name": "MANGO",
+            "sku": "000000004051",
+            "price": 3.17
+        },
+        {
+            "item_name": "CUCUMBER",
+            "sku": "000000004062",
+            "price": null
+        },
+        {
+            "item_name": "CELERY STAL",
+            "sku": "003338365325",
+            "price": 2.12
+        },
+        {
+            "item_name": "SMK STBY JA",
+            "sku": "005150000163",
+            "price": 4.92
+        },
+        {
+            "item_name": "GV HWC 320z",
+            "sku": "060538818718",
+            "price": 5.67
+        },
+        {
+            "item_name": "225 80 GB",
+            "sku": "007874226960",
+            "price": 14.83
+        }
+    ]
+}

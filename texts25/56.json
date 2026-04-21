@@ -1,0 +1,54 @@
+{
+    "store_name": "Walmart",
+    "date": "07/25/2025",
+    "time": "15:08:13",
+    "total_amount": 45.94,
+    "items_sold_count": 9,
+    "transactions": [
+        {
+            "item_name": "AH LAUNDRY",
+            "sku": "003320007008",
+            "price": 13.98
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV LF CT CH",
+            "sku": "007874211673",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "sku": "007874212278",
+            "price": 6.96
+        },
+        {
+            "item_name": "GV BF HAM",
+            "sku": "007874211039",
+            "price": 5.97
+        },
+        {
+            "item_name": "FLOUR TORT",
+            "sku": "007874229473",
+            "price": 1.98
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 1.28
+        },
+        {
+            "item_name": "GV 1 SSG",
+            "sku": "007874205478",
+            "price": 2.94
+        },
+        {
+            "item_name": "1LB 80 GB R",
+            "sku": "007874212313",
+            "price": 6.73
+        }
+    ]
+}

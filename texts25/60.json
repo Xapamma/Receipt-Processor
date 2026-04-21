@@ -1,0 +1,159 @@
+{
+    "store_name": "Walmart",
+    "date": "07/09/25",
+    "time": "17:53:12",
+    "total_amount": 106.33,
+    "items_sold_count": 30,
+    "transactions": [
+        {
+            "item_name": "GV 13G UNSC",
+            "sku": "019434637812",
+            "price": 6.77
+        },
+        {
+            "item_name": "GV BAK SODA",
+            "sku": "007874230889",
+            "price": 3.24
+        },
+        {
+            "item_name": "GV WHT DIST",
+            "sku": "007874222866",
+            "price": 2.83
+        },
+        {
+            "item_name": "GV TNA WT 4",
+            "sku": "007874204001",
+            "price": 3.62
+        },
+        {
+            "item_name": "GV LINGUINE",
+            "sku": "007874220996",
+            "price": 0.98
+        },
+        {
+            "item_name": "GV LINGUINE",
+            "sku": "007874220996",
+            "price": 0.98
+        },
+        {
+            "item_name": "GV CREAMCOR",
+            "sku": "007874209421",
+            "price": 0.76
+        },
+        {
+            "item_name": "GV CORN 150",
+            "sku": "007874236939",
+            "price": 0.76
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874207527",
+            "price": 2.82
+        },
+        {
+            "item_name": "GV CRN RB",
+            "sku": "007874218393",
+            "price": 2.76
+        },
+        {
+            "item_name": "GV BTR CLUB",
+            "sku": "007874227628",
+            "price": 3.22
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "sku": "007874237104",
+            "price": 4.12
+        },
+        {
+            "item_name": "GV FLR FJTA",
+            "sku": "007874229472",
+            "price": 2.12
+        },
+        {
+            "item_name": "GV TOMATO P",
+            "sku": "007874236954",
+            "price": 1.52
+        },
+        {
+            "item_name": "GV ITAL TOM",
+            "sku": "007874224589",
+            "price": 1.48
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "sku": "007874237002",
+            "price": 3.98
+        },
+        {
+            "item_name": "GALA APPLES",
+            "sku": "088828900020",
+            "price": 2.17
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": null
+        },
+        {
+            "item_name": "GREEN ONION",
+            "sku": "003338360500",
+            "price": 1.0
+        },
+        {
+            "item_name": "TOMATO ROMA",
+            "sku": "000000004087",
+            "price": null
+        },
+        {
+            "item_name": "POTATOES",
+            "sku": "003338353010",
+            "price": 3.44
+        },
+        {
+            "item_name": "AVOCADO",
+            "sku": "007074011111",
+            "price": 3.44
+        },
+        {
+            "item_name": "FETA 1002",
+            "sku": "004171616884",
+            "price": 6.24
+        },
+        {
+            "item_name": "LLCREMA240z",
+            "sku": "081939302128",
+            "price": 3.92
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "sku": "007874212278",
+            "price": 6.96
+        },
+        {
+            "item_name": "TRIPL BERRY",
+            "sku": "007874202250",
+            "price": 10.74
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 5.98
+        },
+        {
+            "item_name": "2 25 80 GB",
+            "sku": "007874226960",
+            "price": 14.43
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22
+        }
+    ]
+}

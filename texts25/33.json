@@ -1,0 +1,29 @@
+{
+    "store_name": "Walmart",
+    "date": "10/10/25",
+    "time": "12:09:03",
+    "total_amount": 28.52,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "DRY ER CLAMP",
+            "sku": "007991670016",
+            "price": 5.48
+        },
+        {
+            "item_name": "DRYER CLAMP",
+            "sku": "007991670016",
+            "price": 5.48
+        },
+        {
+            "item_name": "DR AP HOSE1",
+            "sku": "085002990526",
+            "price": 8.78
+        },
+        {
+            "item_name": "DR AP HOSE1",
+            "sku": "085002990526",
+            "price": 8.78
+        }
+    ]
+}

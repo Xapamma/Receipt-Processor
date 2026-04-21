@@ -1,0 +1,139 @@
+{
+    "store_name": "Walmart",
+    "date": "06/18/25",
+    "time": "21:09:21",
+    "total_amount": 114.79,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "MNTRL STEAK",
+            "sku": "005210069313",
+            "price": 2.12
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874203092",
+            "price": 2.94
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "sku": "003700051160",
+            "price": 1.96
+        },
+        {
+            "item_name": "CR TP BK SD",
+            "sku": "003700051160",
+            "price": 1.96
+        },
+        {
+            "item_name": "OMEGA 180CT",
+            "sku": "019434611222",
+            "price": 14.64
+        },
+        {
+            "item_name": "SV PRENATAL",
+            "sku": "007874243656",
+            "price": 5.38
+        },
+        {
+            "item_name": "DEODORANT",
+            "sku": "001204402036",
+            "price": 11.97
+        },
+        {
+            "item_name": "MIRROR",
+            "sku": "068113136243",
+            "price": 4.22
+        },
+        {
+            "item_name": "GV NRTH BEA",
+            "sku": "007874211418",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874206200",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874207576",
+            "price": 0.86
+        },
+        {
+            "item_name": "GV CK CJ 32",
+            "sku": "007874212278",
+            "price": 6.96
+        },
+        {
+            "item_name": "ASPARAGUS",
+            "sku": "085029000217",
+            "price": 3.32
+        },
+        {
+            "item_name": "AVOCADO BAG",
+            "sku": "007074018482",
+            "price": 3.17
+        },
+        {
+            "item_name": "TOM CHERUB",
+            "sku": "075166677365",
+            "price": 4.48
+        },
+        {
+            "item_name": "PKG SALAD",
+            "sku": "068113132946",
+            "price": 1.98
+        },
+        {
+            "item_name": "PINEAPPLE",
+            "sku": "000000004430",
+            "price": 2.04
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": null
+        },
+        {
+            "item_name": "PEACHES",
+            "sku": "084580804044",
+            "price": null
+        },
+        {
+            "item_name": "CORN TORT",
+            "sku": "007874229475",
+            "price": 1.98
+        },
+        {
+            "item_name": "1LB 80 GB R",
+            "sku": "007874212313",
+            "price": 5.93
+        },
+        {
+            "item_name": "SRLN TENDER",
+            "sku": "026105000000",
+            "price": 14.34
+        },
+        {
+            "item_name": "GV AP FLOU",
+            "sku": "007874215204",
+            "price": 4.57
+        },
+        {
+            "item_name": "XTRA",
+            "sku": "009451400705",
+            "price": 9.98
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.06
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.06
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+{
+    "store_name": "Walmart",
+    "date": "01/18/25",
+    "time": "18:50:37",
+    "total_amount": 76.23,
+    "items_sold_count": 21,
+    "transactions": [
+        {
+            "item_name": "GV STRAW CR",
+            "sku": "007874218158",
+            "price": 3.48
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874207527",
+            "price": 2.82
+        },
+        {
+            "item_name": "GV WOVEN WH",
+            "sku": "007874208556",
+            "price": 2.42
+        },
+        {
+            "item_name": "CHKN N BISK",
+            "sku": "004400000293",
+            "price": 4.98
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "sku": "007874237002",
+            "price": 3.98
+        },
+        {
+            "item_name": "GREEN GRAPE",
+            "sku": "775640100011",
+            "price": 4.77
+        },
+        {
+            "item_name": "PKG SALAD",
+            "sku": "068113132946",
+            "price": 1.98
+        },
+        {
+            "item_name": "GALA APPLES",
+            "sku": "088828900020",
+            "price": 1.72
+        },
+        {
+            "item_name": "STRAWBERRIE",
+            "sku": "081204900510",
+            "price": 2.97
+        },
+        {
+            "item_name": "GUAVA CLAM",
+            "sku": "061436000048",
+            "price": 3.37
+        },
+        {
+            "item_name": "GV LF CT CH",
+            "sku": "007874211673",
+            "price": 2.94
+        },
+        {
+            "item_name": "GV PLNYOG 32",
+            "sku": "007874201685",
+            "price": 3.54
+        },
+        {
+            "item_name": "GV NAT SR C",
+            "sku": "007874211908",
+            "price": 1.97
+        },
+        {
+            "item_name": "GV NS MNST",
+            "sku": "007874212733",
+            "price": 2.24
+        },
+        {
+            "item_name": "GV BF HAM",
+            "sku": "007874211039",
+            "price": 5.97
+        },
+        {
+            "item_name": "BREAD",
+            "sku": "001376402705",
+            "price": 5.98
+        },
+        {
+            "item_name": "GV 18 LG AA",
+            "sku": "007874214839",
+            "price": 8.02
+        },
+        {
+            "item_name": "GV HWC 320z",
+            "sku": "060538818718",
+            "price": 5.67
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 1.29
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.22
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.22
+        }
+    ]
+}

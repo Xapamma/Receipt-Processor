@@ -1,0 +1,19 @@
+{
+    "store_name": "Walmart",
+    "date": "02/13/25",
+    "time": "20:35:55",
+    "total_amount": 2.3,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "GV PLAIN BC",
+            "sku": "007874237497",
+            "price": 1.22
+        },
+        {
+            "item_name": "OPENER",
+            "sku": "888703100218",
+            "price": 0.97
+        }
+    ]
+}
