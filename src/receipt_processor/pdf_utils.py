@@ -30,5 +30,3 @@ def convert_pdfs_to_pngs(input_folder, output_folder, zoom=2):
 
     print(f"Done converting PDFs in '{input_folder}' to PNGs in '{output_folder}'")
 
-convert_pdfs_to_pngs("receipts", "receipts_pngs")
-convert_pdfs_to_pngs("online_order_receipts", "online_receipts_pngs")
