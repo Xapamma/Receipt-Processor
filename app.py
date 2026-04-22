@@ -7,21 +7,22 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from database import insert_receipt, save_receipt_images
+from receipt_processor.db_ingest import (
+    initialize_budget_database,
+    initialize_database,
+    insert_receipt,
+    update_receipt_details,
+)
 from ocr_png_to_text import extract_text_from_image
-from src.receipt_processor.main_functions import (
+from receipt_processor.db_queries import (
     export_receipts_to_dataframe,
     get_category_budgets,
     get_monthly_budget,
     get_receipt_details,
-    get_receipt_images,
     get_recent_receipts,
     get_total_spending,
-    initialize_database,
-    initialize_budget_database,
     save_category_budget,
     save_monthly_budget,
-    update_receipt_details,
 )
 
 
@@ -31,12 +32,12 @@ st.title("Receipt Processor")
 db_path = st.sidebar.text_input(
     "Receipt database path",
     value="",
-    placeholder="e.g., receipts.db",
+    placeholder="e.g., data/receipts.db",
 ).strip()
 budget_db_path = st.sidebar.text_input(
     "Budget database path",
     value="",
-    placeholder="e.g., budget.db",
+    placeholder="e.g., data/budget.db",
 ).strip()
 
 if not db_path or not budget_db_path:
@@ -88,53 +89,6 @@ def cleanup_temp_upload_files(file_paths):
             pass
 
 
-def _extract_page_number(path_obj):
-    name = path_obj.stem
-    if "_page" in name:
-        tail = name.split("_page")[-1]
-        digits = "".join(ch for ch in tail if ch.isdigit())
-        if digits:
-            return int(digits)
-    return 999999
-
-
-def find_receipt_images_for_receipt(receipt_id, db_path, upload_folder):
-    """
-    Find likely receipt images for a receipt ID.
-
-    - For receipts.db, search the legacy receipts_pngs folder.
-    - For other DBs, search the DB-scoped uploads folder.
-    """
-    if Path(db_path).name == "receipts.db":
-        search_dirs = [Path("receipts_pngs")]
-    else:
-        search_dirs = [Path(upload_folder)]
-
-    rid = str(receipt_id)
-    candidates = []
-    for base_dir in search_dirs:
-        if not base_dir.exists():
-            continue
-        for p in base_dir.glob("*"):
-            if not p.is_file():
-                continue
-            if p.suffix.lower() not in {".png", ".jpg", ".jpeg"}:
-                continue
-            name = p.name
-            stem = p.stem
-            if (
-                name.startswith(f"{rid}_page")
-                or name == f"{rid}.png"
-                or name == f"{rid}.jpg"
-                or name == f"{rid}.jpeg"
-                or stem == rid
-            ):
-                candidates.append(p)
-
-    candidates.sort(key=lambda p: (_extract_page_number(p), p.name))
-    return candidates
-
-
 def _parse_manual_items(raw_text):
     """
     Parse manual item lines in format:
@@ -178,13 +132,7 @@ if uploaded_file is not None:
     with st.spinner("Processing receipt..."):
         parsed, parsed_image_paths = process_receipt(file_path)
         if parsed:
-            new_receipt_id = insert_receipt(parsed, db_path=db_path)
-            save_receipt_images(
-                receipt_id=new_receipt_id,
-                image_paths=parsed_image_paths,
-                db_path=db_path,
-                store_blob=True,
-            )
+            insert_receipt(parsed, db_path=db_path)
             st.sidebar.success("Receipt uploaded and added to the database.")
             st.rerun()
         else:
@@ -756,33 +704,6 @@ if all_receipt_ids:
             f"**Total:** ${details['total_amount']:.2f}"
         )
         st.dataframe(pd.DataFrame(details["items"]), use_container_width=True)
-
-        with st.expander("See receipt image", expanded=False):
-            linked_images = get_receipt_images(selected_receipt_id, db_path=db_path)
-            if linked_images:
-                for img in linked_images:
-                    page_num = img.get("page_num")
-                    img_path = img.get("image_path")
-                    img_blob = img.get("image_blob")
-                    caption = f"Page {page_num}" if page_num is not None else "Receipt image"
-                    if img_path and Path(img_path).exists():
-                        st.image(str(img_path), caption=caption, use_container_width=True)
-                    elif img_blob:
-                        st.image(img_blob, caption=caption, use_container_width=True)
-            else:
-                # Legacy fallback only for pre-linked receipts.db images
-                fallback_images = find_receipt_images_for_receipt(
-                    selected_receipt_id,
-                    db_path=db_path,
-                    upload_folder=UPLOAD_FOLDER,
-                )
-                if fallback_images:
-                    for src in fallback_images:
-                        st.image(str(src), caption=src.name, use_container_width=True)
-                else:
-                    st.info(
-                        f"No linked image found for receipt #{selected_receipt_id}."
-                    )
 
         with st.expander("Edit this receipt", expanded=False):
             edit_date = st.text_input(
