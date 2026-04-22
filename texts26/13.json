@@ -1,0 +1,147 @@
+{
+    "store_name": "Walmart",
+    "date": "01/30/26",
+    "time": "15:40:49",
+    "total_amount": 71.56,
+    "items_sold_count": 23,
+    "transactions": [
+        {
+            "item_name": "GV FSW",
+            "sku": "007874207527",
+            "price": 2.82,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218150",
+            "price": 2.67,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV PNT BUTT",
+            "sku": "007874237002",
+            "price": 3.98,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV MINCED G",
+            "sku": "007874223127",
+            "price": 5.42,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "POTATOES",
+            "sku": "003338353010",
+            "price": 3.47,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV CHICK PE",
+            "sku": "007874209989",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "sku": "007874200224",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874206200",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874206200",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV BLK BEAN",
+            "sku": "007874206200",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV NAVY BNS",
+            "sku": "007874200224",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV PINTO",
+            "sku": "007874237086",
+            "price": 0.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GRANNY APPL",
+            "sku": "088828900031",
+            "price": 1.95,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GALA APPLES",
+            "sku": "000000004135",
+            "price": 2.86,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.02,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "sku": "004157011019",
+            "price": 4.67,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "sku": "004157011019",
+            "price": 4.67,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": null,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "TOMATO",
+            "sku": "000000004087",
+            "price": 0.85,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV BF HAM",
+            "sku": "007874211039",
+            "price": 5.97,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "AUSSIE",
+            "sku": "038151918825",
+            "price": 4.25,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "sku": "026163800000",
+            "price": 15.38,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "GV 1 SSG",
+            "sku": "007874205478",
+            "price": 2.94,
+            "category": "miscellaneous"
+        }
+    ]
+}
