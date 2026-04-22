@@ -1,0 +1,26 @@
+{
+  "store_name": "Walmart",
+  "date": "02/11/25",
+  "time": "16:26:52",
+  "total_amount": 41.27,
+  "items_sold_count": 17,
+  "transactions": [
+    {"item_name": "BANANAS", "price": 1.18, "sku": "064312604011"},
+    {"item_name": "PINEAPPLE", "price": 2.34, "sku": "064312607207"},
+    {"item_name": "ORG BLKBERR", "price": 4.76, "sku": "003338323999"},
+    {"item_name": "BLUEBERRIES", "price": 5.54, "sku": "0775126200401"},
+    {"item_name": "AVOCADO", "price": 0.70, "sku": "750301775300"},
+    {"item_name": "TOMATO 4X5", "price": 1.09, "sku": "000000003151"},
+    {"item_name": "NECTARINES", "price": 1.52, "sku": "780462783052"},
+    {"item_name": "STRAWBERRIE", "price": 2.76, "sku": "081204900510"},
+    {"item_name": "NAVEL ORANG", "price": 1.76, "sku": "060504903107"},
+    {"item_name": "GV RF 2 GAL", "price": 2.16, "sku": "007874235187"},
+    {"item_name": "GV WHOLE GA", "price": 2.16, "sku": "007874235186"},
+    {"item_name": "GV OLD FA 4", "price": 3.98, "sku": "007874237104"},
+    {"item_name": "MANGO", "price": 2.14, "sku": "085351600588"},
+    {"item_name": "GV LF CT CH", "price": 2.94, "sku": "007874211673"},
+    {"item_name": "GVGRK LT VA", "price": 3.47, "sku": "007874204993"},
+    {"item_name": "GV SPRAYBTL", "price": 1.24, "sku": "007874230135"},
+    {"item_name": "POTATOES", "price": 0.54, "sku": "000000004072"}
+  ]
+}
