@@ -1,0 +1,22 @@
+{
+  "store_name": "Walmart",
+  "date": "07/01/25",
+  "time": "10:21:15",
+  "total_amount": 46.19,
+  "items_sold_count": 7,
+  "transactions": [
+    {"item_name": "DRESS", "price": -9.98, "sku": "019856616287"},
+    {"item_name": "DRESS", "price": -10.00, "sku": "019856619120"},
+    {"item_name": "FA SS TEE", "price": -5.00, "sku": "088002450095"},
+    {"item_name": "FA SS TEE", "price": -5.00, "sku": "088099224794"},
+    {"item_name": "FA SS TEE", "price": -5.00, "sku": "088002450095"},
+
+    {"item_name": "QTIPS", "price": 3.87, "sku": "030521500700"},
+    {"item_name": "EQ CL AB 12", "price": 4.44, "sku": "068113140257"},
+    {"item_name": "DRESS", "price": 10.00, "sku": "019856619120"},
+    {"item_name": "DRESS", "price": 9.98, "sku": "019856616287"},
+    {"item_name": "FA SS TEE", "price": 5.00, "sku": "880024500958"},
+    {"item_name": "FA SS TEE", "price": 5.00, "sku": "880992247948"},
+    {"item_name": "FA SS TEE", "price": 5.00, "sku": "880024500951"}
+  ]
+}
