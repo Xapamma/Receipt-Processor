@@ -22,9 +22,10 @@ dependencies = [
     "typing>=3.10.0.0",
     "easyocr>=1.7.2",
     "json-repair>=0.59.4",
-        "deepdiff>=9.0.0",
+    "deepdiff>=9.0.0",
     "quartodoc>=0.11.1",
     "plotly>=6.7.0",
+    "torch<2.3",
 ]
 
 [dependency-groups]

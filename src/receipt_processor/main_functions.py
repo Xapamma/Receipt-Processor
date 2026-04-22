@@ -1,6 +1,64 @@
 import sqlite3
 import pandas as pd
 
+
+def _to_float(value, default=0.0):
+    """Best-effort float conversion."""
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return float(default)
+
+
+def allocate_weighted_item_tax(items, receipt_total):
+    """
+    Allocate receipt-level difference (e.g., tax) back to items by price weight.
+    """
+    if not items:
+        return []
+
+    prices = [_to_float(item.get("price"), default=0.0) for item in items]
+    subtotal = sum(prices)
+    difference = _to_float(receipt_total, default=subtotal) - subtotal
+
+    diff_cents = int(round(difference * 100))
+    sign = 1 if diff_cents >= 0 else -1
+    abs_diff_cents = abs(diff_cents)
+
+    weights = [max(p, 0.0) for p in prices]
+    weight_total = sum(weights)
+    if weight_total <= 0:
+        weights = [1.0] * len(items)
+        weight_total = float(len(items))
+
+    raw_alloc = [(abs_diff_cents * w) / weight_total for w in weights]
+    base_alloc = [int(x) for x in raw_alloc]
+    remainder = abs_diff_cents - sum(base_alloc)
+
+    ranked = sorted(
+        range(len(raw_alloc)),
+        key=lambda i: raw_alloc[i] - base_alloc[i],
+        reverse=True,
+    )
+    for i in ranked[:remainder]:
+        base_alloc[i] += 1
+
+    signed_alloc = [sign * cents for cents in base_alloc]
+
+    allocated_items = []
+    for item, base_price, alloc_cents in zip(items, prices, signed_alloc):
+        allocated_tax = round(alloc_cents / 100.0, 2)
+        allocated_items.append(
+            {
+                "item_name": item.get("item_name"),
+                "price": base_price,
+                "allocated_tax": allocated_tax,
+                "price_with_tax": round(base_price + allocated_tax, 2),
+                "category": item.get("category"),
+            }
+        )
+    return allocated_items
+
 def process_receipt(file_path):  
     # Placeholder for receipt processing logic
     # This function would read the receipt image, extract text, and parse it into structured data 
@@ -51,12 +109,53 @@ def initialize_database(db_path="receipts.db"):
             receipt_id INTEGER,
             item_name TEXT,
             price REAL,
+            allocated_tax REAL DEFAULT 0,
+            price_with_tax REAL,
             category TEXT,
             FOREIGN KEY (receipt_id) REFERENCES receipts(id)
         )
         """)
 
+        # Receipt image mapping table
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS receipt_images (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            receipt_id INTEGER NOT NULL,
+            page_num INTEGER,
+            image_path TEXT,
+            image_blob BLOB,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (receipt_id) REFERENCES receipts(id)
+        )
+        """)
+
         conn.commit()
+
+
+def get_receipt_images(receipt_id, db_path="receipts.db"):
+    """
+    Get image records linked to a receipt.
+    """
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT page_num, image_path, image_blob
+            FROM receipt_images
+            WHERE receipt_id = ?
+            ORDER BY page_num ASC, id ASC
+            """,
+            (receipt_id,),
+        )
+        rows = cursor.fetchall()
+    return [
+        {
+            "page_num": row[0],
+            "image_path": row[1],
+            "image_blob": row[2],
+        }
+        for row in rows
+    ]
 
 
 def initialize_budget_database(db_path="budget.db"):
@@ -249,7 +348,7 @@ def get_category_breakdown(start_date=None, end_date=None, db_path="receipts.db"
         cursor = conn.cursor()
 
         query = """
-        SELECT i.category, SUM(i.price)
+        SELECT i.category, SUM(i.price_with_tax)
         FROM items i
         JOIN receipts r ON i.receipt_id = r.id
         """
@@ -265,7 +364,7 @@ def get_category_breakdown(start_date=None, end_date=None, db_path="receipts.db"
             query += " WHERE r.date <= ?"
             params.append(end_date)
 
-        query += " GROUP BY i.category ORDER BY SUM(i.price) DESC"
+        query += " GROUP BY i.category ORDER BY SUM(i.price_with_tax) DESC"
 
         cursor.execute(query, params)
         results = cursor.fetchall()
@@ -382,7 +481,7 @@ def get_receipt_details(receipt_id, db_path="receipts.db"):
         # Get items
         cursor.execute(
             """
-            SELECT item_name, price, category
+            SELECT item_name, price, allocated_tax, price_with_tax, category
             FROM items
             WHERE receipt_id = ?
             """,
@@ -400,11 +499,66 @@ def get_receipt_details(receipt_id, db_path="receipts.db"):
             {
                 "item_name": i[0],
                 "price": i[1],
-                "category": i[2],
+                "allocated_tax": i[2],
+                "price_with_tax": i[3],
+                "category": i[4],
             }
             for i in items
         ]
     }
+
+
+def update_receipt_details(receipt_id, date, time, vendor, total_amount, items, db_path="receipts.db"):
+    """
+    Update one receipt and replace its items.
+
+    Item tax allocation is recalculated so item-level totals can still match receipt total.
+    """
+    allocated_items = allocate_weighted_item_tax(items, total_amount)
+
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON;")
+
+        cursor.execute("SELECT id FROM receipts WHERE id = ?", (receipt_id,))
+        exists = cursor.fetchone()
+        if exists is None:
+            return False
+
+        cursor.execute(
+            """
+            UPDATE receipts
+            SET date = ?, time = ?, vendor = ?, total_amount = ?
+            WHERE id = ?
+            """,
+            (
+                date,
+                time,
+                vendor,
+                _to_float(total_amount, default=0.0),
+                receipt_id,
+            ),
+        )
+
+        cursor.execute("DELETE FROM items WHERE receipt_id = ?", (receipt_id,))
+        for item in allocated_items:
+            cursor.execute(
+                """
+                INSERT INTO items (receipt_id, item_name, price, allocated_tax, price_with_tax, category)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    receipt_id,
+                    item.get("item_name"),
+                    item.get("price"),
+                    item.get("allocated_tax"),
+                    item.get("price_with_tax"),
+                    item.get("category"),
+                ),
+            )
+
+        conn.commit()
+    return True
 
 
 def export_receipts_to_dataframe(db_path="receipts.db"):
@@ -432,6 +586,8 @@ def export_receipts_to_dataframe(db_path="receipts.db"):
             r.total_amount,
             i.item_name,
             i.price,
+            i.allocated_tax,
+            i.price_with_tax,
             i.category
         FROM receipts r
         LEFT JOIN items i ON r.id = i.receipt_id
