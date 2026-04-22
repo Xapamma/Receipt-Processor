@@ -1,7 +1,5 @@
 import easyocr
-import os
 from pathlib import Path
-import re
 import warnings
 
 
@@ -101,6 +99,3 @@ def process_image_folder(input_folder, output_folder):
             print(f"Error processing {image_path.name}: {e}")
 
     print("✅ Done processing all images.")
-
-
-process_image_folder("data/receipts_pngs", "data/texts")

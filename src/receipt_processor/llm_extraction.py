@@ -215,85 +215,24 @@ def build_transactions(ocr_items, image_path):
 
     return transactions
 
-def normalize(s):
-    return re.sub(r"[^a-z0-9]+", "", s.lower())
+def process_receipt(image_path, ocr_text):
+    ocr_items = extract_items_using_sku_only(ocr_text)
 
-# 🔥🔥🔥 NEW: BULK CATEGORY FUNCTION (replaces per-item LLM calls)
-def categorize_items_bulk(item_names):
-    prompt = f"""
-        You are a grocery receipt understanding system.
+    print("OCR items:", len(ocr_items))
 
-        Your job is to interpret abbreviated or messy receipt item names
-        and map them to real-world grocery items, then categorize them.
+    # 1. metadata (single call)
+    metadata = extract_store_metadata(image_path)
 
-        You MUST mentally expand abbreviations before deciding category.
+    # 2. transactions (reliable loop)
+    transactions = build_transactions(ocr_items, image_path)
 
-        You are an expert in Walmart-style receipt abbreviations and grocery products.
+    # 3. final JSON
+    final_output = {
+        **metadata,
+        "transactions": transactions
+    }
 
-        Examples:
-        - "GV FSW" → frozen vegetables → food
-        - "PNT BUTT" → peanut butter → food
-        - "BLK BEAN" → black beans → food
-        - "GV CHICK PE" → chickpeas → food
-        - "AUSSIE" → shampoo or personal care product → personal care / hygiene
-        - "BNLS CK BRS" → boneless chicken breast → food
-        - "GV BF HAM" → beef ham → food
-        - "GV 1 SSG" → breakfast sausage → food
-        - "POTATOES" → potatoes → food
-        - "BANANAS" → bananas → food
-        - "TOMATO" → tomatoes → food
-
-        Categories:
-        - food
-        - personal care / hygiene
-        - household products
-        - clothing
-        - cleaning
-
-        INPUT ITEMS (do NOT modify these strings in output):
-        {json.dumps(item_names, ensure_ascii=False)}
-
-        CRITICAL RULES:
-        - First interpret what each item likely is (internally)
-        - You MUST choose the MOST LIKELY real-world meaning
-        - Then assign category based on meaning
-        - Do NOT change item_name in output
-        - NEVER default to "miscellaneous" unless the item is truly unreadable or meaningless
-        - If uncertain, still choose the best guess category (be decisive)
-        - Treat abbreviations as standard grocery shorthand (GV = Great Value, etc.)
-        - Output valid JSON only
-        - No explanations
-
-        BEHAVIOR RULE:
-        - It is better to guess correctly than to return "miscellaneous"
-
-        Return format:
-        [
-        {{"item_name": "", "category": ""}}
-        ]
-        """
-
-    response = chat(
-        model='gemma3:12b',
-        messages=[{
-            "role": "user",
-            "content": prompt
-        }],
-        format="json",
-        options={
-            "temperature": 0.6,
-            "num_predict": 300
-        }
-    )
-
-    try:
-        result = json.loads(response["message"]["content"])
-        if isinstance(result, list):
-            return result
-        else:
-            return []
-    except:
-        return []
+    return final_output
 
 def extract_text_from_images(image_paths, receipt_id=None):
     """
@@ -380,27 +319,8 @@ def extract_text_from_images(image_paths, receipt_id=None):
     metadata = extract_store_metadata(first_valid_image)
 
     # ----------------------------
-    # 3. TRANSACTIONS
+    # 3. TRANSACTIONS (NO PROMPT LOOP BUGS)
     # ----------------------------
-
-    # 🔥🔥🔥 NEW: Run ONE LLM call for ALL categories
-    item_names = [
-        item["item_name"]
-        for item in all_ocr_items
-    ]    
-    category_results = categorize_items_bulk(item_names)
-
-    # Create lookup dictionary
-    category_map = {}
-
-    for x in category_results:
-        if isinstance(x, dict):
-            item = x.get("item_name")
-            cat = x.get("category", "miscellaneous")
-
-            if item:
-                category_map[normalize(item)] = cat
-
     transactions = []
 
     for item in all_ocr_items:
@@ -417,8 +337,6 @@ def extract_text_from_images(image_paths, receipt_id=None):
         if not os.path.exists(image_path):
             print(f"Invalid image path: {image_path}")
             continue
-
-        #-----------Price Extraction Prompt (with strict rules) -----------#
 
         prompt = f"""
             Find ONLY the price for this item from the receipt image.
@@ -462,7 +380,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
             raw_price = json.loads(response["message"]["content"]).get("price")
 
         except:
-            raw_price = None
+            price = None
 
         # Normalize bad outputs
         if raw_price in [0, 0.0, "0", "0.0", "0.00"]:
@@ -470,16 +388,12 @@ def extract_text_from_images(image_paths, receipt_id=None):
         else:
             price = raw_price
 
-        # 🔥🔥🔥 NEW: pull category from bulk results
-        category = category_map.get(normalize(item["item_name"]), "miscellaneous")
-        
         transactions.append({
             "item_name": item["item_name"],
             "sku": item["sku"],
-            "price": price,
-            "category": category
+            "price": price
         })
-    
+
     # ----------------------------
     # 4. FINAL MERGE
     # ----------------------------
@@ -594,7 +508,3 @@ def process_image_folder(input_folder, output_folder, manual_folder):
             tqdm.write(f"Error processing {key}: {e}")
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
-
-
-# Run
-process_image_folder("data/receipts_pngs", "data/texts25", "data/manual_review_25")

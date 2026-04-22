@@ -1,0 +1,9 @@
+{
+    "receipt_id": "86",
+    "status": "failed_parse",
+    "reason": "ocr_failed_on_all_pages",
+    "failed_pages": 1,
+    "image_paths": [
+        "data/receipts_pngs/86_page1.png"
+    ]
+}
