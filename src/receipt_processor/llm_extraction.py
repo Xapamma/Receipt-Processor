@@ -508,7 +508,3 @@ def process_image_folder(input_folder, output_folder, manual_folder):
             tqdm.write(f"Error processing {key}: {e}")
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
-
-
-# Run
-process_image_folder("data/receipts_pngs", "data/texts25", "data/manual_review_25")
