@@ -4,7 +4,7 @@ import re
 from deepdiff import DeepDiff
 
 # Folder containing your ground-truth validation JSON files.
-VALIDATION_DIR = "validation/validation_texts"
+VALIDATION_DIR = "data/validation_texts"
 # Folder containing extracted/actual JSON files to compare against validation.
 ACTUAL_DIR = "data/texts25"
 # Toggle verbose field-level differences for mismatches.
