@@ -2,8 +2,8 @@
     "receipt_id": "78",
     "num_pages": 2,
     "image_paths": [
-        "receipts_pngs\\78_page1.png",
-        "receipts_pngs\\78_page2.png"
+        "data/receipts_pngs/78_page1.png",
+        "data/receipts_pngs/78_page2.png"
     ],
     "status": "requires_manual_llm"
 }

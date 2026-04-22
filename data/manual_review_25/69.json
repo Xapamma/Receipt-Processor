@@ -3,6 +3,6 @@
     "status": "refund_detected",
     "reason": "contains refund keywords",
     "image_paths": [
-        "receipts_pngs/69_page1.png"
+        "data/receipts_pngs/69_page1.png"
     ]
 }
