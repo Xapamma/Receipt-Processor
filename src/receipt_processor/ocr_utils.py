@@ -1,4 +1,3 @@
-import easyocr
 from pathlib import Path
 import warnings
 
@@ -12,6 +11,13 @@ def _get_reader():
     """Lazily initialize OCR reader to avoid heavy import-time startup cost."""
     global _reader
     if _reader is None:
+        try:
+            import easyocr
+        except Exception as exc:
+            raise RuntimeError(
+                "OCR dependencies are unavailable in this environment "
+                "(easyocr/cv2 could not be imported)."
+            ) from exc
         _reader = easyocr.Reader(["en"], gpu=False)
     return _reader
 

@@ -13,7 +13,6 @@ from receipt_processor.db_ingest import (
     insert_receipt,
     update_receipt_details,
 )
-from receipt_processor.llm_extraction import extract_text_from_images
 from receipt_processor.db_queries import (
     export_receipts_to_dataframe,
     get_category_budgets,
@@ -68,11 +67,19 @@ def convert_pdf_to_png(pdf_path):
 def process_receipt(file_path):
     path = Path(file_path)
     png_paths = convert_pdf_to_png(file_path) if path.suffix.lower() == ".pdf" else [file_path]
-    json_text = extract_text_from_images(png_paths)
     try:
-        return json.loads(json_text), png_paths
+        from receipt_processor.llm_extraction import extract_text_from_images
+        json_text = extract_text_from_images(png_paths)
+    except Exception as exc:
+        return None, png_paths, str(exc)
+
+    if isinstance(json_text, dict):
+        return json_text, png_paths, None
+
+    try:
+        return json.loads(json_text), png_paths, None
     except json.JSONDecodeError:
-        return None, png_paths
+        return None, png_paths, "Could not decode OCR/LLM output JSON."
 
 
 def cleanup_temp_upload_files(file_paths):
@@ -130,7 +137,7 @@ if uploaded_file is not None:
         f.write(uploaded_file.getbuffer())
 
     with st.spinner("Processing receipt..."):
-        parsed, parsed_image_paths = process_receipt(file_path)
+        parsed, parsed_image_paths, process_error = process_receipt(file_path)
         if parsed:
             insert_receipt(parsed, db_path=db_path)
             st.sidebar.success("Receipt uploaded and added to the database.")
@@ -140,7 +147,17 @@ if uploaded_file is not None:
             for temp_path in parsed_image_paths or []:
                 cleanup_targets.add(temp_path)
             cleanup_temp_upload_files(cleanup_targets)
-            st.sidebar.error("Could not parse receipt JSON from the uploaded file.")
+            if process_error:
+                st.sidebar.error(
+                    "Receipt upload processing is unavailable in this environment. "
+                    f"Details: {process_error}"
+                )
+                st.sidebar.info(
+                    "Use 'Manually enter receipt data' below, or run locally with "
+                    "OCR dependencies installed."
+                )
+            else:
+                st.sidebar.error("Could not parse receipt JSON from the uploaded file.")
 
 with st.sidebar.expander("Manually enter receipt data", expanded=False):
     with st.form("manual_receipt_form", clear_on_submit=True):
@@ -817,4 +834,3 @@ if all_receipt_ids:
                             st.rerun()
                         else:
                             st.error("Receipt not found. Refresh and try again.")
-
