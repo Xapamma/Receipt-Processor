@@ -186,6 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ocr-and-extraction-pipeline" id="toc-ocr-and-extraction-pipeline" class="nav-link" data-scroll-target="#ocr-and-extraction-pipeline">OCR And Extraction Pipeline</a>
   <ul class="collapse">
   <li><a href="#llm_extraction.build_transactions" id="toc-llm_extraction.build_transactions" class="nav-link" data-scroll-target="#llm_extraction.build_transactions"><code>llm_extraction.build_transactions</code></a></li>
+  <li><a href="#llm_extraction.categorize_single_item" id="toc-llm_extraction.categorize_single_item" class="nav-link" data-scroll-target="#llm_extraction.categorize_single_item"><code>llm_extraction.categorize_single_item</code></a></li>
   <li><a href="#pdf_utils.convert_pdfs_to_pngs" id="toc-pdf_utils.convert_pdfs_to_pngs" class="nav-link" data-scroll-target="#pdf_utils.convert_pdfs_to_pngs"><code>pdf_utils.convert_pdfs_to_pngs</code></a></li>
   <li><a href="#llm_extraction.extract_items_using_sku_only" id="toc-llm_extraction.extract_items_using_sku_only" class="nav-link" data-scroll-target="#llm_extraction.extract_items_using_sku_only"><code>llm_extraction.extract_items_using_sku_only</code></a></li>
   <li><a href="#llm_extraction.extract_store_metadata" id="toc-llm_extraction.extract_store_metadata" class="nav-link" data-scroll-target="#llm_extraction.extract_store_metadata"><code>llm_extraction.extract_store_metadata</code></a></li>
@@ -194,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#llm_extraction.group_receipt_images" id="toc-llm_extraction.group_receipt_images" class="nav-link" data-scroll-target="#llm_extraction.group_receipt_images"><code>llm_extraction.group_receipt_images</code></a></li>
   <li><a href="#llm_extraction.is_empty" id="toc-llm_extraction.is_empty" class="nav-link" data-scroll-target="#llm_extraction.is_empty"><code>llm_extraction.is_empty</code></a></li>
   <li><a href="#llm_extraction.merge_receipt_data" id="toc-llm_extraction.merge_receipt_data" class="nav-link" data-scroll-target="#llm_extraction.merge_receipt_data"><code>llm_extraction.merge_receipt_data</code></a></li>
+  <li><a href="#llm_extraction.normalize" id="toc-llm_extraction.normalize" class="nav-link" data-scroll-target="#llm_extraction.normalize"><code>llm_extraction.normalize</code></a></li>
   <li><a href="#ocr_utils.process_image_folder" id="toc-ocr_utils.process_image_folder" class="nav-link" data-scroll-target="#ocr_utils.process_image_folder"><code>ocr_utils.process_image_folder</code></a></li>
   <li><a href="#llm_extraction.process_image_folder" id="toc-llm_extraction.process_image_folder" class="nav-link" data-scroll-target="#llm_extraction.process_image_folder"><code>llm_extraction.process_image_folder</code></a></li>
-  <li><a href="#llm_extraction.process_receipt" id="toc-llm_extraction.process_receipt" class="nav-link" data-scroll-target="#llm_extraction.process_receipt"><code>llm_extraction.process_receipt</code></a></li>
   </ul></li>
   <li><a href="#advanced-and-maintenance-functions" id="toc-advanced-and-maintenance-functions" class="nav-link" data-scroll-target="#advanced-and-maintenance-functions">Advanced And Maintenance Functions</a>
   <ul class="collapse">
@@ -648,22 +649,24 @@ Details
 <p><em>When to use this: converting source files into OCR text and structured receipt JSON.</em></p>
 <section id="llm_extraction.build_transactions" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.build_transactions"><code>llm_extraction.build_transactions</code></h3>
-<p><em>Build transaction rows by asking the LLM for each item’s price.</em></p>
+<p><em>No docstring provided yet.</em></p>
 <details>
 <summary>
 Details
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>build_transactions(ocr_items, image_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Build transaction rows by asking the LLM for each item’s price.</p>
-<p><strong>Args</strong></p>
-<ul>
-<li>ocr_items: List of candidate items with <code>item_name</code> and <code>sku</code>.</li>
-<li>image_path: Image path used as visual context for price lookup.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li>List of dicts with keys: <code>item_name</code>, <code>sku</code>, <code>price</code>.</li>
-</ul>
+<p>No docstring provided yet.</p>
+</details>
+</section>
+<section id="llm_extraction.categorize_single_item" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.categorize_single_item"><code>llm_extraction.categorize_single_item</code></h3>
+<p><em>No docstring provided yet.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>categorize_single_item(item_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No docstring provided yet.</p>
 </details>
 </section>
 <section id="pdf_utils.convert_pdfs_to_pngs" class="level3">
@@ -673,7 +676,7 @@ Details
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>convert_pdfs_to_pngs(input_folder, output_folder, zoom<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>convert_pdfs_to_pngs(input_folder, output_folder, zoom<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Convert all PDF pages in a folder into PNG image files.</p>
 <p><strong>Args</strong></p>
 <ul>
@@ -690,45 +693,24 @@ Details
 </section>
 <section id="llm_extraction.extract_items_using_sku_only" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.extract_items_using_sku_only"><code>llm_extraction.extract_items_using_sku_only</code></h3>
-<p><em>Extract candidate line items from OCR text using SKU pattern matching.</em></p>
+<p><em>Extract ONLY item names + SKU.</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>extract_items_using_sku_only(ocr_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Extract candidate line items from OCR text using SKU pattern matching.</p>
-<p><strong>Args</strong></p>
-<ul>
-<li>ocr_text: Raw OCR text block.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li>List of dicts with keys: <code>item_name</code>, <code>sku</code>, <code>raw_line</code>.</li>
-</ul>
-<p><strong>Notes</strong></p>
-<ul>
-<li>Price values are intentionally not extracted here.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>extract_items_using_sku_only(ocr_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Extract ONLY item names + SKU. NO prices used from OCR.</p>
 </details>
 </section>
 <section id="llm_extraction.extract_store_metadata" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.extract_store_metadata"><code>llm_extraction.extract_store_metadata</code></h3>
-<p><em>Extract store/date/time/total metadata from one receipt image via LLM.</em></p>
+<p><em>No docstring provided yet.</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>extract_store_metadata(image_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Extract store/date/time/total metadata from one receipt image via LLM.</p>
-<p><strong>Args</strong></p>
-<ul>
-<li>image_path: Path to the source image file.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><p>Dict containing <code>store_name</code>, <code>date</code>, <code>time</code>, <code>total_amount</code>,</p>
-<p>and <code>items_sold_count</code>.</p></li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>extract_store_metadata(image_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No docstring provided yet.</p>
 </details>
 </section>
 <section id="ocr_utils.extract_text_from_image" class="level3">
@@ -738,7 +720,7 @@ Details
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_image(image_path, y_tol<span class="op">=</span><span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_image(image_path, y_tol<span class="op">=</span><span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run OCR on one image and return line-ordered text.</p>
 <p><strong>Args</strong></p>
 <ul>
@@ -753,84 +735,58 @@ Details
 </section>
 <section id="llm_extraction.extract_text_from_images" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.extract_text_from_images"><code>llm_extraction.extract_text_from_images</code></h3>
-<p><em>Extract one structured receipt record from one or more image files.</em></p>
+<p><em>Handles single and multi-page receipts by running inference on </em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_images(image_paths, receipt_id<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Extract one structured receipt record from one or more image files.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li>image_paths: Ordered list of receipt page image paths (usually PNGs).</li>
-<li>receipt_id: Optional identifier used by callers for trace/debug context.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><p>dict on success, with keys like:</p>
-<p><code>store_name</code>, <code>date</code>, <code>time</code>, <code>total_amount</code>, <code>transactions</code>.</p></li>
-<li><p>dict on recoverable failure, with <code>error</code> and <code>reason</code> keys</p>
-<p>(for example <code>no_valid_images_found</code> or <code>no_ocr_items_detected</code>).</p></li>
-</ul>
-<p><strong>Notes</strong></p>
-<ul>
-<li>Uses OCR first to find candidate items, then LLM calls for metadata/pricing.</li>
-<li>Skips pages detected as blank when possible.</li>
-<li>Does not write files or mutate the database directly.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_images(image_paths, receipt_id<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Handles single and multi-page receipts by running inference on each page individually and merging the resulting JSONs.</p>
 </details>
 </section>
 <section id="llm_extraction.group_receipt_images" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.group_receipt_images"><code>llm_extraction.group_receipt_images</code></h3>
-<p><em>Group receipt page images by receipt identifier derived from filename.</em></p>
+<p><em>Groups images like:</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>group_receipt_images(image_paths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Group receipt page images by receipt identifier derived from filename.</p>
-<p><strong>Expected pattern</strong></p>
-<ul>
-<li><code>&lt;receipt_id&gt;_page&lt;page_num&gt;.png</code> (for example <code>11_page2.png</code>).</li>
-</ul>
-<p><strong>Args</strong></p>
-<ul>
-<li>image_paths: Iterable of <code>Path</code> objects.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li>Dict mapping receipt id to ordered list of page paths.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>group_receipt_images(image_paths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Groups images like</strong></p>
+<p>11_page1.png, 11_page2.png → same receipt (key = “11”)</p>
 </details>
 </section>
 <section id="llm_extraction.is_empty" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.is_empty"><code>llm_extraction.is_empty</code></h3>
-<p><em>Return <code>True</code> when a value should be treated as missing LLM output.</em></p>
+<p><em>Helper to catch None, empty strings, and literal ‘null’ strings from the LLM.</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>is_empty(val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return <code>True</code> when a value should be treated as missing LLM output.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>is_empty(val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Helper to catch None, empty strings, and literal ‘null’ strings from the LLM.</p>
 </details>
 </section>
 <section id="llm_extraction.merge_receipt_data" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.merge_receipt_data"><code>llm_extraction.merge_receipt_data</code></h3>
-<p><em>Merge multiple page-level receipt dicts into one consolidated record.</em></p>
+<p><em>Merges a list of parsed JSON receipt dictionaries into one master dictionary.</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>merge_receipt_data(json_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Merge multiple page-level receipt dicts into one consolidated record.</p>
-<p><strong>Args</strong></p>
-<ul>
-<li>json_list: List of parsed page dictionaries.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li>Dict with merged metadata, totals, and combined <code>transactions</code>.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>merge_receipt_data(json_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Merges a list of parsed JSON receipt dictionaries into one master dictionary.</p>
+</details>
+</section>
+<section id="llm_extraction.normalize" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.normalize"><code>llm_extraction.normalize</code></h3>
+<p><em>No docstring provided yet.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>normalize(s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No docstring provided yet.</p>
 </details>
 </section>
 <section id="ocr_utils.process_image_folder" class="level3">
@@ -840,7 +796,7 @@ Details
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>OCR all PNG images in a folder and write one text file per image.</p>
 <p><strong>Args</strong></p>
 <ul>
@@ -856,51 +812,13 @@ Details
 </section>
 <section id="llm_extraction.process_image_folder" class="level3">
 <h3 class="anchored" data-anchor-id="llm_extraction.process_image_folder"><code>llm_extraction.process_image_folder</code></h3>
-<p><em>Batch-process receipt images in a folder into JSON outputs.</em></p>
+<p><em>No docstring provided yet.</em></p>
 <details>
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder, manual_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Batch-process receipt images in a folder into JSON outputs.</p>
-<p><strong>Parameters</strong></p>
-<ul>
-<li>input_folder: Directory containing page images (expected <code>*.png</code>).</li>
-<li>output_folder: Directory where parsed receipt JSON files are written.</li>
-<li>manual_folder: Directory where manual-review JSON records are written.</li>
-</ul>
-<p><strong>Behavior</strong></p>
-<ul>
-<li>Groups page images into receipt-level sets via filename pattern.</li>
-<li>Skips receipts already represented in output/manual folders.</li>
-<li>Routes multi-page receipts and detected refund cases to manual review.</li>
-<li>Calls <code>extract_text_from_images</code> for eligible receipt groups.</li>
-</ul>
-<p><strong>Side effects</strong></p>
-<ul>
-<li>Creates <code>output_folder</code> and <code>manual_folder</code> when missing.</li>
-<li>Writes JSON files to disk; does not insert into SQLite directly.</li>
-</ul>
-</details>
-</section>
-<section id="llm_extraction.process_receipt" class="level3">
-<h3 class="anchored" data-anchor-id="llm_extraction.process_receipt"><code>llm_extraction.process_receipt</code></h3>
-<p><em>Process one receipt image + OCR text into a structured output dict.</em></p>
-<details>
-<summary>
-Details
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>process_receipt(image_path, ocr_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Process one receipt image + OCR text into a structured output dict.</p>
-<p><strong>Args</strong></p>
-<ul>
-<li>image_path: Path to the receipt image.</li>
-<li>ocr_text: OCR text from that image.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li>Dict with store metadata and extracted <code>transactions</code>.</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder, manual_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>No docstring provided yet.</p>
 </details>
 </section>
 </section>
@@ -914,7 +832,7 @@ Details
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>print_db_snapshot(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>print_db_snapshot(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Print current <code>receipts</code> and <code>items</code> table rows for quick debugging.</p>
 </details>
 </section>
@@ -925,7 +843,7 @@ Details
 <summary>
 Details
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>reset_database(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB, confirm<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>reset_database(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB, confirm<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Drop and recreate receipts tables.</p>
 <p><strong>Args</strong></p>
 <ul>

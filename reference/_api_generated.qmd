@@ -475,7 +475,7 @@ Create or update one monthly total budget value.
 
 ### `llm_extraction.build_transactions`
 
-*Build transaction rows by asking the LLM for each item's price.*
+*No docstring provided yet.*
 
 <details><summary>Details</summary>
 
@@ -483,16 +483,21 @@ Create or update one monthly total budget value.
 build_transactions(ocr_items, image_path)
 ```
 
-Build transaction rows by asking the LLM for each item's price.
+No docstring provided yet.
 
-**Args**
+</details>
 
-- ocr_items: List of candidate items with `item_name` and `sku`.
-- image_path: Image path used as visual context for price lookup.
+### `llm_extraction.categorize_single_item`
 
-**Returns**
+*No docstring provided yet.*
 
-- List of dicts with keys: `item_name`, `sku`, `price`.
+<details><summary>Details</summary>
+
+```python
+categorize_single_item(item_name)
+```
+
+No docstring provided yet.
 
 </details>
 
@@ -523,7 +528,7 @@ Convert all PDF pages in a folder into PNG image files.
 
 ### `llm_extraction.extract_items_using_sku_only`
 
-*Extract candidate line items from OCR text using SKU pattern matching.*
+*Extract ONLY item names + SKU.*
 
 <details><summary>Details</summary>
 
@@ -531,25 +536,14 @@ Convert all PDF pages in a folder into PNG image files.
 extract_items_using_sku_only(ocr_text)
 ```
 
-Extract candidate line items from OCR text using SKU pattern matching.
-
-**Args**
-
-- ocr_text: Raw OCR text block.
-
-**Returns**
-
-- List of dicts with keys: `item_name`, `sku`, `raw_line`.
-
-**Notes**
-
-- Price values are intentionally not extracted here.
+Extract ONLY item names + SKU.
+NO prices used from OCR.
 
 </details>
 
 ### `llm_extraction.extract_store_metadata`
 
-*Extract store/date/time/total metadata from one receipt image via LLM.*
+*No docstring provided yet.*
 
 <details><summary>Details</summary>
 
@@ -557,17 +551,7 @@ Extract candidate line items from OCR text using SKU pattern matching.
 extract_store_metadata(image_path)
 ```
 
-Extract store/date/time/total metadata from one receipt image via LLM.
-
-**Args**
-
-- image_path: Path to the source image file.
-
-**Returns**
-
-- Dict containing `store_name`, `date`, `time`, `total_amount`,
-
-  and `items_sold_count`.
+No docstring provided yet.
 
 </details>
 
@@ -596,7 +580,7 @@ Run OCR on one image and return line-ordered text.
 
 ### `llm_extraction.extract_text_from_images`
 
-*Extract one structured receipt record from one or more image files.*
+*Handles single and multi-page receipts by running inference on *
 
 <details><summary>Details</summary>
 
@@ -604,34 +588,14 @@ Run OCR on one image and return line-ordered text.
 extract_text_from_images(image_paths, receipt_id=None)
 ```
 
-Extract one structured receipt record from one or more image files.
-
-**Parameters**
-
-- image_paths: Ordered list of receipt page image paths (usually PNGs).
-- receipt_id: Optional identifier used by callers for trace/debug context.
-
-**Returns**
-
-- dict on success, with keys like:
-
-  `store_name`, `date`, `time`, `total_amount`, `transactions`.
-
-- dict on recoverable failure, with `error` and `reason` keys
-
-  (for example `no_valid_images_found` or `no_ocr_items_detected`).
-
-**Notes**
-
-- Uses OCR first to find candidate items, then LLM calls for metadata/pricing.
-- Skips pages detected as blank when possible.
-- Does not write files or mutate the database directly.
+Handles single and multi-page receipts by running inference on 
+each page individually and merging the resulting JSONs.
 
 </details>
 
 ### `llm_extraction.group_receipt_images`
 
-*Group receipt page images by receipt identifier derived from filename.*
+*Groups images like:*
 
 <details><summary>Details</summary>
 
@@ -639,25 +603,15 @@ Extract one structured receipt record from one or more image files.
 group_receipt_images(image_paths)
 ```
 
-Group receipt page images by receipt identifier derived from filename.
+**Groups images like**
 
-**Expected pattern**
-
-- `<receipt_id>_page<page_num>.png` (for example `11_page2.png`).
-
-**Args**
-
-- image_paths: Iterable of `Path` objects.
-
-**Returns**
-
-- Dict mapping receipt id to ordered list of page paths.
+11_page1.png, 11_page2.png → same receipt (key = "11")
 
 </details>
 
 ### `llm_extraction.is_empty`
 
-*Return `True` when a value should be treated as missing LLM output.*
+*Helper to catch None, empty strings, and literal 'null' strings from the LLM.*
 
 <details><summary>Details</summary>
 
@@ -665,13 +619,13 @@ Group receipt page images by receipt identifier derived from filename.
 is_empty(val)
 ```
 
-Return `True` when a value should be treated as missing LLM output.
+Helper to catch None, empty strings, and literal 'null' strings from the LLM.
 
 </details>
 
 ### `llm_extraction.merge_receipt_data`
 
-*Merge multiple page-level receipt dicts into one consolidated record.*
+*Merges a list of parsed JSON receipt dictionaries into one master dictionary.*
 
 <details><summary>Details</summary>
 
@@ -679,15 +633,21 @@ Return `True` when a value should be treated as missing LLM output.
 merge_receipt_data(json_list)
 ```
 
-Merge multiple page-level receipt dicts into one consolidated record.
+Merges a list of parsed JSON receipt dictionaries into one master dictionary.
 
-**Args**
+</details>
 
-- json_list: List of parsed page dictionaries.
+### `llm_extraction.normalize`
 
-**Returns**
+*No docstring provided yet.*
 
-- Dict with merged metadata, totals, and combined `transactions`.
+<details><summary>Details</summary>
+
+```python
+normalize(s)
+```
+
+No docstring provided yet.
 
 </details>
 
@@ -717,7 +677,7 @@ OCR all PNG images in a folder and write one text file per image.
 
 ### `llm_extraction.process_image_folder`
 
-*Batch-process receipt images in a folder into JSON outputs.*
+*No docstring provided yet.*
 
 <details><summary>Details</summary>
 
@@ -725,48 +685,7 @@ OCR all PNG images in a folder and write one text file per image.
 process_image_folder(input_folder, output_folder, manual_folder)
 ```
 
-Batch-process receipt images in a folder into JSON outputs.
-
-**Parameters**
-
-- input_folder: Directory containing page images (expected `*.png`).
-- output_folder: Directory where parsed receipt JSON files are written.
-- manual_folder: Directory where manual-review JSON records are written.
-
-**Behavior**
-
-- Groups page images into receipt-level sets via filename pattern.
-- Skips receipts already represented in output/manual folders.
-- Routes multi-page receipts and detected refund cases to manual review.
-- Calls `extract_text_from_images` for eligible receipt groups.
-
-**Side effects**
-
-- Creates `output_folder` and `manual_folder` when missing.
-- Writes JSON files to disk; does not insert into SQLite directly.
-
-</details>
-
-### `llm_extraction.process_receipt`
-
-*Process one receipt image + OCR text into a structured output dict.*
-
-<details><summary>Details</summary>
-
-```python
-process_receipt(image_path, ocr_text)
-```
-
-Process one receipt image + OCR text into a structured output dict.
-
-**Args**
-
-- image_path: Path to the receipt image.
-- ocr_text: OCR text from that image.
-
-**Returns**
-
-- Dict with store metadata and extracted `transactions`.
+No docstring provided yet.
 
 </details>
 
