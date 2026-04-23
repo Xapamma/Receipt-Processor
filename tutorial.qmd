@@ -148,6 +148,8 @@ This launches a web interface where you can:
 -   Track spending by category and vendor
 -   Set and monitor budget limits
 
+Alternatively, you can try the [hosted Streamlit app](https://receipt-pro-stat386.streamlit.app/) directly in your browser without any local setup.
+
 ### Setting Up Databases
 
 When you first run the app, you'll need to specify two database paths:
@@ -631,7 +633,7 @@ else:
 
 Now that you're familiar with Receipt Processor basics, consider:
 
-1.  **Explore the Streamlit App**: Run `streamlit run app.py` and experiment with uploading receipts
+1.  **Explore the [Streamlit App](https://receipt-pro-stat386.streamlit.app/)**: Run `streamlit run app.py` (or click the link) and experiment with uploading receipts
 2.  **Set Up Automation**: Create scripts to process receipts in batch
 3.  **Build Custom Reports**: Use the query functions with pandas to create visualizations
 4.  **Integrate with Other Tools**: Export data to spreadsheets or accounting software

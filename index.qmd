@@ -13,7 +13,7 @@ Welcome to the Receipt Processor documentation site. This project helps you extr
 ## Quick Start
 
 1.  Visit the **Tutorial** to set up your Python environment and install dependencies.
-2.  Run the Streamlit app with `streamlit run app.py` to interactively upload receipts and inspect extracted data.
+2.  Run the [Streamlit app](https://receipt-pro-stat386.streamlit.app/) with `streamlit run app.py` (or click the link to try it online) to interactively upload receipts and inspect extracted data.
 3.  Use the **Documentation** page for function references and integration examples.
 
 ## What This Project Includes
