@@ -5,11 +5,10 @@ from datetime import datetime
 
 DEFAULT_RECEIPTS_DB = "data/receipts.db"
 DEFAULT_BUDGET_DB = "data/budget.db"
-DB_NAME = DEFAULT_RECEIPTS_DB
 
 
 def _to_float(value, default=0.0):
-    """Best-effort float conversion."""
+    """Convert a value to float, falling back to `default` on failure."""
     try:
         return float(value)
     except (TypeError, ValueError):
@@ -17,7 +16,11 @@ def _to_float(value, default=0.0):
 
 
 def _normalize_date(raw_date):
-    """Normalize date to YYYY-MM-DD for database storage."""
+    """Normalize a date-like string to `YYYY-MM-DD` when possible.
+
+    Supports several common receipt date formats. If parsing fails, returns the
+    original trimmed string so callers can still store the raw value.
+    """
     if not raw_date:
         return None
 
@@ -39,7 +42,11 @@ def _normalize_date(raw_date):
 
 
 def _normalize_time(raw_time):
-    """Normalize time to HH:MM:SS for database storage."""
+    """Normalize a time-like string to `HH:MM:SS` when possible.
+
+    Supports 24-hour and AM/PM formats. If parsing fails, returns the original
+    trimmed string so callers can still store the raw value.
+    """
     if not raw_time:
         return None
 
@@ -60,7 +67,19 @@ def _normalize_time(raw_time):
 
 
 def allocate_weighted_item_tax(items, receipt_total):
-    """Allocate receipt-level difference (for example tax) back to item rows."""
+    """Allocate receipt-level difference across item rows by weighted price.
+
+    Args:
+    - items: List of item dictionaries containing at least `price`.
+    - receipt_total: Receipt total used as the target sum for item totals.
+
+    Returns:
+    - A new list of item dictionaries with `allocated_tax` and `price_with_tax`.
+
+    Notes:
+    - Allocation is done in cents to minimize floating-point drift.
+    - If all item prices are zero/missing, allocation falls back to equal weights.
+    """
     if not items:
         return []
 
@@ -108,7 +127,15 @@ def allocate_weighted_item_tax(items, receipt_total):
 
 
 def initialize_database(db_path=DEFAULT_RECEIPTS_DB):
-    """Initialize the receipts SQLite database."""
+    """Create receipts database tables if they do not already exist.
+
+    Args:
+    - db_path: Path to the receipts SQLite database file.
+
+    Side effects:
+    - Ensures `receipts` and `items` tables exist.
+    - Enables SQLite foreign key enforcement for the connection.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -142,25 +169,18 @@ def initialize_database(db_path=DEFAULT_RECEIPTS_DB):
             """
         )
 
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS receipt_images (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                receipt_id INTEGER NOT NULL,
-                page_num INTEGER,
-                image_path TEXT,
-                image_blob BLOB,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (receipt_id) REFERENCES receipts(id)
-            )
-            """
-        )
-
         conn.commit()
 
 
 def initialize_budget_database(db_path=DEFAULT_BUDGET_DB):
-    """Initialize the budget SQLite database."""
+    """Create budget database tables if they do not already exist.
+
+    Args:
+    - db_path: Path to the budget SQLite database file.
+
+    Side effects:
+    - Ensures `monthly_budgets` and `category_budgets` tables exist.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -190,7 +210,29 @@ def initialize_budget_database(db_path=DEFAULT_BUDGET_DB):
 
 
 def insert_receipt(data, db_path=DEFAULT_RECEIPTS_DB):
-    """Insert one parsed receipt dict into receipts/items tables."""
+    """
+    Insert one parsed receipt payload into `receipts` and `items` tables.
+
+    Args:
+    - data: Parsed receipt dictionary.
+    - db_path: Path to the receipts SQLite database file.
+
+    Expected `data` shape:
+    - `store_name` (str | None)
+    - `date` (str | None)
+    - `time` (str | None)
+    - `total_amount` (number-like)
+    - `transactions` (list[dict]) where each item includes:
+      `item_name`, `price`, and optional `category`.
+
+    Behavior:
+    - Normalizes date/time strings when possible.
+    - Computes weighted per-item tax allocation so item totals align with receipt total.
+    - Inserts one receipt row plus its associated item rows in the same DB transaction.
+
+    Returns:
+    - `receipt_id` (int): primary key of the inserted receipt row.
+    """
     normalized_date = _normalize_date(data.get("date"))
     normalized_time = _normalize_time(data.get("time"))
     transactions = data.get("transactions", [])
@@ -236,7 +278,15 @@ def insert_receipt(data, db_path=DEFAULT_RECEIPTS_DB):
 
 
 def insert_receipts_from_folder(folder_path, db_path=DEFAULT_RECEIPTS_DB):
-    """Bulk insert all JSON receipts from a folder."""
+    """Insert every JSON receipt file in a folder into the receipts database.
+
+    Args:
+    - folder_path: Directory containing parsed receipt `.json` files.
+    - db_path: Path to the receipts SQLite database file.
+
+    Side effects:
+    - Inserts new receipt and item rows for each JSON file discovered.
+    """
     for filename in sorted(os.listdir(folder_path)):
         if not filename.endswith(".json"):
             continue
@@ -248,7 +298,20 @@ def insert_receipts_from_folder(folder_path, db_path=DEFAULT_RECEIPTS_DB):
 
 
 def update_receipt_details(receipt_id, date, time, vendor, total_amount, items, db_path=DEFAULT_RECEIPTS_DB):
-    """Update one receipt and replace its items."""
+    """Update a receipt row and fully replace its associated item rows.
+
+    Args:
+    - receipt_id: Target receipt primary key.
+    - date: New receipt date value.
+    - time: New receipt time value.
+    - vendor: New vendor/store name.
+    - total_amount: New receipt total.
+    - items: List of item dicts (`item_name`, `price`, optional `category`).
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - `True` if the receipt exists and update succeeds, otherwise `False`.
+    """
     allocated_items = allocate_weighted_item_tax(items, total_amount)
 
     with sqlite3.connect(db_path) as conn:
@@ -297,7 +360,15 @@ def update_receipt_details(receipt_id, date, time, vendor, total_amount, items, 
 
 
 def delete_receipt(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
-    """Delete a receipt and all associated items."""
+    """Delete a receipt and all related item rows.
+
+    Args:
+    - receipt_id: Target receipt primary key.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - `True` if the receipt existed and was deleted, otherwise `False`.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
@@ -315,14 +386,21 @@ def delete_receipt(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
 
 
 def reset_database(db_path=DEFAULT_RECEIPTS_DB, confirm=False):
-    """Reset the receipts database by dropping and recreating its tables."""
+    """Drop and recreate receipts tables.
+
+    Args:
+    - db_path: Path to the receipts SQLite database file.
+    - confirm: Must be `True` to allow destructive reset.
+
+    Raises:
+    - ValueError: If `confirm` is not `True`.
+    """
     if not confirm:
         raise ValueError("Set confirm=True to reset the database.")
 
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
-        cursor.execute("DROP TABLE IF EXISTS receipt_images;")
         cursor.execute("DROP TABLE IF EXISTS items;")
         cursor.execute("DROP TABLE IF EXISTS receipts;")
 
@@ -330,7 +408,7 @@ def reset_database(db_path=DEFAULT_RECEIPTS_DB, confirm=False):
 
 
 def print_db_snapshot(db_path=DEFAULT_RECEIPTS_DB):
-    """Print receipts and items for quick manual validation."""
+    """Print current `receipts` and `items` table rows for quick debugging."""
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 

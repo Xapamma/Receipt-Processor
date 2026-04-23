@@ -4,8 +4,16 @@ import os
 
 def convert_pdfs_to_pngs(input_folder, output_folder, zoom=2):
     """
-    Converts all PDFs in input_folder to PNGs in output_folder.
-    Each page becomes a separate PNG.
+    Convert all PDF pages in a folder into PNG image files.
+
+    Args:
+    - input_folder: Directory containing source PDF files.
+    - output_folder: Directory for generated PNG files.
+    - zoom: Render scaling factor passed to PyMuPDF (`2` is typical for OCR).
+
+    Side effects:
+    - Creates `output_folder` when missing.
+    - Writes one PNG per PDF page named `<pdf_stem>_page<index>.png`.
     """
     # Create output folder if it doesn't exist
     os.makedirs(output_folder, exist_ok=True)
@@ -29,4 +37,3 @@ def convert_pdfs_to_pngs(input_folder, output_folder, zoom=2):
             doc.close()
 
     print(f"Done converting PDFs in '{input_folder}' to PNGs in '{output_folder}'")
-

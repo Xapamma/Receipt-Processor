@@ -6,7 +6,16 @@ from .db_ingest import DEFAULT_BUDGET_DB, DEFAULT_RECEIPTS_DB, initialize_budget
 
 
 def get_total_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB):
-    """Calculate total spending within an optional date range."""
+    """Return total receipt spending for an optional date range.
+
+    Args:
+    - start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+    - end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - Float total spend. Returns `0.0` when no rows match.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -30,7 +39,16 @@ def get_total_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_
 
 
 def get_monthly_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB):
-    """Get total spending grouped by month."""
+    """Return spending totals grouped by calendar month.
+
+    Args:
+    - start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+    - end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - Dict mapping month key (`YYYY-MM`) to total spend.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -59,7 +77,17 @@ def get_monthly_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPT
 
 
 def get_category_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB):
-    """Get total spending by category."""
+    """Return item-level spending totals grouped by category.
+
+    Args:
+    - start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+    - end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - Dict mapping category name to total spend.
+    - Missing/empty categories are returned as `"Uncategorized"`.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -89,7 +117,16 @@ def get_category_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEI
 
 
 def get_vendor_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB):
-    """Get total spending by vendor."""
+    """Return receipt-level spending totals grouped by vendor.
+
+    Args:
+    - start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+    - end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - Dict mapping vendor name to total spend.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -118,7 +155,15 @@ def get_vendor_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPT
 
 
 def get_recent_receipts(limit=10, db_path=DEFAULT_RECEIPTS_DB):
-    """Get recent receipts sorted by date/time descending."""
+    """Return the most recent receipts sorted by date/time descending.
+
+    Args:
+    - limit: Maximum number of receipt rows to return.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - List of dicts with keys: `id`, `date`, `time`, `vendor`, `total_amount`.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -144,7 +189,16 @@ def get_recent_receipts(limit=10, db_path=DEFAULT_RECEIPTS_DB):
 
 
 def get_receipt_details(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
-    """Get one receipt and its items."""
+    """Return one receipt and its item rows.
+
+    Args:
+    - receipt_id: Receipt primary key to retrieve.
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - Dict containing receipt fields and an `items` list if found.
+    - `None` if the receipt does not exist.
+    """
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
 
@@ -186,32 +240,18 @@ def get_receipt_details(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
     }
 
 
-def get_receipt_images(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
-    """Get image records linked to a receipt."""
-    with sqlite3.connect(db_path) as conn:
-        cursor = conn.cursor()
-        cursor.execute(
-            """
-            SELECT page_num, image_path, image_blob
-            FROM receipt_images
-            WHERE receipt_id = ?
-            ORDER BY page_num ASC, id ASC
-            """,
-            (receipt_id,),
-        )
-        rows = cursor.fetchall()
-    return [
-        {
-            "page_num": row[0],
-            "image_path": row[1],
-            "image_blob": row[2],
-        }
-        for row in rows
-    ]
-
-
 def export_receipts_to_dataframe(db_path=DEFAULT_RECEIPTS_DB):
-    """Export all receipt/item rows to a DataFrame."""
+    """Export joined receipts/items data as a pandas DataFrame.
+
+    Args:
+    - db_path: Path to the receipts SQLite database file.
+
+    Returns:
+    - DataFrame with columns:
+      `receipt_id`, `date`, `time`, `vendor`, `total_amount`,
+      `item_name`, `price`, `allocated_tax`, `price_with_tax`, `category`.
+    - Each receipt appears once per item row (receipt-level fields repeat).
+    """
     with sqlite3.connect(db_path) as conn:
         query = """
         SELECT
@@ -236,13 +276,26 @@ def export_receipts_to_dataframe(db_path=DEFAULT_RECEIPTS_DB):
 
 
 def export_receipts_to_csv(file_path, db_path=DEFAULT_RECEIPTS_DB):
-    """Export all receipt data to CSV."""
+    """Write joined receipts/items data to a CSV file.
+
+    Args:
+    - file_path: Output CSV file path.
+    - db_path: Path to the receipts SQLite database file.
+    """
     df = export_receipts_to_dataframe(db_path)
     df.to_csv(file_path, index=False)
 
 
 def get_monthly_budget(month_key, db_path=DEFAULT_BUDGET_DB):
-    """Get saved total budget for a month."""
+    """Return the saved total budget value for one month.
+
+    Args:
+    - month_key: Budget month key (`YYYY-MM`).
+    - db_path: Path to the budget SQLite database file.
+
+    Returns:
+    - Float total budget if present, otherwise `None`.
+    """
     initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
@@ -255,7 +308,13 @@ def get_monthly_budget(month_key, db_path=DEFAULT_BUDGET_DB):
 
 
 def save_monthly_budget(month_key, total_budget, db_path=DEFAULT_BUDGET_DB):
-    """Save or update total budget for a month."""
+    """Create or update one monthly total budget value.
+
+    Args:
+    - month_key: Budget month key (`YYYY-MM`).
+    - total_budget: Budget amount to store.
+    - db_path: Path to the budget SQLite database file.
+    """
     initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
@@ -273,7 +332,15 @@ def save_monthly_budget(month_key, total_budget, db_path=DEFAULT_BUDGET_DB):
 
 
 def get_category_budgets(month_key, db_path=DEFAULT_BUDGET_DB):
-    """Get saved category budgets for a month."""
+    """Return saved category budgets for one month.
+
+    Args:
+    - month_key: Budget month key (`YYYY-MM`).
+    - db_path: Path to the budget SQLite database file.
+
+    Returns:
+    - Dict mapping category name to budget float.
+    """
     initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
@@ -290,7 +357,14 @@ def get_category_budgets(month_key, db_path=DEFAULT_BUDGET_DB):
 
 
 def save_category_budget(month_key, category, budget, db_path=DEFAULT_BUDGET_DB):
-    """Save or update one category budget for a month."""
+    """Create or update one category budget value for a month.
+
+    Args:
+    - month_key: Budget month key (`YYYY-MM`).
+    - category: Category name.
+    - budget: Budget amount to store for the category.
+    - db_path: Path to the budget SQLite database file.
+    """
     initialize_budget_database(db_path=db_path)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()

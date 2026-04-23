@@ -1,13 +1,14 @@
 from receipt_processor.db_ingest import (
-    initialize_database,
     insert_receipts_from_folder,
     print_db_snapshot,
+    reset_database,
 )
 
 
 def main():
-    initialize_database()
+    reset_database(confirm=True)
     insert_receipts_from_folder("data/texts25")
+    insert_receipts_from_folder("data/completed_manual")
     print("All receipts inserted.")
     print_db_snapshot()
 
