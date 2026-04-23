@@ -6,7 +6,7 @@ title: "Receipt Data Technical Report"
 
 The Receipt Processor project aims to develop a tool for processing and analyzing receipt data. Managing and understanding personal spending can be time-consuming when receipts exist as unstructured images, PDFs, or loose physical documents. Converting this unstructured data into a usable format presents a key challenge. Automating this process enables more efficient tracking, improved accuracy, and clearer insight into spending behavior over time that would otherwise be difficult to obtain. 
 
-Using over a year’s worth of personal receipts from Walmart, this project seeks to answer questions such as: How much was spent over the past year, and how does spending vary by month? How does spending in one month compare to the previous month? Additionally, how does spending differ across categories, both monthly and over the entire year?
+Using over a year’s worth of personal receipts from Walmart, this project seeks to answer how much was spent over the past year, and how does spending vary by month? It also seeks to answer how spending in one month compares to the previous month. Additionally, it seeks to answer how does spending differ across categories over the year?
 
 To address these questions, we developed a pipeline that collects receipt data, parses and structures it, stores it in a database, and enables analysis through a user-friendly interface. The `receipt_processor` Python package, along with a corresponding Streamlit application, allows users to upload their own receipt data and generate insights into spending patterns, category-level expenditures, and trends over time, making it useful for individuals and businesses interested in financial tracking and expense management.
 
@@ -14,11 +14,11 @@ To address these questions, we developed a pipeline that collects receipt data, 
 
 The receipt data used in this project was collected from a personal Walmart account. Receipts were obtained using a combination of automated scraping techniques and manual downloads from the account purchase history section of the Walmart website. All receipts were saved as PDF files. 
 
-Most receipts follow a traditional in-store format similar to printed cash register receipts. However, a small subset corresponding to online orders (approximately 10 receipts) have a distinct layout. Web scraping tools were used to assist in locating and prompting manual downloads of traditional receipt PDFs. Purchase history filters were used to identify online orders, which were then manually reviewed and downloaded. 
+Most receipts follow a traditional in-store format similar to printed cash register receipts. However, a small subset corresponding to online orders (approximately 10 receipts) have a distinct layout. Webscraping attempts with requests and BeautifulSoup were made, but Playwright, a webscraping tool that allows for automation of logged-in, dynamic pages, was ultimately used to assist in locating and prompting manual downloads of traditional receipt PDFs. Purchase history filters were used to identify online orders, which were then manually reviewed and downloaded. 
 
 The dataset includes receipts ranging from January 2025 through March 2026. Each receipt contains information such as the date and time of purchase, store name, store address and phone number, number of items purchased, total transaction amount, and item-level details including product descriptions, SKUs, and individual prices. The key variables used in this analysis include store name, purchase date, total amount, item names and prices, and assigned spending categories.
 
-A primary limitation of the dataset is that it consists exclusively of Walmart receipts. While it captures all personal Walmart purchases within the specified time frame, it does not account for spending at other retailers. As a result, the findings may not generalize to overall spending behavior across multiple vendors. Additionally, the dataset is limited in size, with a total of [# RECEIPTS] transactions and [# ITEMS] individual items, which may affect the robustness of certain analyses. Despite these limitations, the dataset provides a valuable case study for developing and testing the receipt processing pipeline. 
+A primary limitation of the dataset is that it consists exclusively of Walmart receipts. While it captures all personal Walmart purchases within the specified time frame, it does not account for spending at other retailers. As a result, the findings may not generalize to overall spending behavior across multiple vendors. Additionally, the dataset is limited in size, with a total of 73 receipts, which may affect the robustness of certain analyses. Despite these limitations, the dataset provides a valuable case study for developing and testing the receipt processing pipeline. 
 
 The final structured dataset organizes receipt-level and item-level information into a tabular format, where each receipt is linked to its corresponding items. This data is stored in a relational database using SQLite, with separate tables for receipts and individual items connected through a unique identifier. The receipts table includes variables such as purchase date, time, vendor, and total transaction amount, while the items table contains details including item name/description, price, and assigned category. To achieve this final structured format from the original raw PDFs, several steps were taken to clean and prepare the data. 
 
@@ -44,7 +44,7 @@ Item categories were assigned using an LLM-driven classification step that exami
 
 The analysis focused on summarizing spending behavior using descriptive statistics and aggregation methods applied to the cleaned and structured dataset. These methods were selected to directly address the guiding questions of the project, which center on understanding total spending, trends over time, and differences across spending categories. 
 
-Several key metrics were computed. Total spending was calculated for the year 2025 and from March 2025 to March 2026, to provide an overall measure of yearly expenditures. Monthly spending totals were then derived by grouping transactions by purchase date, allowing for the analysis of spending patterns over time. In addition, average monthly spending was calculated based on the number of months within the selected time frames, providing a baseline for comparing fluctuations across months.
+Several key metrics were computed. Total spending was calculated from February 2025 to February 2026, to provide an overall measure of yearly expenditures. Monthly spending totals were then derived by grouping transactions by purchase date, allowing for the analysis of spending patterns over time. In addition, average monthly spending was calculated based on the number of months within the selected time frames, providing a baseline for comparing fluctuations across months.
 
 Category-level spending was analyzed using item-level data, where items grouped by category were aggregated using price-with-tax values. This enabled comparisons of how spending was distributed across categories by year. In addition, category-level trends were examined by aggregating spending within each category by month, providing insight into how spending patterns evolved over time. 
 
@@ -52,31 +52,22 @@ Visualizations were primarily used to examine trends over time and differences a
 
 # Results
 
-The final dataset consists of receipts collected from January 2025 to March 2026, including a total of 100(?) transactions and 600(?) individual items. Total spending over the analyzed period was ____. Monthly spending in 2025 varied, with the highest spending observed in ______ (\$___) and the lowest in ______ (\$___). Similarly, monthly spending from March 2025 to March 2026 showed fluctuations, with peaks in ______ (\$___) and troughs in ______ (\$___).
+The final dataset consists of receipts collected from January 2025 to March 2026, including a total of 73 receipts. Total spending over the analyzed period was $3,483.80. Monthly spending in for the year from February 2025 to February 2026 varied, with the highest spending observed in July (\$554.59) and the lowest in April (\$1.32). 
 
-As shown in Figure 1, spending exhibited noticeable changes occurring between ....
+As shown in Figure 1, spending exhibited noticeable changes occurring between May and June 2025, where spending increased from \$84.93 to \$466.25, and between July and August 2025, where spending decreased from \$554.59 to \$233.59.
 
 ![Line chart of monthly spending](images/monthly_trend.png){#fig-receipt}
 
-The average monthly spending for 2025 was \$____ and \$____ from March 2025 to March 2026, suggesting that ... . Compared to these baselines, several months—such as ____—were above average, while others—such as __—fell far below.
+The average monthly spending for the year from February 2025 to February 2026 was \$264.41 and for the quarter from Deceember 2025 to February 2026 was \$283.68, suggesting that spending patterns were relatively stable throughout the year with some slight increases. Compared to these baselines, several months—such as June and July—were above average, while others—such as February, April, and May—fell far below.
 
-Month-to-month changes in spending are visualized in Figure 1, which highlights periods of increase and decrease, such as the transition from ____ to ____, where spending increased/decreased? noticeably.
+These fluctuations may reflect specific events such as a summer vacation or campout in June and July, which could explain the higher spending during those months. In contrast, the lower spending in April and May may be due to less shopping required when staying with relatives.
 
-These fluctuations may reflect.... 
-
-Spending distribution across categories is shown in Figure 2. ... 
+Spending distribution across categories is shown in Figure 2. The largest dollar amount spent on food was \$76.27 in August, while the largest amount spent on household items was \$383.66 in June. The large proportion of spending on household items in June may be related to the aforementioned vacation, which likely required purchasing supplies for the trip. Additionally, moving to a new residence in May may have contributed to the higher spending on household items the next month. 
 
 ![Bar chart of spending by category](images/category_trend.png){#fig-category}
 
-Category-level trends over time reveal how spending behavior evolved. ...
+Category-level trends over time reveal how spending behavior changed across months. For example, spending on food was relatively consistent throughout the year, while spending on household items showed more variability, with a significant spike in June. This suggests that while some categories of spending may be more stable, others can be influenced by specific events or circumstances. 
 
-Insert: Multi-line chart or stacked chart ?
-
-Several key insights emerge from the analysis:
-- Overall spending 
-- Spending was concentrated in certain categories
-- Certain months showed unusually high or low spending
-- Category trends suggest ... 
 
 # Package and Application
 
@@ -125,6 +116,8 @@ These improvements would enhance both the accuracy and scalability of the system
 This project developed a system for extracting, structuring, and analyzing receipt data using a combination of OCR, LLM-based parsing, and a relational database framework. By transforming unstructured receipt PDFs into a clean and analyzable dataset, the Receipt Processor enables meaningful exploration of spending behavior.
 
 Using over a year of receipt data, the analysis demonstrated how total spending, monthly trends, and category-level expenditures can be effectively summarized using aggregation-based methods and visualizations. The results provide insight into patterns of spending over time and highlight how expenditures are distributed across categories.
+
+The overall spending pattern from February 2025 to February 2026 shows a general increase in the middle of the year, likely driven by specific events such as vacations or moving. The distribution of spending across categories indicates that while food expenses were relatively stable, household items exhibited more variability, suggesting that certain types of expenditures may be more sensitive to life events or seasonal factors. 
 
 In addition to the analysis itself, the project delivers a reusable Python package and an interactive Streamlit application, allowing users to apply the same workflow to their own receipt data. 
 
