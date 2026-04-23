@@ -5,7 +5,15 @@ import warnings
 
 warnings.filterwarnings("ignore", message=".*pin_memory.*")
 
-reader = easyocr.Reader(['en'], gpu=False)
+_reader = None
+
+
+def _get_reader():
+    """Lazily initialize OCR reader to avoid heavy import-time startup cost."""
+    global _reader
+    if _reader is None:
+        _reader = easyocr.Reader(["en"], gpu=False)
+    return _reader
 
 def extract_text_from_image(image_path, y_tol=15):
     """
@@ -18,6 +26,7 @@ def extract_text_from_image(image_path, y_tol=15):
     Returns:
     - String containing extracted text with one reconstructed line per row.
     """
+    reader = _get_reader()
     results = reader.readtext(str(image_path))
 
     # Sort by top-left y, then x (top to bottom, left to right)
