@@ -5,3 +5,4 @@ while the packaged app code lives under `receipt_processor`.
 """
 
 from receipt_processor.streamlit_app import *  # noqa: F401,F403
+

@@ -817,3 +817,4 @@ if all_receipt_ids:
                             st.rerun()
                         else:
                             st.error("Receipt not found. Refresh and try again.")
+
