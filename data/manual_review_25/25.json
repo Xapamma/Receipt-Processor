@@ -1,0 +1,10 @@
+{
+    "receipt_id": "25",
+    "num_pages": 3,
+    "image_paths": [
+        "data/receipts_pngs/25_page1.png",
+        "data/receipts_pngs/25_page2.png",
+        "data/receipts_pngs/25_page3.png"
+    ],
+    "status": "requires_manual_llm"
+}

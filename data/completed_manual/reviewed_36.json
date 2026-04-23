@@ -1,0 +1,17 @@
+{
+  "store_name": "Walmart",
+  "date": "10/07/25",
+  "time": "14:40:57",
+  "total_amount": 65.44,
+  "items_sold_count": 7,
+  "transactions": [
+    {"item_name": "SR APPLI WH", "price": 6.88, "sku": "002006678818"},
+    {"item_name": "HT 19-PIECE", "price": 5.62, "sku": "088952636203"},
+    {"item_name": "DRILLDRIVER", "price": 19.22, "sku": "082090980017"},
+    {"item_name": "2YR SVC PLA", "price": 2.36, "sku": "084375518345"},
+    {"item_name": "PG PAS CS", "price": 4.74, "sku": "009014655324"},
+    {"item_name": "PG PAS CS", "price": 4.74, "sku": "009014655324"},
+    {"item_name": "STCKER PAPE", "price": 9.64, "sku": "007278204397"},
+    {"item_name": "SHAPE LABEL", "price": 8.28, "sku": "007278222816"}
+  ]
+}

@@ -215,71 +215,24 @@ def build_transactions(ocr_items, image_path):
 
     return transactions
 
-def normalize(s):
-    return re.sub(r"[^a-z0-9]+", "", s.lower())
+def process_receipt(image_path, ocr_text):
+    ocr_items = extract_items_using_sku_only(ocr_text)
 
-# 🔥🔥🔥 NEW: BULK CATEGORY FUNCTION (replaces per-item LLM calls)
-def categorize_items_bulk(item_names):
-    prompt = f"""
-        You are a grocery receipt understanding system.
+    print("OCR items:", len(ocr_items))
 
-        Your job is to categorize items.
+    # 1. metadata (single call)
+    metadata = extract_store_metadata(image_path)
 
-        You must return a JSON array with EXACTLY {len(item_names)} objects.
+    # 2. transactions (reliable loop)
+    transactions = build_transactions(ocr_items, image_path)
 
-        Each object must follow this format:
-        {{"index": 0, "category": "food"}}
-        
-        VALID CATEGORIES (must choose EXACTLY one, no variations):
-        - food
-        - personal_care
-        - household
-        - clothing
-        - cleaning
+    # 3. final JSON
+    final_output = {
+        **metadata,
+        "transactions": transactions
+    }
 
-        
-        INPUT ITEMS:
-        {json.dumps(item_names, ensure_ascii=False)}
-
-        
-        RULES:
-        - DO NOT modify item names
-        - Return category for EACH item
-        - Use the INDEX of the item, not the name
-        - Output valid JSON only
-        - Use the index of each item
-        - Do NOT skip any items
-        - Do NOT add extra text
-        - Do NOT explain anything
-        - Output must be valid JSON
-
-        Return format:
-        [
-        {{"index": 0, "category": "food"}}
-        ]
-        """
-
-    response = chat(
-        model='llama3.1:8b',
-        messages=[{
-            "role": "user",
-            "content": prompt
-        }],
-        format="json",
-        options={
-            "temperature": 0.2,
-            "num_predict": 300
-        }
-    )
-
-    try:
-        result = json.loads(response["message"]["content"])
-        if isinstance(result, list):
-            return result
-        else:
-            return []
-    except:
-        return []
+    return final_output
 
 def extract_text_from_images(image_paths, receipt_id=None):
     """
@@ -366,38 +319,8 @@ def extract_text_from_images(image_paths, receipt_id=None):
     metadata = extract_store_metadata(first_valid_image)
 
     # ----------------------------
-    # 3. TRANSACTIONS
+    # 3. TRANSACTIONS (NO PROMPT LOOP BUGS)
     # ----------------------------
-
-    # 🔥🔥🔥 NEW: Run ONE LLM call for ALL categories
-    item_names = [
-        item["item_name"]
-        for item in all_ocr_items
-    ]    
-    category_results = categorize_items_bulk(item_names)
-
-    # Create lookup dictionary
-    categories_by_index = {}
-
-    print("\n=== RAW CATEGORY RESULTS ===")
-    print(category_results)
-
-    for x in category_results:
-        if isinstance(x, dict):
-            idx = x.get("index")
-            cat = x.get("category")
-
-            if isinstance(idx, int) and cat:
-                categories_by_index[idx] = cat
-
-    print("\n=== CATEGORY INDEX MAP ===")
-    print(categories_by_index)
-
-    # sanity check
-    if len(categories_by_index) != len(item_names):
-        print("⚠️ WARNING: category count mismatch!")
-        print(f"Expected: {len(item_names)}, Got: {len(categories_by_index)}")
-
     transactions = []
 
     for item in all_ocr_items:
@@ -414,8 +337,6 @@ def extract_text_from_images(image_paths, receipt_id=None):
         if not os.path.exists(image_path):
             print(f"Invalid image path: {image_path}")
             continue
-
-        #-----------Price Extraction Prompt (with strict rules) -----------#
 
         prompt = f"""
             Find ONLY the price for this item from the receipt image.
@@ -459,7 +380,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
             raw_price = json.loads(response["message"]["content"]).get("price")
 
         except:
-            raw_price = None
+            price = None
 
         # Normalize bad outputs
         if raw_price in [0, 0.0, "0", "0.0", "0.00"]:
@@ -467,16 +388,12 @@ def extract_text_from_images(image_paths, receipt_id=None):
         else:
             price = raw_price
 
-        # 🔥🔥🔥 NEW: pull category from bulk results
-        category = categories_by_index.get(all_ocr_items.index(item), "miscellaneous")
-        
         transactions.append({
             "item_name": item["item_name"],
             "sku": item["sku"],
-            "price": price,
-            "category": category
+            "price": price
         })
-    
+
     # ----------------------------
     # 4. FINAL MERGE
     # ----------------------------
@@ -591,7 +508,3 @@ def process_image_folder(input_folder, output_folder, manual_folder):
             tqdm.write(f"Error processing {key}: {e}")
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
-
-
-# Run
-process_image_folder("data/receipts_pngs", "data/texts25", "data/manual_review_25")
