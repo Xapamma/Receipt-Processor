@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation – Receipt Processor Docs</title>
+<title>Receipt Processor Documentation – Receipt Processor Docs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -123,7 +158,51 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#main-functions" id="toc-main-functions" class="nav-link" data-scroll-target="#main-functions">Main Functions</a></li>
+  <li><a href="#database-setup-and-ingest" id="toc-database-setup-and-ingest" class="nav-link" data-scroll-target="#database-setup-and-ingest">Database Setup And Ingest</a>
+  <ul class="collapse">
+  <li><a href="#db_ingest.allocate_weighted_item_tax" id="toc-db_ingest.allocate_weighted_item_tax" class="nav-link" data-scroll-target="#db_ingest.allocate_weighted_item_tax"><code>db_ingest.allocate_weighted_item_tax</code></a></li>
+  <li><a href="#db_ingest.delete_receipt" id="toc-db_ingest.delete_receipt" class="nav-link" data-scroll-target="#db_ingest.delete_receipt"><code>db_ingest.delete_receipt</code></a></li>
+  <li><a href="#db_ingest.initialize_budget_database" id="toc-db_ingest.initialize_budget_database" class="nav-link" data-scroll-target="#db_ingest.initialize_budget_database"><code>db_ingest.initialize_budget_database</code></a></li>
+  <li><a href="#db_ingest.initialize_database" id="toc-db_ingest.initialize_database" class="nav-link" data-scroll-target="#db_ingest.initialize_database"><code>db_ingest.initialize_database</code></a></li>
+  <li><a href="#db_ingest.insert_receipt" id="toc-db_ingest.insert_receipt" class="nav-link" data-scroll-target="#db_ingest.insert_receipt"><code>db_ingest.insert_receipt</code></a></li>
+  <li><a href="#db_ingest.insert_receipts_from_folder" id="toc-db_ingest.insert_receipts_from_folder" class="nav-link" data-scroll-target="#db_ingest.insert_receipts_from_folder"><code>db_ingest.insert_receipts_from_folder</code></a></li>
+  <li><a href="#db_ingest.update_receipt_details" id="toc-db_ingest.update_receipt_details" class="nav-link" data-scroll-target="#db_ingest.update_receipt_details"><code>db_ingest.update_receipt_details</code></a></li>
+  </ul></li>
+  <li><a href="#database-queries-and-exports" id="toc-database-queries-and-exports" class="nav-link" data-scroll-target="#database-queries-and-exports">Database Queries And Exports</a>
+  <ul class="collapse">
+  <li><a href="#db_queries.export_receipts_to_csv" id="toc-db_queries.export_receipts_to_csv" class="nav-link" data-scroll-target="#db_queries.export_receipts_to_csv"><code>db_queries.export_receipts_to_csv</code></a></li>
+  <li><a href="#db_queries.export_receipts_to_dataframe" id="toc-db_queries.export_receipts_to_dataframe" class="nav-link" data-scroll-target="#db_queries.export_receipts_to_dataframe"><code>db_queries.export_receipts_to_dataframe</code></a></li>
+  <li><a href="#db_queries.get_category_breakdown" id="toc-db_queries.get_category_breakdown" class="nav-link" data-scroll-target="#db_queries.get_category_breakdown"><code>db_queries.get_category_breakdown</code></a></li>
+  <li><a href="#db_queries.get_category_budgets" id="toc-db_queries.get_category_budgets" class="nav-link" data-scroll-target="#db_queries.get_category_budgets"><code>db_queries.get_category_budgets</code></a></li>
+  <li><a href="#db_queries.get_monthly_budget" id="toc-db_queries.get_monthly_budget" class="nav-link" data-scroll-target="#db_queries.get_monthly_budget"><code>db_queries.get_monthly_budget</code></a></li>
+  <li><a href="#db_queries.get_monthly_spending" id="toc-db_queries.get_monthly_spending" class="nav-link" data-scroll-target="#db_queries.get_monthly_spending"><code>db_queries.get_monthly_spending</code></a></li>
+  <li><a href="#db_queries.get_receipt_details" id="toc-db_queries.get_receipt_details" class="nav-link" data-scroll-target="#db_queries.get_receipt_details"><code>db_queries.get_receipt_details</code></a></li>
+  <li><a href="#db_queries.get_recent_receipts" id="toc-db_queries.get_recent_receipts" class="nav-link" data-scroll-target="#db_queries.get_recent_receipts"><code>db_queries.get_recent_receipts</code></a></li>
+  <li><a href="#db_queries.get_total_spending" id="toc-db_queries.get_total_spending" class="nav-link" data-scroll-target="#db_queries.get_total_spending"><code>db_queries.get_total_spending</code></a></li>
+  <li><a href="#db_queries.get_vendor_breakdown" id="toc-db_queries.get_vendor_breakdown" class="nav-link" data-scroll-target="#db_queries.get_vendor_breakdown"><code>db_queries.get_vendor_breakdown</code></a></li>
+  <li><a href="#db_queries.save_category_budget" id="toc-db_queries.save_category_budget" class="nav-link" data-scroll-target="#db_queries.save_category_budget"><code>db_queries.save_category_budget</code></a></li>
+  <li><a href="#db_queries.save_monthly_budget" id="toc-db_queries.save_monthly_budget" class="nav-link" data-scroll-target="#db_queries.save_monthly_budget"><code>db_queries.save_monthly_budget</code></a></li>
+  </ul></li>
+  <li><a href="#ocr-and-extraction-pipeline" id="toc-ocr-and-extraction-pipeline" class="nav-link" data-scroll-target="#ocr-and-extraction-pipeline">OCR And Extraction Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#llm_extraction.build_transactions" id="toc-llm_extraction.build_transactions" class="nav-link" data-scroll-target="#llm_extraction.build_transactions"><code>llm_extraction.build_transactions</code></a></li>
+  <li><a href="#pdf_utils.convert_pdfs_to_pngs" id="toc-pdf_utils.convert_pdfs_to_pngs" class="nav-link" data-scroll-target="#pdf_utils.convert_pdfs_to_pngs"><code>pdf_utils.convert_pdfs_to_pngs</code></a></li>
+  <li><a href="#llm_extraction.extract_items_using_sku_only" id="toc-llm_extraction.extract_items_using_sku_only" class="nav-link" data-scroll-target="#llm_extraction.extract_items_using_sku_only"><code>llm_extraction.extract_items_using_sku_only</code></a></li>
+  <li><a href="#llm_extraction.extract_store_metadata" id="toc-llm_extraction.extract_store_metadata" class="nav-link" data-scroll-target="#llm_extraction.extract_store_metadata"><code>llm_extraction.extract_store_metadata</code></a></li>
+  <li><a href="#ocr_utils.extract_text_from_image" id="toc-ocr_utils.extract_text_from_image" class="nav-link" data-scroll-target="#ocr_utils.extract_text_from_image"><code>ocr_utils.extract_text_from_image</code></a></li>
+  <li><a href="#llm_extraction.extract_text_from_images" id="toc-llm_extraction.extract_text_from_images" class="nav-link" data-scroll-target="#llm_extraction.extract_text_from_images"><code>llm_extraction.extract_text_from_images</code></a></li>
+  <li><a href="#llm_extraction.group_receipt_images" id="toc-llm_extraction.group_receipt_images" class="nav-link" data-scroll-target="#llm_extraction.group_receipt_images"><code>llm_extraction.group_receipt_images</code></a></li>
+  <li><a href="#llm_extraction.is_empty" id="toc-llm_extraction.is_empty" class="nav-link" data-scroll-target="#llm_extraction.is_empty"><code>llm_extraction.is_empty</code></a></li>
+  <li><a href="#llm_extraction.merge_receipt_data" id="toc-llm_extraction.merge_receipt_data" class="nav-link" data-scroll-target="#llm_extraction.merge_receipt_data"><code>llm_extraction.merge_receipt_data</code></a></li>
+  <li><a href="#ocr_utils.process_image_folder" id="toc-ocr_utils.process_image_folder" class="nav-link" data-scroll-target="#ocr_utils.process_image_folder"><code>ocr_utils.process_image_folder</code></a></li>
+  <li><a href="#llm_extraction.process_image_folder" id="toc-llm_extraction.process_image_folder" class="nav-link" data-scroll-target="#llm_extraction.process_image_folder"><code>llm_extraction.process_image_folder</code></a></li>
+  <li><a href="#llm_extraction.process_receipt" id="toc-llm_extraction.process_receipt" class="nav-link" data-scroll-target="#llm_extraction.process_receipt"><code>llm_extraction.process_receipt</code></a></li>
+  </ul></li>
+  <li><a href="#advanced-and-maintenance-functions" id="toc-advanced-and-maintenance-functions" class="nav-link" data-scroll-target="#advanced-and-maintenance-functions">Advanced And Maintenance Functions</a>
+  <ul class="collapse">
+  <li><a href="#db_ingest.print_db_snapshot" id="toc-db_ingest.print_db_snapshot" class="nav-link" data-scroll-target="#db_ingest.print_db_snapshot"><code>db_ingest.print_db_snapshot</code></a></li>
+  <li><a href="#db_ingest.reset_database" id="toc-db_ingest.reset_database" class="nav-link" data-scroll-target="#db_ingest.reset_database"><code>db_ingest.reset_database</code></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -132,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documentation</h1>
+<h1 class="title">Receipt Processor Documentation</h1>
 </div>
 
 
@@ -151,12 +230,716 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>receipt_processor</code> package provides a suite of functions for adding, processing, and analyzing receipt data. This page documents the main functions available in the package.</p>
+<p>The <code>receipt_processor</code> package provides functions for OCR extraction, structured receipt parsing, database ingest, and analytics queries.</p>
+<p>If you are new to the project, start with the <a href="./tutorial.html">Tutorial</a> for a guided workflow before using this API reference.</p>
 </section>
-<section id="main-functions" class="level2">
-<h2 class="anchored" data-anchor-id="main-functions">Main Functions</h2>
+<section id="database-setup-and-ingest" class="level2">
+<h2 class="anchored" data-anchor-id="database-setup-and-ingest">Database Setup And Ingest</h2>
+<p><em>When to use this: creating/loading databases, inserting new receipts, and updating or deleting stored records.</em></p>
+<section id="db_ingest.allocate_weighted_item_tax" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.allocate_weighted_item_tax"><code>db_ingest.allocate_weighted_item_tax</code></h3>
+<p><em>Allocate receipt-level difference across item rows by weighted price.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>allocate_weighted_item_tax(items, receipt_total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Allocate receipt-level difference across item rows by weighted price.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>items: List of item dictionaries containing at least <code>price</code>.</li>
+<li>receipt_total: Receipt total used as the target sum for item totals.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>A new list of item dictionaries with <code>allocated_tax</code> and <code>price_with_tax</code>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Allocation is done in cents to minimize floating-point drift.</li>
+<li>If all item prices are zero/missing, allocation falls back to equal weights.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.delete_receipt" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.delete_receipt"><code>db_ingest.delete_receipt</code></h3>
+<p><em>Delete a receipt and all related item rows.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>delete_receipt(receipt_id, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Delete a receipt and all related item rows.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>receipt_id: Target receipt primary key.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>True</code> if the receipt existed and was deleted, otherwise <code>False</code>.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.initialize_budget_database" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.initialize_budget_database"><code>db_ingest.initialize_budget_database</code></h3>
+<p><em>Create budget database tables if they do not already exist.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>initialize_budget_database(db_path<span class="op">=</span>DEFAULT_BUDGET_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create budget database tables if they do not already exist.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>db_path: Path to the budget SQLite database file.</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Ensures <code>monthly_budgets</code> and <code>category_budgets</code> tables exist.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.initialize_database" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.initialize_database"><code>db_ingest.initialize_database</code></h3>
+<p><em>Create receipts database tables if they do not already exist.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>initialize_database(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create receipts database tables if they do not already exist.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Ensures <code>receipts</code> and <code>items</code> tables exist.</li>
+<li>Enables SQLite foreign key enforcement for the connection.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.insert_receipt" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.insert_receipt"><code>db_ingest.insert_receipt</code></h3>
+<p><em>Insert one parsed receipt payload into <code>receipts</code> and <code>items</code> tables.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>insert_receipt(data, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Insert one parsed receipt payload into <code>receipts</code> and <code>items</code> tables.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>data: Parsed receipt dictionary.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Expected <code>data</code> shape</strong></p>
+<ul>
+<li><p><code>store_name</code> (str | None)</p></li>
+<li><p><code>date</code> (str | None)</p></li>
+<li><p><code>time</code> (str | None)</p></li>
+<li><p><code>total_amount</code> (number-like)</p></li>
+<li><p><code>transactions</code> (list[dict]) where each item includes:</p>
+<p><code>item_name</code>, <code>price</code>, and optional <code>category</code>.</p></li>
+</ul>
+<p><strong>Behavior</strong></p>
+<ul>
+<li>Normalizes date/time strings when possible.</li>
+<li>Computes weighted per-item tax allocation so item totals align with receipt total.</li>
+<li>Inserts one receipt row plus its associated item rows in the same DB transaction.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>receipt_id</code> (int): primary key of the inserted receipt row.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.insert_receipts_from_folder" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.insert_receipts_from_folder"><code>db_ingest.insert_receipts_from_folder</code></h3>
+<p><em>Insert every JSON receipt file in a folder into the receipts database.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>insert_receipts_from_folder(folder_path, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Insert every JSON receipt file in a folder into the receipts database.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>folder_path: Directory containing parsed receipt <code>.json</code> files.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Inserts new receipt and item rows for each JSON file discovered.</li>
+</ul>
+</details>
+</section>
+<section id="db_ingest.update_receipt_details" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.update_receipt_details"><code>db_ingest.update_receipt_details</code></h3>
+<p><em>Update a receipt row and fully replace its associated item rows.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>update_receipt_details(receipt_id, date, time, vendor, total_amount, items, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Update a receipt row and fully replace its associated item rows.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>receipt_id: Target receipt primary key.</li>
+<li>date: New receipt date value.</li>
+<li>time: New receipt time value.</li>
+<li>vendor: New vendor/store name.</li>
+<li>total_amount: New receipt total.</li>
+<li>items: List of item dicts (<code>item_name</code>, <code>price</code>, optional <code>category</code>).</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>True</code> if the receipt exists and update succeeds, otherwise <code>False</code>.</li>
+</ul>
+</details>
+</section>
+</section>
+<section id="database-queries-and-exports" class="level2">
+<h2 class="anchored" data-anchor-id="database-queries-and-exports">Database Queries And Exports</h2>
+<p><em>When to use this: powering dashboards, summaries, reporting, and CSV/DataFrame exports.</em></p>
+<section id="db_queries.export_receipts_to_csv" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.export_receipts_to_csv"><code>db_queries.export_receipts_to_csv</code></h3>
+<p><em>Write joined receipts/items data to a CSV file.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>export_receipts_to_csv(file_path, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write joined receipts/items data to a CSV file.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>file_path: Output CSV file path.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.export_receipts_to_dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.export_receipts_to_dataframe"><code>db_queries.export_receipts_to_dataframe</code></h3>
+<p><em>Export joined receipts/items data as a pandas DataFrame.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>export_receipts_to_dataframe(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Export joined receipts/items data as a pandas DataFrame.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><p>DataFrame with columns:</p>
+<p><code>receipt_id</code>, <code>date</code>, <code>time</code>, <code>vendor</code>, <code>total_amount</code>, <code>item_name</code>, <code>price</code>, <code>allocated_tax</code>, <code>price_with_tax</code>, <code>category</code>.</p></li>
+<li><p>Each receipt appears once per item row (receipt-level fields repeat).</p></li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_category_breakdown" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_category_breakdown"><code>db_queries.get_category_breakdown</code></h3>
+<p><em>Return item-level spending totals grouped by category.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>get_category_breakdown(start_date<span class="op">=</span><span class="va">None</span>, end_date<span class="op">=</span><span class="va">None</span>, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return item-level spending totals grouped by category.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>start_date: Inclusive lower date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>end_date: Inclusive upper date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict mapping category name to total spend.</li>
+<li>Missing/empty categories are returned as <code>"Uncategorized"</code>.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_category_budgets" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_category_budgets"><code>db_queries.get_category_budgets</code></h3>
+<p><em>Return saved category budgets for one month.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>get_category_budgets(month_key, db_path<span class="op">=</span>DEFAULT_BUDGET_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return saved category budgets for one month.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>month_key: Budget month key (<code>YYYY-MM</code>).</li>
+<li>db_path: Path to the budget SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict mapping category name to budget float.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_monthly_budget" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_monthly_budget"><code>db_queries.get_monthly_budget</code></h3>
+<p><em>Return the saved total budget value for one month.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>get_monthly_budget(month_key, db_path<span class="op">=</span>DEFAULT_BUDGET_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the saved total budget value for one month.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>month_key: Budget month key (<code>YYYY-MM</code>).</li>
+<li>db_path: Path to the budget SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Float total budget if present, otherwise <code>None</code>.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_monthly_spending" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_monthly_spending"><code>db_queries.get_monthly_spending</code></h3>
+<p><em>Return spending totals grouped by calendar month.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>get_monthly_spending(start_date<span class="op">=</span><span class="va">None</span>, end_date<span class="op">=</span><span class="va">None</span>, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return spending totals grouped by calendar month.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>start_date: Inclusive lower date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>end_date: Inclusive upper date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict mapping month key (<code>YYYY-MM</code>) to total spend.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_receipt_details" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_receipt_details"><code>db_queries.get_receipt_details</code></h3>
+<p><em>Return one receipt and its item rows.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>get_receipt_details(receipt_id, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return one receipt and its item rows.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>receipt_id: Receipt primary key to retrieve.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict containing receipt fields and an <code>items</code> list if found.</li>
+<li><code>None</code> if the receipt does not exist.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_recent_receipts" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_recent_receipts"><code>db_queries.get_recent_receipts</code></h3>
+<p><em>Return the most recent receipts sorted by date/time descending.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>get_recent_receipts(limit<span class="op">=</span><span class="dv">10</span>, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the most recent receipts sorted by date/time descending.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>limit: Maximum number of receipt rows to return.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>List of dicts with keys: <code>id</code>, <code>date</code>, <code>time</code>, <code>vendor</code>, <code>total_amount</code>.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_total_spending" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_total_spending"><code>db_queries.get_total_spending</code></h3>
+<p><em>Return total receipt spending for an optional date range.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>get_total_spending(start_date<span class="op">=</span><span class="va">None</span>, end_date<span class="op">=</span><span class="va">None</span>, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return total receipt spending for an optional date range.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>start_date: Inclusive lower date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>end_date: Inclusive upper date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Float total spend. Returns <code>0.0</code> when no rows match.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.get_vendor_breakdown" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.get_vendor_breakdown"><code>db_queries.get_vendor_breakdown</code></h3>
+<p><em>Return receipt-level spending totals grouped by vendor.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>get_vendor_breakdown(start_date<span class="op">=</span><span class="va">None</span>, end_date<span class="op">=</span><span class="va">None</span>, db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return receipt-level spending totals grouped by vendor.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>start_date: Inclusive lower date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>end_date: Inclusive upper date bound (<code>YYYY-MM-DD</code>) or <code>None</code>.</li>
+<li>db_path: Path to the receipts SQLite database file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict mapping vendor name to total spend.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.save_category_budget" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.save_category_budget"><code>db_queries.save_category_budget</code></h3>
+<p><em>Create or update one category budget value for a month.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>save_category_budget(month_key, category, budget, db_path<span class="op">=</span>DEFAULT_BUDGET_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create or update one category budget value for a month.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>month_key: Budget month key (<code>YYYY-MM</code>).</li>
+<li>category: Category name.</li>
+<li>budget: Budget amount to store for the category.</li>
+<li>db_path: Path to the budget SQLite database file.</li>
+</ul>
+</details>
+</section>
+<section id="db_queries.save_monthly_budget" class="level3">
+<h3 class="anchored" data-anchor-id="db_queries.save_monthly_budget"><code>db_queries.save_monthly_budget</code></h3>
+<p><em>Create or update one monthly total budget value.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>save_monthly_budget(month_key, total_budget, db_path<span class="op">=</span>DEFAULT_BUDGET_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create or update one monthly total budget value.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>month_key: Budget month key (<code>YYYY-MM</code>).</li>
+<li>total_budget: Budget amount to store.</li>
+<li>db_path: Path to the budget SQLite database file.</li>
+</ul>
+</details>
+</section>
+</section>
+<section id="ocr-and-extraction-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="ocr-and-extraction-pipeline">OCR And Extraction Pipeline</h2>
+<p><em>When to use this: converting source files into OCR text and structured receipt JSON.</em></p>
+<section id="llm_extraction.build_transactions" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.build_transactions"><code>llm_extraction.build_transactions</code></h3>
+<p><em>Build transaction rows by asking the LLM for each item’s price.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>build_transactions(ocr_items, image_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Build transaction rows by asking the LLM for each item’s price.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>ocr_items: List of candidate items with <code>item_name</code> and <code>sku</code>.</li>
+<li>image_path: Image path used as visual context for price lookup.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>List of dicts with keys: <code>item_name</code>, <code>sku</code>, <code>price</code>.</li>
+</ul>
+</details>
+</section>
+<section id="pdf_utils.convert_pdfs_to_pngs" class="level3">
+<h3 class="anchored" data-anchor-id="pdf_utils.convert_pdfs_to_pngs"><code>pdf_utils.convert_pdfs_to_pngs</code></h3>
+<p><em>Convert all PDF pages in a folder into PNG image files.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>convert_pdfs_to_pngs(input_folder, output_folder, zoom<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert all PDF pages in a folder into PNG image files.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>input_folder: Directory containing source PDF files.</li>
+<li>output_folder: Directory for generated PNG files.</li>
+<li>zoom: Render scaling factor passed to PyMuPDF (<code>2</code> is typical for OCR).</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Creates <code>output_folder</code> when missing.</li>
+<li>Writes one PNG per PDF page named <code>&lt;pdf_stem&gt;_page&lt;index&gt;.png</code>.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.extract_items_using_sku_only" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.extract_items_using_sku_only"><code>llm_extraction.extract_items_using_sku_only</code></h3>
+<p><em>Extract candidate line items from OCR text using SKU pattern matching.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>extract_items_using_sku_only(ocr_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Extract candidate line items from OCR text using SKU pattern matching.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>ocr_text: Raw OCR text block.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>List of dicts with keys: <code>item_name</code>, <code>sku</code>, <code>raw_line</code>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Price values are intentionally not extracted here.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.extract_store_metadata" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.extract_store_metadata"><code>llm_extraction.extract_store_metadata</code></h3>
+<p><em>Extract store/date/time/total metadata from one receipt image via LLM.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>extract_store_metadata(image_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Extract store/date/time/total metadata from one receipt image via LLM.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>image_path: Path to the source image file.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><p>Dict containing <code>store_name</code>, <code>date</code>, <code>time</code>, <code>total_amount</code>,</p>
+<p>and <code>items_sold_count</code>.</p></li>
+</ul>
+</details>
+</section>
+<section id="ocr_utils.extract_text_from_image" class="level3">
+<h3 class="anchored" data-anchor-id="ocr_utils.extract_text_from_image"><code>ocr_utils.extract_text_from_image</code></h3>
+<p><em>Run OCR on one image and return line-ordered text.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_image(image_path, y_tol<span class="op">=</span><span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run OCR on one image and return line-ordered text.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>image_path: Path to an image file (PNG/JPG/JPEG).</li>
+<li>y_tol: Vertical tolerance used to group OCR tokens into the same line.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>String containing extracted text with one reconstructed line per row.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.extract_text_from_images" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.extract_text_from_images"><code>llm_extraction.extract_text_from_images</code></h3>
+<p><em>Extract one structured receipt record from one or more image files.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>extract_text_from_images(image_paths, receipt_id<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Extract one structured receipt record from one or more image files.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>image_paths: Ordered list of receipt page image paths (usually PNGs).</li>
+<li>receipt_id: Optional identifier used by callers for trace/debug context.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><p>dict on success, with keys like:</p>
+<p><code>store_name</code>, <code>date</code>, <code>time</code>, <code>total_amount</code>, <code>transactions</code>.</p></li>
+<li><p>dict on recoverable failure, with <code>error</code> and <code>reason</code> keys</p>
+<p>(for example <code>no_valid_images_found</code> or <code>no_ocr_items_detected</code>).</p></li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Uses OCR first to find candidate items, then LLM calls for metadata/pricing.</li>
+<li>Skips pages detected as blank when possible.</li>
+<li>Does not write files or mutate the database directly.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.group_receipt_images" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.group_receipt_images"><code>llm_extraction.group_receipt_images</code></h3>
+<p><em>Group receipt page images by receipt identifier derived from filename.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>group_receipt_images(image_paths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Group receipt page images by receipt identifier derived from filename.</p>
+<p><strong>Expected pattern</strong></p>
+<ul>
+<li><code>&lt;receipt_id&gt;_page&lt;page_num&gt;.png</code> (for example <code>11_page2.png</code>).</li>
+</ul>
+<p><strong>Args</strong></p>
+<ul>
+<li>image_paths: Iterable of <code>Path</code> objects.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict mapping receipt id to ordered list of page paths.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.is_empty" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.is_empty"><code>llm_extraction.is_empty</code></h3>
+<p><em>Return <code>True</code> when a value should be treated as missing LLM output.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>is_empty(val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return <code>True</code> when a value should be treated as missing LLM output.</p>
+</details>
+</section>
+<section id="llm_extraction.merge_receipt_data" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.merge_receipt_data"><code>llm_extraction.merge_receipt_data</code></h3>
+<p><em>Merge multiple page-level receipt dicts into one consolidated record.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>merge_receipt_data(json_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Merge multiple page-level receipt dicts into one consolidated record.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>json_list: List of parsed page dictionaries.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict with merged metadata, totals, and combined <code>transactions</code>.</li>
+</ul>
+</details>
+</section>
+<section id="ocr_utils.process_image_folder" class="level3">
+<h3 class="anchored" data-anchor-id="ocr_utils.process_image_folder"><code>ocr_utils.process_image_folder</code></h3>
+<p><em>OCR all PNG images in a folder and write one text file per image.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>OCR all PNG images in a folder and write one text file per image.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>input_folder: Directory containing <code>.png</code> images.</li>
+<li>output_folder: Directory where <code>.txt</code> OCR outputs are written.</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Creates <code>output_folder</code> when missing.</li>
+<li>Skips files whose output <code>.txt</code> already exists.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.process_image_folder" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.process_image_folder"><code>llm_extraction.process_image_folder</code></h3>
+<p><em>Batch-process receipt images in a folder into JSON outputs.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>process_image_folder(input_folder, output_folder, manual_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Batch-process receipt images in a folder into JSON outputs.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>input_folder: Directory containing page images (expected <code>*.png</code>).</li>
+<li>output_folder: Directory where parsed receipt JSON files are written.</li>
+<li>manual_folder: Directory where manual-review JSON records are written.</li>
+</ul>
+<p><strong>Behavior</strong></p>
+<ul>
+<li>Groups page images into receipt-level sets via filename pattern.</li>
+<li>Skips receipts already represented in output/manual folders.</li>
+<li>Routes multi-page receipts and detected refund cases to manual review.</li>
+<li>Calls <code>extract_text_from_images</code> for eligible receipt groups.</li>
+</ul>
+<p><strong>Side effects</strong></p>
+<ul>
+<li>Creates <code>output_folder</code> and <code>manual_folder</code> when missing.</li>
+<li>Writes JSON files to disk; does not insert into SQLite directly.</li>
+</ul>
+</details>
+</section>
+<section id="llm_extraction.process_receipt" class="level3">
+<h3 class="anchored" data-anchor-id="llm_extraction.process_receipt"><code>llm_extraction.process_receipt</code></h3>
+<p><em>Process one receipt image + OCR text into a structured output dict.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>process_receipt(image_path, ocr_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Process one receipt image + OCR text into a structured output dict.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>image_path: Path to the receipt image.</li>
+<li>ocr_text: OCR text from that image.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li>Dict with store metadata and extracted <code>transactions</code>.</li>
+</ul>
+</details>
+</section>
+</section>
+<section id="advanced-and-maintenance-functions" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-and-maintenance-functions">Advanced And Maintenance Functions</h2>
+<p><em>When to use this: debugging, destructive resets, or low-level utilities.</em></p>
+<section id="db_ingest.print_db_snapshot" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.print_db_snapshot"><code>db_ingest.print_db_snapshot</code></h3>
+<p><em>Print current <code>receipts</code> and <code>items</code> table rows for quick debugging.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>print_db_snapshot(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Print current <code>receipts</code> and <code>items</code> table rows for quick debugging.</p>
+</details>
+</section>
+<section id="db_ingest.reset_database" class="level3">
+<h3 class="anchored" data-anchor-id="db_ingest.reset_database"><code>db_ingest.reset_database</code></h3>
+<p><em>Drop and recreate receipts tables.</em></p>
+<details>
+<summary>
+Details
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>reset_database(db_path<span class="op">=</span>DEFAULT_RECEIPTS_DB, confirm<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Drop and recreate receipts tables.</p>
+<p><strong>Args</strong></p>
+<ul>
+<li>db_path: Path to the receipts SQLite database file.</li>
+<li>confirm: Must be <code>True</code> to allow destructive reset.</li>
+</ul>
+<p><strong>Raises</strong></p>
+<ul>
+<li>ValueError: If <code>confirm</code> is not <code>True</code>.</li>
+</ul>
+</details>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

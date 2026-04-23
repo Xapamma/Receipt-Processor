@@ -1,0 +1,39 @@
+{
+    "store_name": "Walmart",
+    "date": "03/20/25",
+    "time": "20:45:39",
+    "total_amount": 24.14,
+    "items_sold_count": 5,
+    "transactions": [
+        {
+            "item_name": "GV 13G TRAS",
+            "sku": "019434637815",
+            "price": 7.44,
+            "category": "auto"
+        },
+        {
+            "item_name": "GV 13G TRAS",
+            "sku": "019434605157",
+            "price": 7.44,
+            "category": "auto"
+        },
+        {
+            "item_name": "GVDISNFCTL 7",
+            "sku": "007874234447",
+            "price": 3.48,
+            "category": "household"
+        },
+        {
+            "item_name": "BUNS",
+            "sku": "005040075116",
+            "price": 2.97,
+            "category": "food"
+        },
+        {
+            "item_name": "BARS MEAT F",
+            "sku": "001590013401",
+            "price": 1.18,
+            "category": "food"
+        }
+    ]
+}

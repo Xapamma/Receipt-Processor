@@ -1,0 +1,165 @@
+{
+    "store_name": "Walmart",
+    "date": "02/10/26",
+    "time": "10:33:49",
+    "total_amount": 106.37,
+    "items_sold_count": 26,
+    "transactions": [
+        {
+            "item_name": "GV TOAS TED",
+            "sku": "019434652562",
+            "price": 2.47,
+            "category": "household"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218150",
+            "price": 2.67,
+            "category": "household"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218148",
+            "price": 2.67,
+            "category": "household"
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "sku": "007874218159",
+            "price": 2.72,
+            "category": "household"
+        },
+        {
+            "item_name": "GV RSN BRAN",
+            "sku": "019434639045",
+            "price": 2.47,
+            "category": "household"
+        },
+        {
+            "item_name": "SV SH ROSM2",
+            "sku": "038371100516",
+            "price": 4.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BODY WASH",
+            "sku": "003500099661",
+            "price": 4.97,
+            "category": "personal_care"
+        },
+        {
+            "item_name": "SV CN ROSM2",
+            "sku": "038371100526",
+            "price": 4.97,
+            "category": "household"
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "sku": "007874237104",
+            "price": 4.18,
+            "category": "household"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "082506312392",
+            "price": 3.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "082506312392",
+            "price": 3.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "082506312392",
+            "price": 3.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "082506312392",
+            "price": 3.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "082506312392",
+            "price": 3.97,
+            "category": "household"
+        },
+        {
+            "item_name": "SHEET SET",
+            "sku": "084012593611",
+            "price": 9.97,
+            "category": "household"
+        },
+        {
+            "item_name": "SHEET SET",
+            "sku": "084012593611",
+            "price": 9.97,
+            "category": "household"
+        },
+        {
+            "item_name": "GV FL BRTO",
+            "sku": "007874229474",
+            "price": 2.12,
+            "category": "household"
+        },
+        {
+            "item_name": "GV WHOLE GA",
+            "sku": "007874235186",
+            "price": 2.02,
+            "category": "household"
+        },
+        {
+            "item_name": "GV RF 2 GAL",
+            "sku": "007874235187",
+            "price": 2.02,
+            "category": "household"
+        },
+        {
+            "item_name": "GVFANCHED32",
+            "sku": "007874210204",
+            "price": 6.92,
+            "category": "household"
+        },
+        {
+            "item_name": "GV BTTR QTR",
+            "sku": "007874237419",
+            "price": 3.44,
+            "category": "household"
+        },
+        {
+            "item_name": "BANANAS",
+            "sku": "000000004011",
+            "price": 1.04,
+            "category": "food"
+        },
+        {
+            "item_name": "AB ORG 960z",
+            "sku": "004157005770",
+            "price": 4.67,
+            "category": "household"
+        },
+        {
+            "item_name": "AB US ORG 9",
+            "sku": "004157011019",
+            "price": 4.67,
+            "category": "household"
+        },
+        {
+            "item_name": "AB VAN 9602",
+            "sku": "004157005772",
+            "price": 4.67,
+            "category": "auto"
+        },
+        {
+            "item_name": "EGGS 18CT",
+            "sku": "007874214839",
+            "price": 2.92,
+            "category": "food"
+        }
+    ]
+}

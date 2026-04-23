@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "02/14/25",
+    "time": "17:01:38",
+    "total_amount": 1.72,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "TURTLES ORI",
+            "sku": "087218100501",
+            "price": 1.68,
+            "category": "food"
+        }
+    ]
+}

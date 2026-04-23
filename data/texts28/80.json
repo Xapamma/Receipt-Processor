@@ -1,0 +1,69 @@
+{
+    "store_name": "Walmart",
+    "date": "03/20/25",
+    "time": "16:47:58",
+    "total_amount": 87.21,
+    "items_sold_count": 11,
+    "transactions": [
+        {
+            "item_name": "PLASTIC CUP",
+            "sku": "007874204880",
+            "price": 3.98,
+            "category": "household"
+        },
+        {
+            "item_name": "VEG TRAY",
+            "sku": "003022306094",
+            "price": 10.97,
+            "category": "household"
+        },
+        {
+            "item_name": "VEG TRAY",
+            "sku": "003022306094",
+            "price": 10.97,
+            "category": "household"
+        },
+        {
+            "item_name": "BUNS",
+            "sku": "007082130012",
+            "price": 3.87,
+            "category": "food"
+        },
+        {
+            "item_name": "BUNS",
+            "sku": "007082130012",
+            "price": 3.87,
+            "category": "food"
+        },
+        {
+            "item_name": "BUNS",
+            "sku": "007082130012",
+            "price": 3.87,
+            "category": "food"
+        },
+        {
+            "item_name": "CLR CUTLERY",
+            "sku": "007874215947",
+            "price": 9.98,
+            "category": "household"
+        },
+        {
+            "item_name": "FRUIT TRAY",
+            "sku": "003022303832",
+            "price": 13.62,
+            "category": "household"
+        },
+        {
+            "item_name": "FRUIT TRAY",
+            "sku": "003022303832",
+            "price": 13.62,
+            "category": "household"
+        },
+        {
+            "item_name": "VIEWS 7 PAC",
+            "sku": "007025750481",
+            "price": 2.37,
+            "category": "household"
+        }
+    ]
+}

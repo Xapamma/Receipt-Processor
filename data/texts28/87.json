@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "02/06/25",
+    "time": "16:08:52",
+    "total_amount": 4.01,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "GV FL BRTO",
+            "sku": "007874229474",
+            "price": 2.08,
+            "category": "household"
+        },
+        {
+            "item_name": "ICEBERG",
+            "sku": "003338365020",
+            "price": 1.84,
+            "category": "household"
+        }
+    ]
+}

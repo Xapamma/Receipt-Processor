@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "03/20/25",
+    "time": "23:03:53",
+    "total_amount": 2.46,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "BATH TOWEL",
+            "sku": "896400375624",
+            "price": 2.27,
+            "category": "household"
+        }
+    ]
+}

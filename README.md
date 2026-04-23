@@ -4,7 +4,7 @@ Receipt Processor is a Python package for extracting, structuring, and analyzing
 
 ## What it does
 
-- Extracts text from receipt images using EasyOCR and cleanup logic
+- Extracts text from receipt images using EasyOCR and using that text for LLM parsing
 - Stores receipts and item details in SQLite databases
 - Provides spending analysis by total, month, category, and vendor
 - Supports budget tracking for monthly and category budgets
@@ -20,7 +20,17 @@ Receipt Processor is a Python package for extracting, structuring, and analyzing
 
 ## Installation
 
-Receipt Processor uses `uv` for environment setup and dependency installation.
+### Install from PyPI
+
+When published, you can install Receipt Processor directly from PyPI:
+
+```bash
+pip install receipt-processor
+```
+
+### Install from source
+
+For development or the latest repository version, use `uv` to create an environment and install dependencies:
 
 ```bash
 pip install uv
@@ -100,12 +110,20 @@ print(get_category_breakdown(db_path="data/receipts.db"))
 ## Notes
 
 - Automatic categorization uses an LLM prompt with a fixed set of categories.
-- Batch receipt processing is best for simple single-page receipts without refunds.
+- Batch receipt processing is designed for simple single-page receipts without refunds.
 - Complex receipts are safer to process manually using the insert workflow.
 
 ## Documentation
 
 A more detailed tutorial is available in `tutorial.qmd` and via the generated GitHub Pages site. The repository also includes API documentation in `api.qmd`.
+
+## Links
+
+- **Documentation source**: `api.qmd`
+- **Tutorial source**: `tutorial.qmd`
+- **Report source**: `technical-report.qmd`
+- **Streamlit app**: run `streamlit run app.py`
+- **GitHub repository**: https://github.com/Xapamma/Receipt-Processor
 
 ## Repository Layout
 
