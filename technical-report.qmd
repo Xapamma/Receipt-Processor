@@ -38,9 +38,7 @@ To evaluate the accuracy of the extraction process, a validation framework was i
 
 To further prepare the data, several transformations were applied. Extracted dates and times were normalized into a consistent format. Item-level and receipt-level data were structured into relational tables, ensuring that each receipt is properly linked to its corresponding items. In addition, total tax amounts were proportionally distributed across individual items based on their pre-tax prices, resulting in item-level price-with-tax values. This allows category-level spending analysis to reflect the full cost of purchases rather than pre-tax amounts alone.
 
-This section should also include some explanation of assigning categories to the individual items. >>>
-
-Together, these steps transformed raw, unstructured receipt data into a clean, structured dataset suitable for analysis. 
+Item categories were assigned using an LLM-driven classification step that examined each transaction individually. Rather than batching all items together, the system classified each item in its own prompt to keep the model’s context focused and improve accuracy for short item descriptions. This per-transaction approach helped reduce classification errors caused by longer, memory-intensive prompts and made it easier to enforce a fixed category vocabulary for the final dataset.
 
 # Methodology/Analysis
 
