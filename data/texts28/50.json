@@ -1,0 +1,57 @@
+{
+    "store_name": "Walmart",
+    "date": "08/15/25",
+    "time": "13:53:25",
+    "total_amount": 29.99,
+    "items_sold_count": 8,
+    "transactions": [
+        {
+            "item_name": "HANHOO BLEM",
+            "sku": "081000233050",
+            "price": 2.56,
+            "category": "household"
+        },
+        {
+            "item_name": "EQWMNSBLD6C",
+            "sku": "068113130614",
+            "price": 8.34,
+            "category": "household"
+        },
+        {
+            "item_name": "GV HNYOATAL",
+            "sku": "007874237335",
+            "price": 3.27,
+            "category": "household"
+        },
+        {
+            "item_name": "GV FSW",
+            "sku": "007874207527",
+            "price": 2.82,
+            "category": "household"
+        },
+        {
+            "item_name": "GV STRAW CR",
+            "sku": "007874218158",
+            "price": 3.48,
+            "category": "household"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874218155",
+            "price": 1.67,
+            "category": "household"
+        },
+        {
+            "item_name": "GREAT VALUE",
+            "sku": "007874203092",
+            "price": 2.94,
+            "category": "household"
+        },
+        {
+            "item_name": "GV OLD FA 4",
+            "sku": "007874237104",
+            "price": 4.18,
+            "category": "household"
+        }
+    ]
+}

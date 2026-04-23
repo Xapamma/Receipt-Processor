@@ -232,6 +232,7 @@ def categorize_single_item(item_name):
         - household
         - clothing
         - cleaning
+        - auto
 
         Item:
         {item_name}
@@ -358,7 +359,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
 
     transactions = []
 
-    for i, item in enumerate(all_ocr_items):
+    for item in all_ocr_items:
         # OPTIONAL: only call LLM if price is unknown
          # 🔥 PUT SAFETY CHECK HERE
         image_path = item.get("image_path")
@@ -428,14 +429,6 @@ def extract_text_from_images(image_paths, receipt_id=None):
         # 🔥🔥🔥 NEW: pull category from bulk results
         # category = categories_by_index.get(all_ocr_items.index(item), "miscellaneous")
         category = categorize_single_item(item['item_name'])
-
-        print(f"""
-        ITEM DEBUG
-        Index: {i}
-        Item: {item['item_name']}
-        SKU: {item['sku']}
-        LLM Category: {category}
-        """)
 
         transactions.append({
             "item_name": item["item_name"],
@@ -561,4 +554,4 @@ def process_image_folder(input_folder, output_folder, manual_folder):
 
 
 # Run
-process_image_folder("receipts_pngs", "data/texts27", "data/manual_review_27")
+process_image_folder("receipts_pngs", "data/texts28", "data/manual_review_28")

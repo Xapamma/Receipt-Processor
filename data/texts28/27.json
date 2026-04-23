@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "11/29/2025",
+    "time": "11:10:27",
+    "total_amount": 6.38,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "BANANAS",
+            "sku": "064312604011",
+            "price": 0.8,
+            "category": "food"
+        },
+        {
+            "item_name": "PLDG DST AL",
+            "sku": "004650072375",
+            "price": 5.58,
+            "category": "household"
+        }
+    ]
+}

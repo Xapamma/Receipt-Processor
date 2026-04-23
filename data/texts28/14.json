@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "01/30/26",
+    "time": "15:35:52",
+    "total_amount": 4.98,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "RK 1802 14C",
+            "sku": "003800020003",
+            "price": 4.98,
+            "category": "household"
+        }
+    ]
+}

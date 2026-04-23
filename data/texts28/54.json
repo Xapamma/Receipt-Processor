@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "08/01/25",
+    "time": "11:01:44",
+    "total_amount": 1.32,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "TOMATO ROMA",
+            "sku": "000000004087",
+            "price": 1.29,
+            "category": "food"
+        }
+    ]
+}

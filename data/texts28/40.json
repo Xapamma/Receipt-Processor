@@ -1,0 +1,21 @@
+{
+    "store_name": "Walmart",
+    "date": "09/18/25",
+    "time": "16:35:42",
+    "total_amount": 19.14,
+    "items_sold_count": 2,
+    "transactions": [
+        {
+            "item_name": "PUREX LIQUI",
+            "sku": "002420005020",
+            "price": 9.97,
+            "category": "cleaning"
+        },
+        {
+            "item_name": "ALWAYS LINE",
+            "sku": "003077216351",
+            "price": 7.97,
+            "category": "household"
+        }
+    ]
+}

@@ -2,3 +2,643 @@
 title: "Receipt Processor Tutorial"
 ---
 
+# Receipt Processor Tutorial
+
+Welcome to the Receipt Processor tutorial! This guide will help you install and use the Receipt Processor package to extract, store, and analyze receipt data with ease.
+
+## What is Receipt Processor?
+
+Receipt Processor is a comprehensive Python package designed to help you digitize and analyze receipt data. Whether you need to extract text from receipt images, process structured receipt data, or generate spending analytics, Receipt Processor provides powerful tools to streamline your workflow.
+
+### Key Features
+
+-   **OCR Text Extraction**: Automatically extract text from receipt images (PNG, JPG, etc.) with intelligent line grouping and formatting
+-   **LLM-Powered Parsing**: Use language models to intelligently extract structured data from unformatted receipt text
+-   **Database Management**: Store receipt data in SQLite with support for items, categories, vendors, and budgets
+-   **Spending Analytics**: Query and analyze spending patterns by date, category, vendor, or custom criteria
+-   **Streamlit Interface**: Interactive web application for uploading receipts, viewing data, and managing budgets
+-   **Flexible Configuration**: Customize processing parameters, database paths, and extraction methods for your needs
+
+## Installation
+
+### Prerequisites
+
+Before installing Receipt Processor, ensure you have:
+
+-   **Python 3.11+** (Receipt Processor requires Python 3.11 or later)
+-   **uv** (Fast Python package manager and installer)
+
+### Step 1: Install uv
+
+If you haven't already installed `uv`, install it using pip:
+
+``` bash
+pip install uv
+```
+
+Or download it from the [official uv documentation](https://docs.astral.sh/uv/getting-started/).
+
+### Step 2: Set Up Your Environment with uv sync
+
+Receipt Processor includes a `pyproject.toml` file that specifies all dependencies. Using `uv` makes setup simple and reproducible:
+
+``` bash
+# Navigate to the Receipt-Processor directory
+cd /path/to/Receipt-Processor
+
+# Use uv sync to create a virtual environment and install all dependencies
+uv sync
+```
+
+This single command will:
+
+- Create a virtual environment in the project directory
+- Install all dependencies listed in `pyproject.toml`
+- Lock exact versions for reproducibility
+
+### Step 3: Activate the Virtual Environment
+
+After `uv sync` completes, activate the virtual environment:
+
+``` bash
+# On Windows
+.venv\Scripts\activate
+
+# On macOS/Linux
+source .venv/bin/activate
+```
+
+### Step 4: Verify Installation
+
+Verify that the package installed correctly:
+
+``` python
+import receipt_processor
+print("Receipt Processor installed successfully!")
+```
+
+### Understanding uv and pyproject.toml
+
+**Why uv?**
+
+- **Fast**: uv is significantly faster than pip for dependency resolution
+- **Reproducible**: Locks exact versions for consistent environments across machines
+- **Simple**: One command (`uv sync`) handles everything
+
+**The pyproject.toml File:** The project includes a `pyproject.toml` file that defines:
+
+- Project metadata (name, version, description)
+- Core dependencies needed to run Receipt Processor
+- Development dependencies (like pytest)
+- Python version requirements (3.11+)
+
+When you run `uv sync`, it reads this file and automatically installs all specified dependencies.
+
+### Updating Dependencies
+
+If new dependencies are added to the project:
+
+``` bash
+# Update your environment with the latest dependencies
+uv sync
+```
+
+To add a new package while in the project:
+
+``` bash
+uv add package_name
+```
+
+## Quick Start
+
+### Running the Streamlit Application
+
+The easiest way to get started with Receipt Processor is using the interactive Streamlit application:
+
+``` bash
+streamlit run app.py
+```
+
+This launches a web interface where you can:
+
+-   Upload receipt images (PNG, JPG) or PDFs
+-   View extracted receipt data
+-   Manually edit and review extracted information
+-   Track spending by category and vendor
+-   Set and monitor budget limits
+
+![](images/streamlit-interface.svg){width=80%}
+
+### Setting Up Databases
+
+When you first run the app, you'll need to specify two database paths:
+
+1.  **Receipt Database**: Stores receipt and item data
+    -   Suggested path: `data/receipts.db`
+2.  **Budget Database**: Stores budget configurations and limits
+    -   Suggested path: `data/budget.db`
+
+The app will automatically create these databases if they don't exist.
+
+## Core Functionality
+
+### Text Extraction from Images (OCR)
+
+The Receipt Processor uses EasyOCR to extract text from receipt images with intelligent formatting:
+
+``` python
+from receipt_processor.ocr_utils import extract_text_from_image
+
+# Extract text from an image
+image_path = "receipts/walmart_receipt.png"
+extracted_text = extract_text_from_image(image_path)
+
+print(extracted_text)
+```
+
+![](images/ocr-flow.svg){width=80%}
+
+The OCR system automatically:
+
+- Sorts words from top-to-bottom, left-to-right
+- Groups words into lines based on vertical positioning
+- Cleans up common OCR artifacts
+- Returns formatted text that's ready for parsing
+
+### Processing Receipts with the Database
+
+#### Initialize Databases
+
+``` python
+from receipt_processor.db_ingest import initialize_database, initialize_budget_database
+
+# Create or connect to existing databases
+initialize_database(db_path="data/receipts.db")
+initialize_budget_database(db_path="data/budget.db")
+```
+
+#### Insert Receipt Data
+
+``` python
+from receipt_processor.db_ingest import insert_receipt
+
+# Prepare receipt data
+receipt_data = {
+    "vendor": "Walmart",
+    "date": "2024-01-15",
+    "time": "14:30:00",
+    "total_amount": 45.99,
+    "tax_amount": 3.50,
+    "items": [
+        {"item_name": "Milk", "price": 3.99, "category": "Grocery"},
+        {"item_name": "Bread", "price": 2.49, "category": "Grocery"},
+        {"item_name": "Eggs", "price": 4.99, "category": "Grocery"},
+    ]
+}
+
+# Insert into database
+receipt_id = insert_receipt(
+    vendor=receipt_data["vendor"],
+    date=receipt_data["date"],
+    time=receipt_data["time"],
+    total_amount=receipt_data["total_amount"],
+    tax_amount=receipt_data["tax_amount"],
+    items=receipt_data["items"],
+    db_path="data/receipts.db"
+)
+
+print(f"Receipt inserted with ID: {receipt_id}")
+```
+
+### Querying Receipt Data
+
+The Receipt Processor provides powerful query functions to analyze your spending:
+
+#### Get Total Spending
+
+``` python
+from receipt_processor.db_queries import get_total_spending
+
+# Get total spending for all time
+total = get_total_spending(db_path="data/receipts.db")
+print(f"Total spending: ${total:.2f}")
+
+# Get spending within a date range
+total_range = get_total_spending(
+    start_date="2024-01-01",
+    end_date="2024-12-31",
+    db_path="data/receipts.db"
+)
+print(f"2024 spending: ${total_range:.2f}")
+```
+
+#### Get Monthly Spending
+
+``` python
+from receipt_processor.db_queries import get_monthly_spending
+
+# Get monthly breakdown
+monthly = get_monthly_spending(
+    start_date="2024-01-01",
+    end_date="2024-12-31",
+    db_path="data/receipts.db"
+)
+
+for month, amount in monthly.items():
+    print(f"{month}: ${amount:.2f}")
+```
+
+#### Get Category Breakdown
+
+``` python
+from receipt_processor.db_queries import get_category_breakdown
+
+# Analyze spending by category
+categories = get_category_breakdown(db_path="data/receipts.db")
+
+for category, total in categories.items():
+    print(f"{category}: ${total:.2f}")
+```
+
+#### Get Vendor Breakdown
+
+``` python
+from receipt_processor.db_queries import get_vendor_breakdown
+
+# Analyze spending by store
+vendors = get_vendor_breakdown(db_path="data/receipts.db")
+
+for vendor, total in vendors.items():
+    print(f"{vendor}: ${total:.2f}")
+```
+
+#### View Recent Receipts
+
+``` python
+from receipt_processor.db_queries import get_recent_receipts
+
+# Get 10 most recent receipts
+recent = get_recent_receipts(limit=10, db_path="data/receipts.db")
+
+for receipt in recent:
+    print(f"{receipt['date']} - {receipt['vendor']}: ${receipt['total_amount']:.2f}")
+```
+
+#### Export to DataFrame
+
+``` python
+from receipt_processor.db_queries import export_receipts_to_dataframe
+
+# Export all data as a pandas DataFrame for analysis
+df = export_receipts_to_dataframe(db_path="data/receipts.db")
+
+# Now you can use pandas for advanced analysis
+print(df.head())
+print(df.describe())
+```
+
+### Budget Management
+
+![](images/budget-overview.svg){width=80%}
+
+Set and track budget limits for categories or monthly totals:
+
+``` python
+from receipt_processor.db_queries import save_category_budget, save_monthly_budget
+
+# Set a monthly budget limit
+save_monthly_budget(
+    month="2024-01",
+    budget_amount=1000.00,
+    db_path="data/budget.db"
+)
+
+# Set budget for a specific category
+save_category_budget(
+    category="Groceries",
+    budget_amount=400.00,
+    db_path="data/budget.db"
+)
+
+# Retrieve budget information
+from receipt_processor.db_queries import get_monthly_budget, get_category_budgets
+
+monthly_budget = get_monthly_budget(
+    month="2024-01",
+    db_path="data/budget.db"
+)
+print(f"January budget: ${monthly_budget:.2f}")
+
+category_budgets = get_category_budgets(db_path="data/budget.db")
+for category, budget in category_budgets.items():
+    print(f"{category}: ${budget:.2f}")
+```
+
+## Common Workflows
+
+### Workflow 1: Upload and Process a Single Receipt
+
+``` python
+import json
+from pathlib import Path
+from receipt_processor.ocr_utils import extract_text_from_image
+from receipt_processor.db_ingest import insert_receipt
+
+# Step 1: Extract text from receipt image
+image_path = "receipts/my_receipt.png"
+raw_text = extract_text_from_image(image_path)
+
+print("Extracted Text:")
+print(raw_text)
+
+# Step 2: Parse the extracted text to JSON
+# (In practice, you'd use an LLM to parse this)
+receipt_json = {
+    "vendor": "Target",
+    "date": "2024-01-20",
+    "time": "10:45:00",
+    "total_amount": 52.38,
+    "tax_amount": 4.50,
+    "items": [
+        {"item_name": "T-Shirt", "price": 14.99, "category": "Clothing"},
+        {"item_name": "Socks (3 pack)", "price": 9.99, "category": "Clothing"},
+        {"item_name": "Towel", "price": 8.99, "category": "Home"},
+    ]
+}
+
+# Step 3: Insert into database
+receipt_id = insert_receipt(
+    vendor=receipt_json["vendor"],
+    date=receipt_json["date"],
+    time=receipt_json["time"],
+    total_amount=receipt_json["total_amount"],
+    tax_amount=receipt_json["tax_amount"],
+    items=receipt_json["items"],
+    db_path="data/receipts.db"
+)
+
+print(f"Receipt stored with ID: {receipt_id}")
+```
+
+### Workflow 2: Batch Process a Folder of Receipts
+
+This folder-based batch processing is intended for simple single-page receipts that do not include refunds or complex adjustments. Receipts with multiple pages, refund lines, or unusual formatting should be processed manually using the `insert_receipt` workflow instead.
+
+``` python
+from pathlib import Path
+from receipt_processor.ocr_utils import process_image_folder
+
+# Convert all images in a folder to text files
+input_folder = "receipts_pngs"
+output_folder = "receipt_texts"
+
+process_image_folder(input_folder, output_folder)
+
+print(f"Processed all images from {input_folder}")
+print(f"Results saved to {output_folder}")
+```
+
+### Workflow 3: Generate Monthly Spending Report
+
+``` python
+from receipt_processor.db_queries import (
+    get_total_spending,
+    get_monthly_spending,
+    get_category_breakdown,
+    get_vendor_breakdown
+)
+import pandas as pd
+
+# Generate a comprehensive report
+print("=" * 50)
+print("MONTHLY SPENDING REPORT - January 2024")
+print("=" * 50)
+
+# Total for the month
+total = get_total_spending(
+    start_date="2024-01-01",
+    end_date="2024-01-31",
+    db_path="data/receipts.db"
+)
+print(f"\nTotal Spending: ${total:.2f}")
+
+# Breakdown by category
+print("\nSpending by Category:")
+categories = get_category_breakdown(
+    start_date="2024-01-01",
+    end_date="2024-01-31",
+    db_path="data/receipts.db"
+)
+for category, amount in sorted(categories.items(), key=lambda x: x[1], reverse=True):
+    percentage = (amount / total * 100) if total > 0 else 0
+    print(f"  {category}: ${amount:.2f} ({percentage:.1f}%)")
+
+# Top stores
+print("\nTop Vendors:")
+vendors = get_vendor_breakdown(
+    start_date="2024-01-01",
+    end_date="2024-01-31",
+    db_path="data/receipts.db"
+)
+for vendor, amount in sorted(vendors.items(), key=lambda x: x[1], reverse=True)[:5]:
+    print(f"  {vendor}: ${amount:.2f}")
+
+print("\n" + "=" * 50)
+```
+
+### Workflow 4: Compare Spending vs Budget
+
+``` python
+from receipt_processor.db_queries import (
+    get_monthly_spending,
+    get_monthly_budget,
+    get_category_breakdown,
+    get_category_budgets
+)
+
+# Compare monthly spending to budget
+print("BUDGET vs ACTUAL - January 2024\n")
+
+monthly_actual = get_monthly_spending(
+    start_date="2024-01-01",
+    end_date="2024-01-31",
+    db_path="data/receipts.db"
+)
+monthly_budget = get_monthly_budget(
+    month="2024-01",
+    db_path="data/budget.db"
+)
+
+if monthly_budget:
+    actual = sum(monthly_actual.values()) if monthly_actual else 0
+    difference = actual - monthly_budget
+    status = "OVER" if difference > 0 else "UNDER"
+    print(f"Budget:    ${monthly_budget:.2f}")
+    print(f"Actual:    ${actual:.2f}")
+    print(f"Status:    {status} by ${abs(difference):.2f}")
+else:
+    print("No budget set for this month")
+
+# Category budgets
+print("\nCATEGORY COMPARISON:\n")
+category_budgets = get_category_budgets(db_path="data/budget.db")
+category_spending = get_category_breakdown(
+    start_date="2024-01-01",
+    end_date="2024-01-31",
+    db_path="data/receipts.db"
+)
+
+for category, budget in category_budgets.items():
+    actual = category_spending.get(category, 0)
+    difference = actual - budget
+    status = "OVER" if difference > 0 else "UNDER"
+    print(f"{category}:")
+    print(f"  Budget: ${budget:.2f}")
+    print(f"  Actual: ${actual:.2f}")
+    print(f"  Status: {status} by ${abs(difference):.2f}\n")
+```
+
+## Configuration and Customization
+
+### Adjusting OCR Sensitivity
+
+The OCR extraction includes parameters you can customize:
+
+``` python
+from receipt_processor.ocr_utils import extract_text_from_image
+
+# The y_tol parameter controls line grouping sensitivity
+# Higher values = more aggressive line grouping
+extracted_text = extract_text_from_image(
+    image_path="receipt.png",
+    y_tol=15  # Group words within 15 pixels of same y-coordinate
+)
+```
+
+### Using Custom Database Paths
+
+All functions accept a `db_path` parameter to use custom database locations:
+
+``` python
+from receipt_processor.db_ingest import initialize_database
+from receipt_processor.db_queries import get_total_spending
+
+# Use custom paths
+my_db = "my_custom_location/my_receipts.db"
+initialize_database(db_path=my_db)
+
+# Query the custom database
+total = get_total_spending(db_path=my_db)
+```
+
+## Tips and Best Practices
+
+### Receipt Image Quality
+
+For best OCR results:
+
+- Use clear, well-lit photographs
+- Avoid shadows and glare
+- Take photos straight-on when possible
+- Ensure the receipt is fully visible in the frame
+- Use PNG or JPG format
+
+### Database Maintenance
+
+-   **Backup regularly**: SQLite databases are files—keep backups in a safe location
+-   **Archive old data**: Consider archiving receipts from previous years to keep your database responsive
+-   **Review and clean**: Periodically review extracted data for OCR errors and correct them
+
+### Categorization
+
+The receipt classifier uses a preset list of categories in the LLM prompt, so automatic item categorization is limited to the following values:
+
+- food
+- personal_care
+- household
+- clothing
+- cleaning
+- auto
+
+If you are entering receipts manually, you can still choose category labels for your own reports, but the automatic LLM-generated categories will use the list above. If you need a different category mapping, update the prompt or post-process the LLM output to translate the preset categories into your own labels.
+
+### Accuracy Tips
+
+-   Review extracted data carefully, especially vendor names and amounts
+-   Use manual correction in the Streamlit app for problematic receipts
+-   Re-train or adjust extraction logic based on common errors
+
+## Troubleshooting
+
+### Issue: "Cannot import receipt_processor"
+
+**Solution**: Ensure the package is installed correctly and your virtual environment is activated:
+
+``` bash
+# Verify installation
+pip list | grep receipt
+
+# Reinstall if needed
+pip install --upgrade git+https://github.com/Xapamma/Receipt-Processor.git
+```
+
+### Issue: Database file not found
+
+**Solution**: Ensure database paths exist and are correctly formatted:
+
+``` python
+from pathlib import Path
+
+# Create the directory if it doesn't exist
+db_path = "data/receipts.db"
+Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+
+from receipt_processor.db_ingest import initialize_database
+initialize_database(db_path=db_path)
+```
+
+### Issue: OCR not working or returning poor results
+
+**Solution**: Ensure image quality is good and check OCR configuration:
+
+``` python
+# Test OCR on your image
+from receipt_processor.ocr_utils import extract_text_from_image
+import os
+
+image_path = "receipts/test_receipt.png"
+if os.path.exists(image_path):
+    text = extract_text_from_image(image_path)
+    print(text)
+else:
+    print(f"Image not found: {image_path}")
+```
+
+## Next Steps
+
+Now that you're familiar with Receipt Processor basics, consider:
+
+1.  **Explore the Streamlit App**: Run `streamlit run app.py` and experiment with uploading receipts
+2.  **Set Up Automation**: Create scripts to process receipts in batch
+3.  **Build Custom Reports**: Use the query functions with pandas to create visualizations
+4.  **Integrate with Other Tools**: Export data to spreadsheets or accounting software
+5.  **Review the API Documentation**: Check `api.qmd` for complete function references
+
+## Getting Help
+
+-   **GitHub Issues**: Report bugs or request features at https://github.com/Xapamma/Receipt-Processor/issues
+-   **Documentation**: Visit the published Documentation page using the site navigation or directly at `api.html`
+-   **Examples**: Explore the `scripts/` directory in the repository for example usage patterns
+
+## Summary
+
+Receipt Processor makes it easy to digitize and analyze your receipts. With this tutorial, you should be able to:
+
+- Install and set up the package
+- Use the Streamlit application
+- Extract text from receipt images
+- Store and query receipt data
+- Generate spending reports
+- Manage budgets and track expenses
+
+Happy receipt processing!
