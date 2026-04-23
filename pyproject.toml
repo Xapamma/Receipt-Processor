@@ -1,7 +1,9 @@
 [project]
 name = "receipt-processor"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.11,<3.12"
+readme = "README.md"
+description = "Process and analyze receipt data"
 
 dependencies = [
     "numpy<2",
