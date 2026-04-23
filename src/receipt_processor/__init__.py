@@ -24,14 +24,6 @@ from .db_queries import (
     save_category_budget,
     save_monthly_budget,
 )
-from .llm_extraction import (
-    extract_text_from_images,
-    group_receipt_images,
-    process_image_folder as process_image_folder_llm,
-)
-from .ocr_utils import (
-    process_image_folder as process_image_folder_ocr,
-)
 from .pdf_utils import convert_pdfs_to_pngs
 
 __all__ = [
@@ -55,9 +47,27 @@ __all__ = [
     "get_vendor_breakdown",
     "save_category_budget",
     "save_monthly_budget",
-    "extract_text_from_images",
-    "group_receipt_images",
-    "process_image_folder_llm",
-    "process_image_folder_ocr",
     "convert_pdfs_to_pngs",
 ]
+
+try:
+    from .llm_extraction import (
+        extract_text_from_images,
+        group_receipt_images,
+        process_image_folder as process_image_folder_llm,
+    )
+    from .ocr_utils import (
+        process_image_folder as process_image_folder_ocr,
+    )
+except Exception:
+    # Allow package import in environments without OCR/runtime deps (e.g. cloud UI).
+    pass
+else:
+    __all__.extend(
+        [
+            "extract_text_from_images",
+            "group_receipt_images",
+            "process_image_folder_llm",
+            "process_image_folder_ocr",
+        ]
+    )
