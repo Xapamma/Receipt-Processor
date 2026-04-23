@@ -50,10 +50,16 @@ source .venv/bin/activate
 
 ## Quick Start
 
-Run the Streamlit interface:
+Run the Streamlit interface from a source checkout:
 
 ```bash
 streamlit run app.py
+```
+
+If you installed from PyPI, run the packaged launcher instead:
+
+```bash
+receipt-processor-app
 ```
 
 Then provide database paths such as:
@@ -122,7 +128,8 @@ A more detailed tutorial is available in `tutorial.qmd` and via the generated Gi
 - **Documentation source**: `api.qmd`
 - **Tutorial source**: `tutorial.qmd`
 - **Report source**: `technical-report.qmd`
-- **Streamlit app**: run `streamlit run app.py`
+- **Streamlit app (source checkout)**: run `streamlit run app.py`
+- **Streamlit app (installed package)**: run `receipt-processor-app`
 - **GitHub repository**: https://github.com/Xapamma/Receipt-Processor
 
 ## Repository Layout
