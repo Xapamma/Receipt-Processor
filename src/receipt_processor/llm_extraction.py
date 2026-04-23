@@ -9,7 +9,7 @@ from tqdm import tqdm
 from collections import defaultdict
 from PIL import Image, ImageChops
 from json_repair import repair_json
-from ocr_png_to_text import extract_text_from_image # for image merging
+from src.receipt_processor.ocr_utils import extract_text_from_image # for image merging
 
 # Utilities for receipt parsing and OCR-assisted item extraction.
 # This module is designed to support both single-page and multi-page receipts,
