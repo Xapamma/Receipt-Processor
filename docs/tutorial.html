@@ -157,9 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#receipt-processor-tutorial" id="toc-receipt-processor-tutorial" class="nav-link active" data-scroll-target="#receipt-processor-tutorial">Receipt Processor Tutorial</a>
-  <ul class="collapse">
-  <li><a href="#what-is-receipt-processor" id="toc-what-is-receipt-processor" class="nav-link" data-scroll-target="#what-is-receipt-processor">What is Receipt Processor?</a>
+  <li><a href="#what-is-receipt-processor" id="toc-what-is-receipt-processor" class="nav-link active" data-scroll-target="#what-is-receipt-processor">What is Receipt Processor?</a>
   <ul class="collapse">
   <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
   </ul></li>
@@ -213,7 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -239,8 +236,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="receipt-processor-tutorial" class="level1">
-<h1>Receipt Processor Tutorial</h1>
 <p>Welcome to the Receipt Processor tutorial! This guide will help you install and use the Receipt Processor package to extract, store, and analyze receipt data with ease.</p>
 <section id="what-is-receipt-processor" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-receipt-processor">What is Receipt Processor?</h2>
@@ -251,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>OCR Text Extraction</strong>: Automatically extract text from receipt images (PNG, JPG, etc.) with intelligent line grouping and formatting</li>
 <li><strong>LLM-Powered Parsing</strong>: Use language models to intelligently extract structured data from unformatted receipt text</li>
 <li><strong>Database Management</strong>: Store receipt data in SQLite with support for items, categories, vendors, and budgets</li>
-<li><strong>Spending Analytics</strong>: Query and analyze spending patterns by date, category, vendor, or custom criteria</li>
+<li><strong>Spending Analytics</strong>: Query and analyze spending patterns by date, category, or vendor</li>
 <li><strong>Streamlit Interface</strong>: Interactive web application for uploading receipts, viewing data, and managing budgets</li>
 <li><strong>Flexible Configuration</strong>: Customize processing parameters, database paths, and extraction methods for your needs</li>
 </ul>
@@ -553,26 +548,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: <span class="st">"2024-01-20"</span>,</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"time"</span>: <span class="st">"10:45:00"</span>,</span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_amount"</span>: <span class="fl">52.38</span>,</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tax_amount"</span>: <span class="fl">4.50</span>,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"items"</span>: [</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"T-Shirt"</span>, <span class="st">"price"</span>: <span class="fl">14.99</span>, <span class="st">"category"</span>: <span class="st">"Clothing"</span>},</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"Socks (3 pack)"</span>, <span class="st">"price"</span>: <span class="fl">9.99</span>, <span class="st">"category"</span>: <span class="st">"Clothing"</span>},</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"Towel"</span>, <span class="st">"price"</span>: <span class="fl">8.99</span>, <span class="st">"category"</span>: <span class="st">"Home"</span>},</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Insert into database</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>receipt_id <span class="op">=</span> insert_receipt(</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    vendor<span class="op">=</span>receipt_json[<span class="st">"vendor"</span>],</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    date<span class="op">=</span>receipt_json[<span class="st">"date"</span>],</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    time<span class="op">=</span>receipt_json[<span class="st">"time"</span>],</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    total_amount<span class="op">=</span>receipt_json[<span class="st">"total_amount"</span>],</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    tax_amount<span class="op">=</span>receipt_json[<span class="st">"tax_amount"</span>],</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    items<span class="op">=</span>receipt_json[<span class="st">"items"</span>],</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    db_path<span class="op">=</span><span class="st">"data/receipts.db"</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Receipt stored with ID: </span><span class="sc">{</span>receipt_id<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"items"</span>: [</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"T-Shirt"</span>, <span class="st">"price"</span>: <span class="fl">14.99</span>, <span class="st">"category"</span>: <span class="st">"Clothing"</span>},</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"Socks (3 pack)"</span>, <span class="st">"price"</span>: <span class="fl">9.99</span>, <span class="st">"category"</span>: <span class="st">"Clothing"</span>},</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"item_name"</span>: <span class="st">"Towel"</span>, <span class="st">"price"</span>: <span class="fl">8.99</span>, <span class="st">"category"</span>: <span class="st">"Home"</span>},</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Insert into database</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>receipt_id <span class="op">=</span> insert_receipt(</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    vendor<span class="op">=</span>receipt_json[<span class="st">"vendor"</span>],</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    date<span class="op">=</span>receipt_json[<span class="st">"date"</span>],</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    time<span class="op">=</span>receipt_json[<span class="st">"time"</span>],</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    total_amount<span class="op">=</span>receipt_json[<span class="st">"total_amount"</span>],</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    items<span class="op">=</span>receipt_json[<span class="st">"items"</span>],</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    db_path<span class="op">=</span><span class="st">"data/receipts.db"</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Receipt stored with ID: </span><span class="sc">{</span>receipt_id<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="workflow-2-batch-process-a-folder-of-receipts" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-2-batch-process-a-folder-of-receipts">Workflow 2: Batch Process a Folder of Receipts</h3>
@@ -803,14 +796,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Set Up Automation</strong>: Create scripts to process receipts in batch</li>
 <li><strong>Build Custom Reports</strong>: Use the query functions with pandas to create visualizations</li>
 <li><strong>Integrate with Other Tools</strong>: Export data to spreadsheets or accounting software</li>
-<li><strong>Review the API Documentation</strong>: Check <code>api.qmd</code> for complete function references</li>
+<li><strong>Review the <a href="./api.html">API Documentation</a></strong>: Check the API reference page for complete function documentation</li>
 </ol>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help</h2>
 <ul>
 <li><strong>GitHub Issues</strong>: Report bugs or request features at https://github.com/Xapamma/Receipt-Processor/issues</li>
-<li><strong>Documentation</strong>: Visit the published Documentation page using the site navigation or directly at <code>api.html</code></li>
+<li><strong>Documentation</strong>: Visit the published <a href="api.html">Documentation page</a> using the site navigation or directly via this link</li>
 <li><strong>Examples</strong>: Explore the <code>scripts/</code> directory in the repository for example usage patterns</li>
 </ul>
 </section>
@@ -828,7 +821,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Happy receipt processing!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

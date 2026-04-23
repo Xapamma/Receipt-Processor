@@ -613,12 +613,12 @@ Now that you're familiar with Receipt Processor basics, consider:
 2.  **Set Up Automation**: Create scripts to process receipts in batch
 3.  **Build Custom Reports**: Use the query functions with pandas to create visualizations
 4.  **Integrate with Other Tools**: Export data to spreadsheets or accounting software
-5.  **Review the API Documentation**: Check `api.qmd` for complete function references
+5.  **Review the [API Documentation](api.qmd)**: Check the API reference page for complete function documentation
 
 ## Getting Help
 
 -   **GitHub Issues**: Report bugs or request features at https://github.com/Xapamma/Receipt-Processor/issues
--   **Documentation**: Visit the published Documentation page using the site navigation or directly at `api.html`
+-   **Documentation**: Visit the published [Documentation page](api.html) using the site navigation or directly via this link
 -   **Examples**: Explore the `scripts/` directory in the repository for example usage patterns
 
 ## Summary
