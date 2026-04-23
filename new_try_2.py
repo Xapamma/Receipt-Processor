@@ -594,4 +594,4 @@ def process_image_folder(input_folder, output_folder, manual_folder):
 
 
 # Run
-process_image_folder("data/receipts_pngs", "data/texts25", "data/manual_review_25")
+process_image_folder("receipts_pngs", "data/texts26", "data/manual_review_26")
