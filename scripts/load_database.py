@@ -7,7 +7,7 @@ from receipt_processor.db_ingest import (
 
 def main():
     reset_database(confirm=True)
-    insert_receipts_from_folder("data/texts25")
+    insert_receipts_from_folder("data/texts28")
     insert_receipts_from_folder("data/completed_manual")
     print("All receipts inserted.")
     print_db_snapshot()
