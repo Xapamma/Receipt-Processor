@@ -1,0 +1,33 @@
+{
+    "store_name": "Walmart",
+    "date": "07/11/25",
+    "time": "13:30:50",
+    "total_amount": 26.11,
+    "items_sold_count": 4,
+    "transactions": [
+        {
+            "item_name": "FAB LEM 562",
+            "sku": "003500047041",
+            "price": 4.47,
+            "category": "household"
+        },
+        {
+            "item_name": "CLEANS ER",
+            "sku": "068113130595",
+            "price": 3.88,
+            "category": "cleaning"
+        },
+        {
+            "item_name": "GV UNSLT BT",
+            "sku": "007874237427",
+            "price": 3.96,
+            "category": "household"
+        },
+        {
+            "item_name": "BNLS CK BRS",
+            "sku": "026163800000",
+            "price": 13.24,
+            "category": "household"
+        }
+    ]
+}
