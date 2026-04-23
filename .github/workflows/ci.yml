@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Compile check
+        run: uv run python -m compileall -q src scripts app.py
+
+      - name: Run tests
+        run: |
+          set +e
+          uv run pytest -q
+          code=$?
+          if [ "$code" -eq 5 ]; then
+            echo "No tests were collected. Skipping test failure."
+            exit 0
+          fi
+          exit "$code"
