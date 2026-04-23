@@ -2,7 +2,6 @@
 title: "Receipt Processor Tutorial"
 ---
 
-# Receipt Processor Tutorial
 
 Welcome to the Receipt Processor tutorial! This guide will help you install and use the Receipt Processor package to extract, store, and analyze receipt data with ease.
 
@@ -15,7 +14,7 @@ Receipt Processor is a comprehensive Python package designed to help you digitiz
 -   **OCR Text Extraction**: Automatically extract text from receipt images (PNG, JPG, etc.) with intelligent line grouping and formatting
 -   **LLM-Powered Parsing**: Use language models to intelligently extract structured data from unformatted receipt text
 -   **Database Management**: Store receipt data in SQLite with support for items, categories, vendors, and budgets
--   **Spending Analytics**: Query and analyze spending patterns by date, category, vendor, or custom criteria
+-   **Spending Analytics**: Query and analyze spending patterns by date, category, or vendor
 -   **Streamlit Interface**: Interactive web application for uploading receipts, viewing data, and managing budgets
 -   **Flexible Configuration**: Customize processing parameters, database paths, and extraction methods for your needs
 
@@ -352,7 +351,6 @@ receipt_json = {
     "date": "2024-01-20",
     "time": "10:45:00",
     "total_amount": 52.38,
-    "tax_amount": 4.50,
     "items": [
         {"item_name": "T-Shirt", "price": 14.99, "category": "Clothing"},
         {"item_name": "Socks (3 pack)", "price": 9.99, "category": "Clothing"},
@@ -366,7 +364,6 @@ receipt_id = insert_receipt(
     date=receipt_json["date"],
     time=receipt_json["time"],
     total_amount=receipt_json["total_amount"],
-    tax_amount=receipt_json["tax_amount"],
     items=receipt_json["items"],
     db_path="data/receipts.db"
 )
