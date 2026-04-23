@@ -13,7 +13,7 @@ from receipt_processor.db_ingest import (
     insert_receipt,
     update_receipt_details,
 )
-from ocr_png_to_text import extract_text_from_image
+from receipt_processor.llm_extraction import extract_text_from_images
 from receipt_processor.db_queries import (
     export_receipts_to_dataframe,
     get_category_budgets,
@@ -31,12 +31,12 @@ st.title("Receipt Processor")
 
 db_path = st.sidebar.text_input(
     "Receipt database path",
-    value="",
+    value="data/receipts.db",
     placeholder="e.g., data/receipts.db",
 ).strip()
 budget_db_path = st.sidebar.text_input(
     "Budget database path",
-    value="",
+    value="data/budget.db",
     placeholder="e.g., data/budget.db",
 ).strip()
 
@@ -209,6 +209,7 @@ def render_time_window_selector(
     available_months,
     default_months=12,
     max_months=24,
+    min_months=1,
     modes=None,
 ):
     st.markdown(f"**{title}**")
@@ -242,18 +243,19 @@ def render_time_window_selector(
         end = pd.Timestamp(selected_month)
         label = start.strftime("%b %Y")
     elif mode == "Last N months":
+        default_month_value = max(min(default_months, max_months), min_months)
         months = st.slider(
             "How many months",
-            min_value=1,
+            min_value=min_months,
             max_value=max_months,
-            value=min(default_months, max_months),
+            value=default_month_value,
             step=1,
             key=f"{prefix}_last_n_months",
         )
         end = latest_data_month
         start = end - pd.DateOffset(months=months - 1)
         label = f"Last {months} months"
-    else:
+    elif mode == "Calendar year":
         available_years = sorted(
             {int(pd.Timestamp(m).year) for m in available_months},
             reverse=True,
@@ -270,6 +272,39 @@ def render_time_window_selector(
         start = pd.Timestamp(year=int(selected_year), month=1, day=1).to_period("M").to_timestamp()
         end = pd.Timestamp(year=int(selected_year), month=12, day=1).to_period("M").to_timestamp()
         label = f"Calendar year {selected_year}"
+    elif mode == "Custom range":
+        earliest_data_month = min(available_months) if available_months else today_month
+        custom_default_end = latest_data_month
+        custom_default_start = custom_default_end - pd.DateOffset(
+            months=max(default_months, min_months) - 1
+        )
+        if custom_default_start < earliest_data_month:
+            custom_default_start = earliest_data_month
+
+        custom_col1, custom_col2 = st.columns(2)
+        with custom_col1:
+            custom_start_date = st.date_input(
+                "Start month",
+                value=custom_default_start.date(),
+                key=f"{prefix}_custom_start_month",
+            )
+        with custom_col2:
+            custom_end_date = st.date_input(
+                "End month",
+                value=custom_default_end.date(),
+                key=f"{prefix}_custom_end_month",
+            )
+
+        start = pd.Timestamp(custom_start_date).to_period("M").to_timestamp()
+        end = pd.Timestamp(custom_end_date).to_period("M").to_timestamp()
+        if end < start:
+            st.warning("End month was before start month, so the range was adjusted.")
+            start, end = end, start
+        label = f"{start.strftime('%b %Y')} to {end.strftime('%b %Y')}"
+    else:
+        start = today_month
+        end = today_month
+        label = today_month.strftime("%b %Y")
 
     month_index = pd.date_range(start=start, end=end, freq="MS")
     return start, end, month_index, label
@@ -285,7 +320,8 @@ _, _, window_index, trend_window_label = render_time_window_selector(
     available_months_all,
     default_months=12,
     max_months=24,
-    modes=["Last N months", "Calendar year"],
+    min_months=2,
+    modes=["Last N months", "Calendar year", "Custom range"],
 )
 
 monthly_totals = (
@@ -356,7 +392,8 @@ _, _, stack_window_index, stack_window_label = render_time_window_selector(
     available_months_all,
     default_months=12,
     max_months=24,
-    modes=["Last N months", "Calendar year"],
+    min_months=2,
+    modes=["Last N months", "Calendar year", "Custom range"],
 )
 category_monthly = category_monthly[category_monthly["month_label"].isin(stack_window_index)]
 st.caption(f"Showing: {stack_window_label}")
