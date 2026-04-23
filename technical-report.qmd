@@ -56,7 +56,7 @@ The final dataset consists of receipts collected from January 2025 to March 2026
 
 As shown in Figure 1, spending exhibited noticeable changes occurring between ....
 
-Insert: Line chart of monthly spending
+![Line chart of monthly spending](images/monthly_trend.png){#fig-receipt}
 
 The average monthly spending for 2025 was \$____ and \$____ from March 2025 to March 2026, suggesting that ... . Compared to these baselines, several months—such as ____—were above average, while others—such as __—fell far below.
 
@@ -64,7 +64,7 @@ Month-to-month changes in spending are visualized in Figure 1, which highlights 
 
 These fluctuations may reflect.... 
 
-Spending distribution acroos categories is shown in Figure 2. ... 
+Spending distribution across categories is shown in Figure 2. ... 
 
 Insert: Bar chart(s)
 
