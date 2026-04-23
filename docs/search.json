@@ -25,7 +25,7 @@
     "href": "tutorial.html#quick-start",
     "title": "Receipt Processor Tutorial",
     "section": "Quick Start",
-    "text": "Quick Start\n\nRunning the Streamlit Application\nThe easiest way to get started with Receipt Processor is using the interactive Streamlit application:\nstreamlit run app.py\nThis launches a web interface where you can:\n\nUpload receipt images (PNG, JPG) or PDFs\nView extracted receipt data\nManually edit and review extracted information\nTrack spending by category and vendor\nSet and monitor budget limits\n\n\n\nSetting Up Databases\nWhen you first run the app, you’ll need to specify two database paths:\n\nReceipt Database: Stores receipt and item data\n\nSuggested path: data/receipts.db\n\nBudget Database: Stores budget configurations and limits\n\nSuggested path: data/budget.db\n\n\nThe app will automatically create these databases if they don’t exist."
+    "text": "Quick Start\n\nRunning the Streamlit Application\nThe easiest way to get started with Receipt Processor is using the interactive Streamlit application:\nstreamlit run app.py\nThis launches a web interface where you can:\n\nUpload receipt images (PNG, JPG) or PDFs\nView extracted receipt data\nManually edit and review extracted information\nTrack spending by category and vendor\nSet and monitor budget limits\n\nAlternatively, you can try the hosted Streamlit app directly in your browser without any local setup.\n\n\nSetting Up Databases\nWhen you first run the app, you’ll need to specify two database paths:\n\nReceipt Database: Stores receipt and item data\n\nSuggested path: data/receipts.db\n\nBudget Database: Stores budget configurations and limits\n\nSuggested path: data/budget.db\n\n\nThe app will automatically create these databases if they don’t exist."
   },
   {
     "objectID": "tutorial.html#core-functionality",
@@ -67,7 +67,7 @@
     "href": "tutorial.html#next-steps",
     "title": "Receipt Processor Tutorial",
     "section": "Next Steps",
-    "text": "Next Steps\nNow that you’re familiar with Receipt Processor basics, consider:\n\nExplore the Streamlit App: Run streamlit run app.py and experiment with uploading receipts\nSet Up Automation: Create scripts to process receipts in batch\nBuild Custom Reports: Use the query functions with pandas to create visualizations\nIntegrate with Other Tools: Export data to spreadsheets or accounting software\nReview the API Documentation: Check the API reference page for complete function documentation"
+    "text": "Next Steps\nNow that you’re familiar with Receipt Processor basics, consider:\n\nExplore the Streamlit App: Run streamlit run app.py (or click the link) and experiment with uploading receipts\nSet Up Automation: Create scripts to process receipts in batch\nBuild Custom Reports: Use the query functions with pandas to create visualizations\nIntegrate with Other Tools: Export data to spreadsheets or accounting software\nReview the API Documentation: Check the API reference page for complete function documentation"
   },
   {
     "objectID": "tutorial.html#getting-help",
@@ -102,7 +102,7 @@
     "href": "index.html#quick-start",
     "title": "Receipt Processor",
     "section": "Quick Start",
-    "text": "Quick Start\n\nVisit the Tutorial to set up your Python environment and install dependencies.\nRun the Streamlit app with streamlit run app.py to interactively upload receipts and inspect extracted data.\nUse the Documentation page for function references and integration examples."
+    "text": "Quick Start\n\nVisit the Tutorial to set up your Python environment and install dependencies.\nRun the Streamlit app with streamlit run app.py (or click the link to try it online) to interactively upload receipts and inspect extracted data.\nUse the Documentation page for function references and integration examples."
   },
   {
     "objectID": "index.html#what-this-project-includes",
