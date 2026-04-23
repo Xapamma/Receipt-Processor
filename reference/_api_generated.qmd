@@ -1,0 +1,812 @@
+## Database Setup And Ingest
+
+*When to use this: creating/loading databases, inserting new receipts, and updating or deleting stored records.*
+
+### `db_ingest.allocate_weighted_item_tax`
+
+*Allocate receipt-level difference across item rows by weighted price.*
+
+<details><summary>Details</summary>
+
+```python
+allocate_weighted_item_tax(items, receipt_total)
+```
+
+Allocate receipt-level difference across item rows by weighted price.
+
+**Args**
+
+- items: List of item dictionaries containing at least `price`.
+- receipt_total: Receipt total used as the target sum for item totals.
+
+**Returns**
+
+- A new list of item dictionaries with `allocated_tax` and `price_with_tax`.
+
+**Notes**
+
+- Allocation is done in cents to minimize floating-point drift.
+- If all item prices are zero/missing, allocation falls back to equal weights.
+
+</details>
+
+### `db_ingest.delete_receipt`
+
+*Delete a receipt and all related item rows.*
+
+<details><summary>Details</summary>
+
+```python
+delete_receipt(receipt_id, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Delete a receipt and all related item rows.
+
+**Args**
+
+- receipt_id: Target receipt primary key.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- `True` if the receipt existed and was deleted, otherwise `False`.
+
+</details>
+
+### `db_ingest.initialize_budget_database`
+
+*Create budget database tables if they do not already exist.*
+
+<details><summary>Details</summary>
+
+```python
+initialize_budget_database(db_path=DEFAULT_BUDGET_DB)
+```
+
+Create budget database tables if they do not already exist.
+
+**Args**
+
+- db_path: Path to the budget SQLite database file.
+
+**Side effects**
+
+- Ensures `monthly_budgets` and `category_budgets` tables exist.
+
+</details>
+
+### `db_ingest.initialize_database`
+
+*Create receipts database tables if they do not already exist.*
+
+<details><summary>Details</summary>
+
+```python
+initialize_database(db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Create receipts database tables if they do not already exist.
+
+**Args**
+
+- db_path: Path to the receipts SQLite database file.
+
+**Side effects**
+
+- Ensures `receipts` and `items` tables exist.
+- Enables SQLite foreign key enforcement for the connection.
+
+</details>
+
+### `db_ingest.insert_receipt`
+
+*Insert one parsed receipt payload into `receipts` and `items` tables.*
+
+<details><summary>Details</summary>
+
+```python
+insert_receipt(data, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Insert one parsed receipt payload into `receipts` and `items` tables.
+
+**Args**
+
+- data: Parsed receipt dictionary.
+- db_path: Path to the receipts SQLite database file.
+
+**Expected `data` shape**
+
+- `store_name` (str | None)
+- `date` (str | None)
+- `time` (str | None)
+- `total_amount` (number-like)
+- `transactions` (list[dict]) where each item includes:
+
+  `item_name`, `price`, and optional `category`.
+
+**Behavior**
+
+- Normalizes date/time strings when possible.
+- Computes weighted per-item tax allocation so item totals align with receipt total.
+- Inserts one receipt row plus its associated item rows in the same DB transaction.
+
+**Returns**
+
+- `receipt_id` (int): primary key of the inserted receipt row.
+
+</details>
+
+### `db_ingest.insert_receipts_from_folder`
+
+*Insert every JSON receipt file in a folder into the receipts database.*
+
+<details><summary>Details</summary>
+
+```python
+insert_receipts_from_folder(folder_path, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Insert every JSON receipt file in a folder into the receipts database.
+
+**Args**
+
+- folder_path: Directory containing parsed receipt `.json` files.
+- db_path: Path to the receipts SQLite database file.
+
+**Side effects**
+
+- Inserts new receipt and item rows for each JSON file discovered.
+
+</details>
+
+### `db_ingest.update_receipt_details`
+
+*Update a receipt row and fully replace its associated item rows.*
+
+<details><summary>Details</summary>
+
+```python
+update_receipt_details(receipt_id, date, time, vendor, total_amount, items, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Update a receipt row and fully replace its associated item rows.
+
+**Args**
+
+- receipt_id: Target receipt primary key.
+- date: New receipt date value.
+- time: New receipt time value.
+- vendor: New vendor/store name.
+- total_amount: New receipt total.
+- items: List of item dicts (`item_name`, `price`, optional `category`).
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- `True` if the receipt exists and update succeeds, otherwise `False`.
+
+</details>
+
+## Database Queries And Exports
+
+*When to use this: powering dashboards, summaries, reporting, and CSV/DataFrame exports.*
+
+### `db_queries.export_receipts_to_csv`
+
+*Write joined receipts/items data to a CSV file.*
+
+<details><summary>Details</summary>
+
+```python
+export_receipts_to_csv(file_path, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Write joined receipts/items data to a CSV file.
+
+**Args**
+
+- file_path: Output CSV file path.
+- db_path: Path to the receipts SQLite database file.
+
+</details>
+
+### `db_queries.export_receipts_to_dataframe`
+
+*Export joined receipts/items data as a pandas DataFrame.*
+
+<details><summary>Details</summary>
+
+```python
+export_receipts_to_dataframe(db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Export joined receipts/items data as a pandas DataFrame.
+
+**Args**
+
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- DataFrame with columns:
+
+  `receipt_id`, `date`, `time`, `vendor`, `total_amount`,
+  `item_name`, `price`, `allocated_tax`, `price_with_tax`, `category`.
+
+- Each receipt appears once per item row (receipt-level fields repeat).
+
+</details>
+
+### `db_queries.get_category_breakdown`
+
+*Return item-level spending totals grouped by category.*
+
+<details><summary>Details</summary>
+
+```python
+get_category_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return item-level spending totals grouped by category.
+
+**Args**
+
+- start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+- end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- Dict mapping category name to total spend.
+- Missing/empty categories are returned as `"Uncategorized"`.
+
+</details>
+
+### `db_queries.get_category_budgets`
+
+*Return saved category budgets for one month.*
+
+<details><summary>Details</summary>
+
+```python
+get_category_budgets(month_key, db_path=DEFAULT_BUDGET_DB)
+```
+
+Return saved category budgets for one month.
+
+**Args**
+
+- month_key: Budget month key (`YYYY-MM`).
+- db_path: Path to the budget SQLite database file.
+
+**Returns**
+
+- Dict mapping category name to budget float.
+
+</details>
+
+### `db_queries.get_monthly_budget`
+
+*Return the saved total budget value for one month.*
+
+<details><summary>Details</summary>
+
+```python
+get_monthly_budget(month_key, db_path=DEFAULT_BUDGET_DB)
+```
+
+Return the saved total budget value for one month.
+
+**Args**
+
+- month_key: Budget month key (`YYYY-MM`).
+- db_path: Path to the budget SQLite database file.
+
+**Returns**
+
+- Float total budget if present, otherwise `None`.
+
+</details>
+
+### `db_queries.get_monthly_spending`
+
+*Return spending totals grouped by calendar month.*
+
+<details><summary>Details</summary>
+
+```python
+get_monthly_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return spending totals grouped by calendar month.
+
+**Args**
+
+- start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+- end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- Dict mapping month key (`YYYY-MM`) to total spend.
+
+</details>
+
+### `db_queries.get_receipt_details`
+
+*Return one receipt and its item rows.*
+
+<details><summary>Details</summary>
+
+```python
+get_receipt_details(receipt_id, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return one receipt and its item rows.
+
+**Args**
+
+- receipt_id: Receipt primary key to retrieve.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- Dict containing receipt fields and an `items` list if found.
+- `None` if the receipt does not exist.
+
+</details>
+
+### `db_queries.get_recent_receipts`
+
+*Return the most recent receipts sorted by date/time descending.*
+
+<details><summary>Details</summary>
+
+```python
+get_recent_receipts(limit=10, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return the most recent receipts sorted by date/time descending.
+
+**Args**
+
+- limit: Maximum number of receipt rows to return.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- List of dicts with keys: `id`, `date`, `time`, `vendor`, `total_amount`.
+
+</details>
+
+### `db_queries.get_total_spending`
+
+*Return total receipt spending for an optional date range.*
+
+<details><summary>Details</summary>
+
+```python
+get_total_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return total receipt spending for an optional date range.
+
+**Args**
+
+- start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+- end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- Float total spend. Returns `0.0` when no rows match.
+
+</details>
+
+### `db_queries.get_vendor_breakdown`
+
+*Return receipt-level spending totals grouped by vendor.*
+
+<details><summary>Details</summary>
+
+```python
+get_vendor_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Return receipt-level spending totals grouped by vendor.
+
+**Args**
+
+- start_date: Inclusive lower date bound (`YYYY-MM-DD`) or `None`.
+- end_date: Inclusive upper date bound (`YYYY-MM-DD`) or `None`.
+- db_path: Path to the receipts SQLite database file.
+
+**Returns**
+
+- Dict mapping vendor name to total spend.
+
+</details>
+
+### `db_queries.save_category_budget`
+
+*Create or update one category budget value for a month.*
+
+<details><summary>Details</summary>
+
+```python
+save_category_budget(month_key, category, budget, db_path=DEFAULT_BUDGET_DB)
+```
+
+Create or update one category budget value for a month.
+
+**Args**
+
+- month_key: Budget month key (`YYYY-MM`).
+- category: Category name.
+- budget: Budget amount to store for the category.
+- db_path: Path to the budget SQLite database file.
+
+</details>
+
+### `db_queries.save_monthly_budget`
+
+*Create or update one monthly total budget value.*
+
+<details><summary>Details</summary>
+
+```python
+save_monthly_budget(month_key, total_budget, db_path=DEFAULT_BUDGET_DB)
+```
+
+Create or update one monthly total budget value.
+
+**Args**
+
+- month_key: Budget month key (`YYYY-MM`).
+- total_budget: Budget amount to store.
+- db_path: Path to the budget SQLite database file.
+
+</details>
+
+## OCR And Extraction Pipeline
+
+*When to use this: converting source files into OCR text and structured receipt JSON.*
+
+### `llm_extraction.build_transactions`
+
+*Build transaction rows by asking the LLM for each item's price.*
+
+<details><summary>Details</summary>
+
+```python
+build_transactions(ocr_items, image_path)
+```
+
+Build transaction rows by asking the LLM for each item's price.
+
+**Args**
+
+- ocr_items: List of candidate items with `item_name` and `sku`.
+- image_path: Image path used as visual context for price lookup.
+
+**Returns**
+
+- List of dicts with keys: `item_name`, `sku`, `price`.
+
+</details>
+
+### `pdf_utils.convert_pdfs_to_pngs`
+
+*Convert all PDF pages in a folder into PNG image files.*
+
+<details><summary>Details</summary>
+
+```python
+convert_pdfs_to_pngs(input_folder, output_folder, zoom=2)
+```
+
+Convert all PDF pages in a folder into PNG image files.
+
+**Args**
+
+- input_folder: Directory containing source PDF files.
+- output_folder: Directory for generated PNG files.
+- zoom: Render scaling factor passed to PyMuPDF (`2` is typical for OCR).
+
+**Side effects**
+
+- Creates `output_folder` when missing.
+- Writes one PNG per PDF page named `<pdf_stem>_page<index>.png`.
+
+</details>
+
+### `llm_extraction.extract_items_using_sku_only`
+
+*Extract candidate line items from OCR text using SKU pattern matching.*
+
+<details><summary>Details</summary>
+
+```python
+extract_items_using_sku_only(ocr_text)
+```
+
+Extract candidate line items from OCR text using SKU pattern matching.
+
+**Args**
+
+- ocr_text: Raw OCR text block.
+
+**Returns**
+
+- List of dicts with keys: `item_name`, `sku`, `raw_line`.
+
+**Notes**
+
+- Price values are intentionally not extracted here.
+
+</details>
+
+### `llm_extraction.extract_store_metadata`
+
+*Extract store/date/time/total metadata from one receipt image via LLM.*
+
+<details><summary>Details</summary>
+
+```python
+extract_store_metadata(image_path)
+```
+
+Extract store/date/time/total metadata from one receipt image via LLM.
+
+**Args**
+
+- image_path: Path to the source image file.
+
+**Returns**
+
+- Dict containing `store_name`, `date`, `time`, `total_amount`,
+
+  and `items_sold_count`.
+
+</details>
+
+### `ocr_utils.extract_text_from_image`
+
+*Run OCR on one image and return line-ordered text.*
+
+<details><summary>Details</summary>
+
+```python
+extract_text_from_image(image_path, y_tol=15)
+```
+
+Run OCR on one image and return line-ordered text.
+
+**Args**
+
+- image_path: Path to an image file (PNG/JPG/JPEG).
+- y_tol: Vertical tolerance used to group OCR tokens into the same line.
+
+**Returns**
+
+- String containing extracted text with one reconstructed line per row.
+
+</details>
+
+### `llm_extraction.extract_text_from_images`
+
+*Extract one structured receipt record from one or more image files.*
+
+<details><summary>Details</summary>
+
+```python
+extract_text_from_images(image_paths, receipt_id=None)
+```
+
+Extract one structured receipt record from one or more image files.
+
+**Parameters**
+
+- image_paths: Ordered list of receipt page image paths (usually PNGs).
+- receipt_id: Optional identifier used by callers for trace/debug context.
+
+**Returns**
+
+- dict on success, with keys like:
+
+  `store_name`, `date`, `time`, `total_amount`, `transactions`.
+
+- dict on recoverable failure, with `error` and `reason` keys
+
+  (for example `no_valid_images_found` or `no_ocr_items_detected`).
+
+**Notes**
+
+- Uses OCR first to find candidate items, then LLM calls for metadata/pricing.
+- Skips pages detected as blank when possible.
+- Does not write files or mutate the database directly.
+
+</details>
+
+### `llm_extraction.group_receipt_images`
+
+*Group receipt page images by receipt identifier derived from filename.*
+
+<details><summary>Details</summary>
+
+```python
+group_receipt_images(image_paths)
+```
+
+Group receipt page images by receipt identifier derived from filename.
+
+**Expected pattern**
+
+- `<receipt_id>_page<page_num>.png` (for example `11_page2.png`).
+
+**Args**
+
+- image_paths: Iterable of `Path` objects.
+
+**Returns**
+
+- Dict mapping receipt id to ordered list of page paths.
+
+</details>
+
+### `llm_extraction.is_empty`
+
+*Return `True` when a value should be treated as missing LLM output.*
+
+<details><summary>Details</summary>
+
+```python
+is_empty(val)
+```
+
+Return `True` when a value should be treated as missing LLM output.
+
+</details>
+
+### `llm_extraction.merge_receipt_data`
+
+*Merge multiple page-level receipt dicts into one consolidated record.*
+
+<details><summary>Details</summary>
+
+```python
+merge_receipt_data(json_list)
+```
+
+Merge multiple page-level receipt dicts into one consolidated record.
+
+**Args**
+
+- json_list: List of parsed page dictionaries.
+
+**Returns**
+
+- Dict with merged metadata, totals, and combined `transactions`.
+
+</details>
+
+### `ocr_utils.process_image_folder`
+
+*OCR all PNG images in a folder and write one text file per image.*
+
+<details><summary>Details</summary>
+
+```python
+process_image_folder(input_folder, output_folder)
+```
+
+OCR all PNG images in a folder and write one text file per image.
+
+**Args**
+
+- input_folder: Directory containing `.png` images.
+- output_folder: Directory where `.txt` OCR outputs are written.
+
+**Side effects**
+
+- Creates `output_folder` when missing.
+- Skips files whose output `.txt` already exists.
+
+</details>
+
+### `llm_extraction.process_image_folder`
+
+*Batch-process receipt images in a folder into JSON outputs.*
+
+<details><summary>Details</summary>
+
+```python
+process_image_folder(input_folder, output_folder, manual_folder)
+```
+
+Batch-process receipt images in a folder into JSON outputs.
+
+**Parameters**
+
+- input_folder: Directory containing page images (expected `*.png`).
+- output_folder: Directory where parsed receipt JSON files are written.
+- manual_folder: Directory where manual-review JSON records are written.
+
+**Behavior**
+
+- Groups page images into receipt-level sets via filename pattern.
+- Skips receipts already represented in output/manual folders.
+- Routes multi-page receipts and detected refund cases to manual review.
+- Calls `extract_text_from_images` for eligible receipt groups.
+
+**Side effects**
+
+- Creates `output_folder` and `manual_folder` when missing.
+- Writes JSON files to disk; does not insert into SQLite directly.
+
+</details>
+
+### `llm_extraction.process_receipt`
+
+*Process one receipt image + OCR text into a structured output dict.*
+
+<details><summary>Details</summary>
+
+```python
+process_receipt(image_path, ocr_text)
+```
+
+Process one receipt image + OCR text into a structured output dict.
+
+**Args**
+
+- image_path: Path to the receipt image.
+- ocr_text: OCR text from that image.
+
+**Returns**
+
+- Dict with store metadata and extracted `transactions`.
+
+</details>
+
+## Advanced And Maintenance Functions
+
+*When to use this: debugging, destructive resets, or low-level utilities.*
+
+### `db_ingest.print_db_snapshot`
+
+*Print current `receipts` and `items` table rows for quick debugging.*
+
+<details><summary>Details</summary>
+
+```python
+print_db_snapshot(db_path=DEFAULT_RECEIPTS_DB)
+```
+
+Print current `receipts` and `items` table rows for quick debugging.
+
+</details>
+
+### `db_ingest.reset_database`
+
+*Drop and recreate receipts tables.*
+
+<details><summary>Details</summary>
+
+```python
+reset_database(db_path=DEFAULT_RECEIPTS_DB, confirm=False)
+```
+
+Drop and recreate receipts tables.
+
+**Args**
+
+- db_path: Path to the receipts SQLite database file.
+- confirm: Must be `True` to allow destructive reset.
+
+**Raises**
+
+- ValueError: If `confirm` is not `True`.
+
+</details>

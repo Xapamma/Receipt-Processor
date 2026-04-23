@@ -1,9 +1,11 @@
 ---
-title: "Documentation"
+title: "Receipt Processor Documentation"
 ---
 
 ## Overview
 
-The `receipt_processor` package provides a suite of functions for adding, processing, and analyzing receipt data. This page documents the main functions available in the package. 
+The `receipt_processor` package provides functions for OCR extraction, structured receipt parsing, database ingest, and analytics queries.
 
-## Main Functions
+If you are new to the project, start with the [Tutorial](tutorial.qmd) for a guided workflow before using this API reference.
+
+{{< include /reference/_api_generated.qmd >}}

@@ -1,9 +1,8 @@
 project:
   type: website
   output-dir: docs
-
-quartodoc:
-  package: receipt_processor
+  pre-render:
+    - python3 scripts/generate_api_qmd.py
 
 website:
   title: "Receipt Processor Docs"
