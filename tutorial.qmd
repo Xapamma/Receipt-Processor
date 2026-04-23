@@ -76,6 +76,28 @@ import receipt_processor
 print("Receipt Processor installed successfully!")
 ```
 
+### Step 5: Install Ollama and the required models
+
+Receipt Processor uses Ollama for LLM-powered receipt parsing and categorization. To avoid loading issues, install Ollama and pull the models before running any LLM extraction steps.
+
+```bash
+# Install Ollama
+# See https://ollama.com/docs/installation for the latest instructions
+pip install ollama
+
+# Verify Ollama is installed
+ollama version
+
+# Download the models used by the project
+ollama pull llama3.2-vision
+ollama pull llama3.1:8b
+
+# Confirm the models are available
+ollama list
+```
+
+If you do not have these models installed, the LLM extraction functions in `receipt_processor.llm_extraction` will fail when they try to call Ollama.
+
 ### Understanding uv and pyproject.toml
 
 **Why uv?**

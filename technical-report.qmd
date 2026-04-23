@@ -38,9 +38,7 @@ To evaluate the accuracy of the extraction process, a validation framework was i
 
 To further prepare the data, several transformations were applied. Extracted dates and times were normalized into a consistent format. Item-level and receipt-level data were structured into relational tables, ensuring that each receipt is properly linked to its corresponding items. In addition, total tax amounts were proportionally distributed across individual items based on their pre-tax prices, resulting in item-level price-with-tax values. This allows category-level spending analysis to reflect the full cost of purchases rather than pre-tax amounts alone.
 
-This section should also include some explanation of assigning categories to the individual items. >>>
-
-Together, these steps transformed raw, unstructured receipt data into a clean, structured dataset suitable for analysis. 
+Item categories were assigned using an LLM-driven classification step that examined each transaction individually. Rather than batching all items together, the system classified each item in its own prompt to keep the model’s context focused and improve accuracy for short item descriptions. This per-transaction approach helped reduce classification errors caused by longer, memory-intensive prompts and made it easier to enforce a fixed category vocabulary for the final dataset.
 
 # Methodology/Analysis
 
@@ -58,7 +56,7 @@ The final dataset consists of receipts collected from January 2025 to March 2026
 
 As shown in Figure 1, spending exhibited noticeable changes occurring between May and June 2025, where spending increased from \$84.93 to \$466.25, and between July and August 2025, where spending decreased from \$554.59 to \$233.59.
 
-Insert: Line chart of monthly spending
+![Line chart of monthly spending](images/monthly_trend.png){#fig-receipt}
 
 The average monthly spending for the year from February 2025 to February 2026 was \$264.41 and for the quarter from Deceember 2025 to February 2026 was \$283.68, suggesting that spending patterns were relatively stable throughout the year with some slight increases. Compared to these baselines, several months—such as June and July—were above average, while others—such as February, April, and May—fell far below.
 
@@ -66,7 +64,7 @@ These fluctuations may reflect specific events such as a summer vacation or camp
 
 Spending distribution across categories is shown in Figure 2. The largest dollar amount spent on food was \$76.27 in August, while the largest amount spent on household items was \$383.66 in June. The large proportion of spending on household items in June may be related to the aforementioned vacation, which likely required purchasing supplies for the trip. Additionally, moving to a new residence in May may have contributed to the higher spending on household items the next month. 
 
-Insert: Bar chart(s)
+![Bar chart of spending by category](images/category_trend.png){#fig-category}
 
 Category-level trends over time reveal how spending behavior changed across months. For example, spending on food was relatively consistent throughout the year, while spending on household items showed more variability, with a significant spike in June. This suggests that while some categories of spending may be more stable, others can be influenced by specific events or circumstances. 
 

@@ -179,8 +179,7 @@ ul.task-list li input[type="checkbox"] {
 <p>In some cases, receipt files themselves presented issues. For example, one downloaded PDF was blank, likely due to incomplete loading prior to download, resulting in failed parsing attempts. Additionally, certain receipts, such as long multi-page documents and those containing refund or return information, introduced complexities that made automated extraction unreliable. These failed-to-parse, multi-page, and refund receipts were flagged and handled through manual data entry to ensure accuracy and completeness in the final dataset.</p>
 <p>To evaluate the accuracy of the extraction process, a validation framework was implemented using a set of manually curated ground-truth JSON files. It compared extracted outputs against these reference files, computing metrics such as field match rates and displaying discrepancies. This validation process helped identify systematic extraction errors, ensured a reasonable success rate, and supports iterative improvements to the pipeline.</p>
 <p>To further prepare the data, several transformations were applied. Extracted dates and times were normalized into a consistent format. Item-level and receipt-level data were structured into relational tables, ensuring that each receipt is properly linked to its corresponding items. In addition, total tax amounts were proportionally distributed across individual items based on their pre-tax prices, resulting in item-level price-with-tax values. This allows category-level spending analysis to reflect the full cost of purchases rather than pre-tax amounts alone.</p>
-<p>This section should also include some explanation of assigning categories to the individual items. &gt;&gt;&gt;</p>
-<p>Together, these steps transformed raw, unstructured receipt data into a clean, structured dataset suitable for analysis.</p>
+<p>Item categories were assigned using an LLM-driven classification step that examined each transaction individually. Rather than batching all items together, the system classified each item in its own prompt to keep the model’s context focused and improve accuracy for short item descriptions. This per-transaction approach helped reduce classification errors caused by longer, memory-intensive prompts and made it easier to enforce a fixed category vocabulary for the final dataset.</p>
 </section>
 <section id="methodologyanalysis" class="level1">
 <h1>Methodology/Analysis</h1>
@@ -193,12 +192,30 @@ ul.task-list li input[type="checkbox"] {
 <h1>Results</h1>
 <p>The final dataset consists of receipts collected from January 2025 to March 2026, including a total of 100(?) transactions and 600(?) individual items. Total spending over the analyzed period was ____. Monthly spending in 2025 varied, with the highest spending observed in ______ ($<strong><em>) and the lowest in </em></strong>___ ($<strong><em>). Similarly, monthly spending from March 2025 to March 2026 showed fluctuations, with peaks in </em></strong>___ ($<strong><em>) and troughs in </em></strong>___ ($___).</p>
 <p>As shown in Figure 1, spending exhibited noticeable changes occurring between ….</p>
-<p>Insert: Line chart of monthly spending</p>
+<div id="fig-receipt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-receipt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/monthly_trend.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-receipt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Line chart of monthly spending
+</figcaption>
+</figure>
+</div>
 <p>The average monthly spending for 2025 was $____ and $____ from March 2025 to March 2026, suggesting that … . Compared to these baselines, several months—such as ____—were above average, while others—such as __—fell far below.</p>
 <p>Month-to-month changes in spending are visualized in Figure 1, which highlights periods of increase and decrease, such as the transition from ____ to ____, where spending increased/decreased? noticeably.</p>
 <p>These fluctuations may reflect….</p>
-<p>Spending distribution acroos categories is shown in Figure 2. …</p>
-<p>Insert: Bar chart(s)</p>
+<p>Spending distribution across categories is shown in Figure 2. …</p>
+<div id="fig-category" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-category-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/category_trend.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-category-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Bar chart of spending by category
+</figcaption>
+</figure>
+</div>
 <p>Category-level trends over time reveal how spending behavior evolved. …</p>
 <p>Insert: Multi-line chart or stacked chart ?</p>
 <p>Several key insights emerge from the analysis: - Overall spending - Spending was concentrated in certain categories - Certain months showed unusually high or low spending - Category trends suggest …</p>
