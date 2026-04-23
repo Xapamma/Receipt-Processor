@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -159,15 +159,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>The Receipt Processor project aims to develop a tool for processing and analyzing receipt data. Managing and understanding personal spending can be time-consuming when receipts exist as unstructured images, PDFs, or loose physical documents. Converting this unstructured data into a usable format presents a key challenge. Automating this process enables more efficient tracking, improved accuracy, and clearer insight into spending behavior over time that would otherwise be difficult to obtain.&nbsp;</p>
-<p>Using over a year’s worth of personal receipts from Walmart, this project seeks to answer questions such as: How much was spent over the past year, and how does spending vary by month? How does spending in one month compare to the previous month? Additionally, how does spending differ across categories, both monthly and over the entire year?</p>
+<p>Using over a year’s worth of personal receipts from Walmart, this project seeks to answer how much was spent over the past year, and how does spending vary by month? It also seeks to answer how spending in one month compares to the previous month. Additionally, it seeks to answer how does spending differ across categories over the year?</p>
 <p>To address these questions, we developed a pipeline that collects receipt data, parses and structures it, stores it in a database, and enables analysis through a user-friendly interface. The <code>receipt_processor</code> Python package, along with a corresponding Streamlit application, allows users to upload their own receipt data and generate insights into spending patterns, category-level expenditures, and trends over time, making it useful for individuals and businesses interested in financial tracking and expense management.</p>
 </section>
 <section id="data-description" class="level1">
 <h1>Data Description</h1>
 <p>The receipt data used in this project was collected from a personal Walmart account. Receipts were obtained using a combination of automated scraping techniques and manual downloads from the account purchase history section of the Walmart website. All receipts were saved as PDF files.</p>
-<p>Most receipts follow a traditional in-store format similar to printed cash register receipts. However, a small subset corresponding to online orders (approximately 10 receipts) have a distinct layout. Web scraping tools were used to assist in locating and prompting manual downloads of traditional receipt PDFs. Purchase history filters were used to identify online orders, which were then manually reviewed and downloaded.</p>
+<p>Most receipts follow a traditional in-store format similar to printed cash register receipts. However, a small subset corresponding to online orders (approximately 10 receipts) have a distinct layout. Webscraping attempts with requests and BeautifulSoup were made, but Playwright, a webscraping tool that allows for automation of logged-in, dynamic pages, was ultimately used to assist in locating and prompting manual downloads of traditional receipt PDFs. Purchase history filters were used to identify online orders, which were then manually reviewed and downloaded.</p>
 <p>The dataset includes receipts ranging from January 2025 through March 2026. Each receipt contains information such as the date and time of purchase, store name, store address and phone number, number of items purchased, total transaction amount, and item-level details including product descriptions, SKUs, and individual prices. The key variables used in this analysis include store name, purchase date, total amount, item names and prices, and assigned spending categories.</p>
-<p>A primary limitation of the dataset is that it consists exclusively of Walmart receipts. While it captures all personal Walmart purchases within the specified time frame, it does not account for spending at other retailers. As a result, the findings may not generalize to overall spending behavior across multiple vendors. Additionally, the dataset is limited in size, with a total of [# RECEIPTS] transactions and [# ITEMS] individual items, which may affect the robustness of certain analyses. Despite these limitations, the dataset provides a valuable case study for developing and testing the receipt processing pipeline.</p>
+<p>A primary limitation of the dataset is that it consists exclusively of Walmart receipts. While it captures all personal Walmart purchases within the specified time frame, it does not account for spending at other retailers. As a result, the findings may not generalize to overall spending behavior across multiple vendors. Additionally, the dataset is limited in size, with a total of 73 receipts, which may affect the robustness of certain analyses. Despite these limitations, the dataset provides a valuable case study for developing and testing the receipt processing pipeline.</p>
 <p>The final structured dataset organizes receipt-level and item-level information into a tabular format, where each receipt is linked to its corresponding items. This data is stored in a relational database using SQLite, with separate tables for receipts and individual items connected through a unique identifier. The receipts table includes variables such as purchase date, time, vendor, and total transaction amount, while the items table contains details including item name/description, price, and assigned category. To achieve this final structured format from the original raw PDFs, several steps were taken to clean and prepare the data.</p>
 </section>
 <section id="data-cleaning-and-preparation" class="level1">
@@ -184,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="methodologyanalysis" class="level1">
 <h1>Methodology/Analysis</h1>
 <p>The analysis focused on summarizing spending behavior using descriptive statistics and aggregation methods applied to the cleaned and structured dataset. These methods were selected to directly address the guiding questions of the project, which center on understanding total spending, trends over time, and differences across spending categories.</p>
-<p>Several key metrics were computed. Total spending was calculated for the year 2025 and from March 2025 to March 2026, to provide an overall measure of yearly expenditures. Monthly spending totals were then derived by grouping transactions by purchase date, allowing for the analysis of spending patterns over time. In addition, average monthly spending was calculated based on the number of months within the selected time frames, providing a baseline for comparing fluctuations across months.</p>
+<p>Several key metrics were computed. Total spending was calculated from February 2025 to February 2026, to provide an overall measure of yearly expenditures. Monthly spending totals were then derived by grouping transactions by purchase date, allowing for the analysis of spending patterns over time. In addition, average monthly spending was calculated based on the number of months within the selected time frames, providing a baseline for comparing fluctuations across months.</p>
 <p>Category-level spending was analyzed using item-level data, where items grouped by category were aggregated using price-with-tax values. This enabled comparisons of how spending was distributed across categories by year. In addition, category-level trends were examined by aggregating spending within each category by month, providing insight into how spending patterns evolved over time.</p>
 <p>Visualizations were primarily used to examine trends over time and differences across spending categories. These visual tools allowed for more intuitive interpretation of patterns such as monthly fluctuations in spending and shifts in category-level expenditures.</p>
 </section>
@@ -251,6 +251,7 @@ Figure&nbsp;2: Bar chart of spending by category
 <h1>Conclusion</h1>
 <p>This project developed a system for extracting, structuring, and analyzing receipt data using a combination of OCR, LLM-based parsing, and a relational database framework. By transforming unstructured receipt PDFs into a clean and analyzable dataset, the Receipt Processor enables meaningful exploration of spending behavior.</p>
 <p>Using over a year of receipt data, the analysis demonstrated how total spending, monthly trends, and category-level expenditures can be effectively summarized using aggregation-based methods and visualizations. The results provide insight into patterns of spending over time and highlight how expenditures are distributed across categories.</p>
+<p>The overall spending pattern from February 2025 to February 2026 shows a general increase in the middle of the year, likely driven by specific events such as vacations or moving. The distribution of spending across categories indicates that while food expenses were relatively stable, household items exhibited more variability, suggesting that certain types of expenditures may be more sensitive to life events or seasonal factors.</p>
 <p>In addition to the analysis itself, the project delivers a reusable Python package and an interactive Streamlit application, allowing users to apply the same workflow to their own receipt data.</p>
 <p>Overall, the Receipt Processor provides a foundation for automated financial tracking and analysis based on receipt data, with potential for further improvement in accuracy, scalability, and broader applicability.</p>
 
