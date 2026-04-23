@@ -11,6 +11,9 @@ from PIL import Image, ImageChops
 from json_repair import repair_json
 from ocr_png_to_text import extract_text_from_image # for image merging
 
+# Utilities for receipt parsing and OCR-assisted item extraction.
+# This module is designed to support both single-page and multi-page receipts,
+# with fallback behavior for manual review when data is ambiguous.
 
 def extract_items_using_sku_only(ocr_text):
     """
@@ -21,6 +24,7 @@ def extract_items_using_sku_only(ocr_text):
     lines = ocr_text.split("\n")
     items = []
 
+    # SKU pattern is used to identify product lines that include an item code.
     sku_pattern = re.compile(r"\b\d{8,14}\b")
 
     for line in lines:
@@ -61,6 +65,7 @@ def group_receipt_images(image_paths):
     11_page1.png, 11_page2.png → same receipt (key = "11")
     """
 
+    # Build receipt groupings based on filename conventions.
     groups = defaultdict(list)
 
     for path in image_paths:
@@ -217,6 +222,8 @@ def build_transactions(ocr_items, image_path):
     return transactions
 
 def normalize(s):
+    # Standardize text for comparison by stripping non-alphanumeric characters
+    # and converting everything to lowercase.
     return re.sub(r"[^a-z0-9]+", "", s.lower())
 
 # 🔥🔥🔥 NEW: BULK CATEGORY FUNCTION (replaces per-item LLM calls)
@@ -274,6 +281,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
     all_page_data = []  
 
     # IMPORTANT: use FIRST VALID IMAGE for metadata
+    # Metadata extraction does not need to be repeated for every page.
     first_valid_image = None
 
     all_ocr_items = []
@@ -300,7 +308,8 @@ def extract_text_from_images(image_paths, receipt_id=None):
         if first_valid_image is None:
             first_valid_image = final_path
 
-        # OCR Part 
+        # OCR Part
+        # Extract text and item lines from the receipt image before any LLM-based processing.
         try:
             ocr_text = extract_text_from_image(final_path)
             ocr_items = extract_items_using_sku_only(ocr_text)
