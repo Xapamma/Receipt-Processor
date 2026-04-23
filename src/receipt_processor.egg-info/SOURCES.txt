@@ -1,7 +1,6 @@
 README.md
 pyproject.toml
 src/receipt_processor/__init__.py
-src/receipt_processor/cleaning_logic.py
 src/receipt_processor/db_ingest.py
 src/receipt_processor/db_queries.py
 src/receipt_processor/llm_extraction.py
