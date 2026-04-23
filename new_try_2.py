@@ -223,65 +223,51 @@ def categorize_items_bulk(item_names):
     prompt = f"""
         You are a grocery receipt understanding system.
 
-        Your job is to interpret abbreviated or messy receipt item names
-        and map them to real-world grocery items, then categorize them.
+        Your job is to categorize items.
 
-        You MUST mentally expand abbreviations before deciding category.
+        You must return a JSON array with EXACTLY {len(item_names)} objects.
 
-        You are an expert in Walmart-style receipt abbreviations and grocery products.
-
-        Examples:
-        - "GV FSW" → frozen vegetables → food
-        - "PNT BUTT" → peanut butter → food
-        - "BLK BEAN" → black beans → food
-        - "GV CHICK PE" → chickpeas → food
-        - "AUSSIE" → shampoo or personal care product → personal care / hygiene
-        - "BNLS CK BRS" → boneless chicken breast → food
-        - "GV BF HAM" → beef ham → food
-        - "GV 1 SSG" → breakfast sausage → food
-        - "POTATOES" → potatoes → food
-        - "BANANAS" → bananas → food
-        - "TOMATO" → tomatoes → food
-
-        Categories:
+        Each object must follow this format:
+        {{"index": 0, "category": "food"}}
+        
+        VALID CATEGORIES (must choose EXACTLY one, no variations):
         - food
-        - personal care / hygiene
-        - household products
+        - personal_care
+        - household
         - clothing
         - cleaning
 
-        INPUT ITEMS (do NOT modify these strings in output):
+        
+        INPUT ITEMS:
         {json.dumps(item_names, ensure_ascii=False)}
 
-        CRITICAL RULES:
-        - First interpret what each item likely is (internally)
-        - You MUST choose the MOST LIKELY real-world meaning
-        - Then assign category based on meaning
-        - Do NOT change item_name in output
-        - NEVER default to "miscellaneous" unless the item is truly unreadable or meaningless
-        - If uncertain, still choose the best guess category (be decisive)
-        - Treat abbreviations as standard grocery shorthand (GV = Great Value, etc.)
+        
+        RULES:
+        - DO NOT modify item names
+        - Return category for EACH item
+        - Use the INDEX of the item, not the name
         - Output valid JSON only
-        - No explanations
-
-        BEHAVIOR RULE:
-        - It is better to guess correctly than to return "miscellaneous"
+        - Use the index of each item
+        - Do NOT skip any items
+        - Do NOT add extra text
+        - Do NOT explain anything
+        - Output must be valid JSON
 
         Return format:
         [
-        {{"item_name": "", "category": ""}}
+        {{"index": 0, "category": "food"}}
         ]
         """
 
     response = chat(
-        model='gemma3:12b',
+        model='llama3.1:8b',
         messages=[{
             "role": "user",
             "content": prompt
         }],
         format="json",
         options={
-            "temperature": 0.6,
+            "temperature": 0.2,
             "num_predict": 300
         }
     )
@@ -391,15 +377,26 @@ def extract_text_from_images(image_paths, receipt_id=None):
     category_results = categorize_items_bulk(item_names)
 
     # Create lookup dictionary
-    category_map = {}
+    categories_by_index = {}
+
+    print("\n=== RAW CATEGORY RESULTS ===")
+    print(category_results)
 
     for x in category_results:
         if isinstance(x, dict):
-            item = x.get("item_name")
-            cat = x.get("category", "miscellaneous")
+            idx = x.get("index")
+            cat = x.get("category")
 
-            if item:
-                category_map[normalize(item)] = cat
+            if isinstance(idx, int) and cat:
+                categories_by_index[idx] = cat
+
+    print("\n=== CATEGORY INDEX MAP ===")
+    print(categories_by_index)
+
+    # sanity check
+    if len(categories_by_index) != len(item_names):
+        print("⚠️ WARNING: category count mismatch!")
+        print(f"Expected: {len(item_names)}, Got: {len(categories_by_index)}")
 
     transactions = []
 
@@ -471,7 +468,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
             price = raw_price
 
         # 🔥🔥🔥 NEW: pull category from bulk results
-        category = category_map.get(normalize(item["item_name"]), "miscellaneous")
+        category = categories_by_index.get(all_ocr_items.index(item), "miscellaneous")
         
         transactions.append({
             "item_name": item["item_name"],
