@@ -103,4 +103,5 @@ def process_image_folder(input_folder, output_folder):
     print("✅ Done processing all images.")
 
 
-process_image_folder("data/receipts_pngs", "data/texts")
+if __name__ == "__main__":
+    process_image_folder("data/receipts_pngs", "data/texts")

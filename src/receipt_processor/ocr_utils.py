@@ -9,14 +9,14 @@ reader = easyocr.Reader(['en'], gpu=False)
 
 def extract_text_from_image(image_path, y_tol=15):
     """
-    Extracts text from an image (PNG, JPG, etc.) and returns a cleaned, 
-    receipt-like string that is easier to parse.
+    Run OCR on one image and return line-ordered text.
 
-    Steps:
-    1. Run OCR
-    2. Sort text blocks top-to-bottom, left-to-right
-    3. Group words into lines based on y-position
-    4. Fix common OCR issues like split prices (e.g., 6 . 96 -> 6.96)
+    Args:
+    - image_path: Path to an image file (PNG/JPG/JPEG).
+    - y_tol: Vertical tolerance used to group OCR tokens into the same line.
+
+    Returns:
+    - String containing extracted text with one reconstructed line per row.
     """
     results = reader.readtext(str(image_path))
 
@@ -57,6 +57,17 @@ def extract_text_from_image(image_path, y_tol=15):
     return full_text
 
 def process_image_folder(input_folder, output_folder):
+    """
+    OCR all PNG images in a folder and write one text file per image.
+
+    Args:
+    - input_folder: Directory containing `.png` images.
+    - output_folder: Directory where `.txt` OCR outputs are written.
+
+    Side effects:
+    - Creates `output_folder` when missing.
+    - Skips files whose output `.txt` already exists.
+    """
     input_folder = Path(input_folder)
     output_folder = Path(output_folder)
 
