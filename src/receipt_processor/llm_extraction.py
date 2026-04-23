@@ -9,7 +9,7 @@ from tqdm import tqdm
 from collections import defaultdict
 from PIL import Image, ImageChops
 from json_repair import repair_json
-from src.receipt_processor.ocr_utils import extract_text_from_image # for image merging
+from .ocr_utils import extract_text_from_image  # for image merging
 
 # Utilities for receipt parsing and OCR-assisted item extraction.
 # This module is designed to support both single-page and multi-page receipts,
@@ -560,5 +560,4 @@ def process_image_folder(input_folder, output_folder, manual_folder):
             tqdm.write(f"Error processing {key}: {e}")
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
-
 
