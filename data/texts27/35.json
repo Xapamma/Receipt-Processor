@@ -1,0 +1,27 @@
+{
+    "store_name": "Walmart",
+    "date": "10/09/25",
+    "time": "18:06:17",
+    "total_amount": 11.51,
+    "items_sold_count": 3,
+    "transactions": [
+        {
+            "item_name": "EQ LIQ BAND",
+            "sku": "019434609777",
+            "price": 2.97,
+            "category": "personal_care"
+        },
+        {
+            "item_name": "IODINE",
+            "sku": "019434612167",
+            "price": 6.56,
+            "category": "miscellaneous"
+        },
+        {
+            "item_name": "EQ FF XL 10",
+            "sku": "068113100672",
+            "price": 1.98,
+            "category": "miscellaneous"
+        }
+    ]
+}

@@ -220,54 +220,47 @@ def normalize(s):
     return re.sub(r"[^a-z0-9]+", "", s.lower())
 
 # 🔥🔥🔥 NEW: BULK CATEGORY FUNCTION (replaces per-item LLM calls)
-def categorize_items_bulk(item_names):
+def categorize_single_item(item_name):
     prompt = f"""
-        You must categorize EVERY item.
+        You are a strict receipt item classifier.
 
-        Return a JSON ARRAY with SAME LENGTH as input.
+        Classify the item into ONE category.
 
-        Each element:
-        {{"item": "<exact input>", "category": "<category>"}}
-
-        DO NOT omit items.
-        DO NOT summarize.
-        DO NOT shorten list.
-
-        Categories:
+        Valid categories:
         - food
         - personal_care
         - household
         - clothing
         - cleaning
 
-        INPUT:
-        {json.dumps(item_names)}
+        Item:
+        {item_name}
 
-        Return ONLY valid JSON array.
+        Return ONLY JSON:
+        {{
+        "category": "..."
+        }}
+
+        Rules:
+        - Output ONLY JSON
+        - No explanation
+        - No extra keys
         """
 
     response = chat(
         model='llama3.1:8b',
-        messages=[{
-            "role": "user",
-            "content": prompt
-        }],
+        messages=[{"role": "user", "content": prompt}],
         format="json",
         options={
-            "temperature": 0.2,
-            "num_predict": 300
+            "temperature": 0
         }
     )
 
-    raw = response["message"]["content"]
-
-    data = json.loads(raw)
-
-    # 🔥 normalize single object → list
-    if isinstance(data, dict):
-        data = [data]
-
-    return data
+    try:
+        data = json.loads(response["message"]["content"])
+        return data.get("category", "miscellaneous")
+    except:
+        return "miscellaneous"
 
 def extract_text_from_images(image_paths, receipt_id=None):
     """
@@ -362,32 +355,10 @@ def extract_text_from_images(image_paths, receipt_id=None):
         item["item_name"]
         for i, item in enumerate(all_ocr_items)
     ]    
-    category_results = categorize_items_bulk(item_names)
-
-    # Create lookup dictionary
-    categories_by_item = {}
-
-    print("\n=== RAW CATEGORY RESULTS ===")
-    print(category_results)
-
-    for x in category_results:
-        if isinstance(x, dict):
-            item = x.get("item")
-            cat = x.get("category")
-            if isinstance(item, str) and isinstance(cat, str):
-                categories_by_item[normalize(item)] = cat
-
-    print("\n=== CATEGORY INDEX MAP ===")
-    print(categories_by_item)
-
-    # sanity check
-    if len(categories_by_item) != len(item_names):
-        print("⚠️ WARNING: category count mismatch!")
-        print(f"Expected: {len(item_names)}, Got: {len(categories_by_item)}")
 
     transactions = []
 
-    for item in all_ocr_items:
+    for i, item in enumerate(all_ocr_items):
         # OPTIONAL: only call LLM if price is unknown
          # 🔥 PUT SAFETY CHECK HERE
         image_path = item.get("image_path")
@@ -456,7 +427,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
 
         # 🔥🔥🔥 NEW: pull category from bulk results
         # category = categories_by_index.get(all_ocr_items.index(item), "miscellaneous")
-        category = categories_by_item.get(normalize(item['item_name']), "miscellaneous")
+        category = categorize_single_item(item['item_name'])
 
         print(f"""
         ITEM DEBUG
@@ -465,9 +436,6 @@ def extract_text_from_images(image_paths, receipt_id=None):
         SKU: {item['sku']}
         LLM Category: {category}
         """)
-
-        if category is None:
-            print("❌ MISSING CATEGORY!")
 
         transactions.append({
             "item_name": item["item_name"],

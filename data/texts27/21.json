@@ -1,0 +1,27 @@
+{
+    "store_name": "Walmart",
+    "date": "12/24/2025",
+    "time": "15:15:02",
+    "total_amount": 14.4,
+    "items_sold_count": 3,
+    "transactions": [
+        {
+            "item_name": "GV SS CHO C",
+            "sku": "007874223618",
+            "price": 6.86,
+            "category": null
+        },
+        {
+            "item_name": "GV DARK CHO",
+            "sku": "007874200062",
+            "price": 3.77,
+            "category": null
+        },
+        {
+            "item_name": "MLK CHOC CH",
+            "sku": "007874223617",
+            "price": 3.77,
+            "category": null
+        }
+    ]
+}
