@@ -3,31 +3,28 @@ from pathlib import Path
 import re
 import os
 from sys import path
+from urllib import response
 from ollama import chat 
 from tqdm import tqdm
 from collections import defaultdict
 from PIL import Image, ImageChops
 from json_repair import repair_json
-from .ocr_utils import extract_text_from_image  # for image merging
+from ocr_png_to_text import extract_text_from_image # for image merging
 
+# Utilities for receipt parsing and OCR-assisted item extraction.
+# This module is designed to support both single-page and multi-page receipts,
+# with fallback behavior for manual review when data is ambiguous.
 
 def extract_items_using_sku_only(ocr_text):
     """
-    Extract candidate line items from OCR text using SKU pattern matching.
-
-    Args:
-    - ocr_text: Raw OCR text block.
-
-    Returns:
-    - List of dicts with keys: `item_name`, `sku`, `raw_line`.
-
-    Notes:
-    - Price values are intentionally not extracted here.
+    Extract ONLY item names + SKU.
+    NO prices used from OCR.
     """
 
     lines = ocr_text.split("\n")
     items = []
 
+    # SKU pattern is used to identify product lines that include an item code.
     sku_pattern = re.compile(r"\b\d{8,14}\b")
 
     for line in lines:
@@ -64,18 +61,11 @@ def extract_items_using_sku_only(ocr_text):
 
 def group_receipt_images(image_paths):
     """
-    Group receipt page images by receipt identifier derived from filename.
-
-    Expected pattern:
-    - `<receipt_id>_page<page_num>.png` (for example `11_page2.png`).
-
-    Args:
-    - image_paths: Iterable of `Path` objects.
-
-    Returns:
-    - Dict mapping receipt id to ordered list of page paths.
+    Groups images like:
+    11_page1.png, 11_page2.png → same receipt (key = "11")
     """
 
+    # Build receipt groupings based on filename conventions.
     groups = defaultdict(list)
 
     for path in image_paths:
@@ -104,7 +94,7 @@ def group_receipt_images(image_paths):
     return sorted_groups
 
 def is_empty(val):
-    """Return `True` when a value should be treated as missing LLM output."""
+    """Helper to catch None, empty strings, and literal 'null' strings from the LLM."""
     if val is None:
         return True
     if isinstance(val, str) and val.strip().lower() in ["null", "n/a", "none", ""]:
@@ -112,14 +102,7 @@ def is_empty(val):
     return False
 
 def merge_receipt_data(json_list):
-    """Merge multiple page-level receipt dicts into one consolidated record.
-
-    Args:
-    - json_list: List of parsed page dictionaries.
-
-    Returns:
-    - Dict with merged metadata, totals, and combined `transactions`.
-    """
+    """Merges a list of parsed JSON receipt dictionaries into one master dictionary."""
     merged = {
         "store_name": None,
         "date": None,
@@ -158,15 +141,6 @@ def merge_receipt_data(json_list):
     return merged
 
 def extract_store_metadata(image_path):
-    """Extract store/date/time/total metadata from one receipt image via LLM.
-
-    Args:
-    - image_path: Path to the source image file.
-
-    Returns:
-    - Dict containing `store_name`, `date`, `time`, `total_amount`,
-      and `items_sold_count`.
-    """
     prompt = """
     Extract ONLY store-level information from this receipt image.
 
@@ -200,15 +174,6 @@ def extract_store_metadata(image_path):
     return json.loads(response["message"]["content"])
 
 def build_transactions(ocr_items, image_path):
-    """Build transaction rows by asking the LLM for each item's price.
-
-    Args:
-    - ocr_items: List of candidate items with `item_name` and `sku`.
-    - image_path: Image path used as visual context for price lookup.
-
-    Returns:
-    - List of dicts with keys: `item_name`, `sku`, `price`.
-    """
     transactions = []
 
     for item in ocr_items:
@@ -256,52 +221,59 @@ def build_transactions(ocr_items, image_path):
 
     return transactions
 
-def process_receipt(image_path, ocr_text):
-    """Process one receipt image + OCR text into a structured output dict.
+def normalize(s):
+    # Standardize text for comparison by stripping non-alphanumeric characters
+    # and converting everything to lowercase.
+    return re.sub(r"[^a-z0-9]+", "", s.lower())
 
-    Args:
-    - image_path: Path to the receipt image.
-    - ocr_text: OCR text from that image.
+# 🔥🔥🔥 NEW: BULK CATEGORY FUNCTION (replaces per-item LLM calls)
+def categorize_single_item(item_name):
+    prompt = f"""
+        You are a strict receipt item classifier.
 
-    Returns:
-    - Dict with store metadata and extracted `transactions`.
-    """
-    ocr_items = extract_items_using_sku_only(ocr_text)
+        Classify the item into ONE category.
 
-    print("OCR items:", len(ocr_items))
+        Valid categories:
+        - food
+        - personal_care
+        - household
+        - clothing
+        - cleaning
+        - auto
 
-    # 1. metadata (single call)
-    metadata = extract_store_metadata(image_path)
+        Item:
+        {item_name}
 
-    # 2. transactions (reliable loop)
-    transactions = build_transactions(ocr_items, image_path)
+        Return ONLY JSON:
+        {{
+        "category": "..."
+        }}
 
-    # 3. final JSON
-    final_output = {
-        **metadata,
-        "transactions": transactions
-    }
+        Rules:
+        - Output ONLY JSON
+        - No explanation
+        - No extra keys
+        """
 
-    return final_output
+    response = chat(
+        model='llama3.1:8b',
+        messages=[{"role": "user", "content": prompt}],
+        format="json",
+        options={
+            "temperature": 0
+        }
+    )
+
+    try:
+        data = json.loads(response["message"]["content"])
+        return data.get("category", "miscellaneous")
+    except:
+        return "miscellaneous"
 
 def extract_text_from_images(image_paths, receipt_id=None):
     """
-    Extract one structured receipt record from one or more image files.
-
-    Parameters:
-    - image_paths: Ordered list of receipt page image paths (usually PNGs).
-    - receipt_id: Optional identifier used by callers for trace/debug context.
-
-    Returns:
-    - dict on success, with keys like:
-      `store_name`, `date`, `time`, `total_amount`, `transactions`.
-    - dict on recoverable failure, with `error` and `reason` keys
-      (for example `no_valid_images_found` or `no_ocr_items_detected`).
-
-    Notes:
-    - Uses OCR first to find candidate items, then LLM calls for metadata/pricing.
-    - Skips pages detected as blank when possible.
-    - Does not write files or mutate the database directly.
+    Handles single and multi-page receipts by running inference on 
+    each page individually and merging the resulting JSONs.
     """
     total_pages = len(image_paths)
     failed_pages = 0
@@ -309,6 +281,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
     all_page_data = []  
 
     # IMPORTANT: use FIRST VALID IMAGE for metadata
+    # Metadata extraction does not need to be repeated for every page.
     first_valid_image = None
 
     all_ocr_items = []
@@ -335,7 +308,8 @@ def extract_text_from_images(image_paths, receipt_id=None):
         if first_valid_image is None:
             first_valid_image = final_path
 
-        # OCR Part 
+        # OCR Part
+        # Extract text and item lines from the receipt image before any LLM-based processing.
         try:
             ocr_text = extract_text_from_image(final_path)
             ocr_items = extract_items_using_sku_only(ocr_text)
@@ -383,8 +357,15 @@ def extract_text_from_images(image_paths, receipt_id=None):
     metadata = extract_store_metadata(first_valid_image)
 
     # ----------------------------
-    # 3. TRANSACTIONS (NO PROMPT LOOP BUGS)
+    # 3. TRANSACTIONS
     # ----------------------------
+
+    # 🔥🔥🔥 NEW: Run ONE LLM call for ALL categories
+    item_names = [
+        item["item_name"]
+        for i, item in enumerate(all_ocr_items)
+    ]    
+
     transactions = []
 
     for item in all_ocr_items:
@@ -401,6 +382,8 @@ def extract_text_from_images(image_paths, receipt_id=None):
         if not os.path.exists(image_path):
             print(f"Invalid image path: {image_path}")
             continue
+
+        #-----------Price Extraction Prompt (with strict rules) -----------#
 
         prompt = f"""
             Find ONLY the price for this item from the receipt image.
@@ -444,7 +427,7 @@ def extract_text_from_images(image_paths, receipt_id=None):
             raw_price = json.loads(response["message"]["content"]).get("price")
 
         except:
-            price = None
+            raw_price = None
 
         # Normalize bad outputs
         if raw_price in [0, 0.0, "0", "0.0", "0.00"]:
@@ -452,12 +435,17 @@ def extract_text_from_images(image_paths, receipt_id=None):
         else:
             price = raw_price
 
+        # 🔥🔥🔥 NEW: pull category from bulk results
+        # category = categories_by_index.get(all_ocr_items.index(item), "miscellaneous")
+        category = categorize_single_item(item['item_name'])
+
         transactions.append({
             "item_name": item["item_name"],
             "sku": item["sku"],
-            "price": price
+            "price": price,
+            "category": category
         })
-
+    
     # ----------------------------
     # 4. FINAL MERGE
     # ----------------------------
@@ -469,24 +457,6 @@ def extract_text_from_images(image_paths, receipt_id=None):
     return final_output
 
 def process_image_folder(input_folder, output_folder, manual_folder):
-    """
-    Batch-process receipt images in a folder into JSON outputs.
-
-    Parameters:
-    - input_folder: Directory containing page images (expected `*.png`).
-    - output_folder: Directory where parsed receipt JSON files are written.
-    - manual_folder: Directory where manual-review JSON records are written.
-
-    Behavior:
-    - Groups page images into receipt-level sets via filename pattern.
-    - Skips receipts already represented in output/manual folders.
-    - Routes multi-page receipts and detected refund cases to manual review.
-    - Calls `extract_text_from_images` for eligible receipt groups.
-
-    Side effects:
-    - Creates `output_folder` and `manual_folder` when missing.
-    - Writes JSON files to disk; does not insert into SQLite directly.
-    """
     input_p = Path(input_folder)
     output_p = Path(output_folder)
     manual_p = Path(manual_folder)
@@ -590,3 +560,5 @@ def process_image_folder(input_folder, output_folder, manual_folder):
             tqdm.write(f"Error processing {key}: {e}")
 
     print(f"\nBatch complete! Processed {len(to_process)} receipts.")
+
+
