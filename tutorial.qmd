@@ -127,8 +127,6 @@ This launches a web interface where you can:
 -   Track spending by category and vendor
 -   Set and monitor budget limits
 
-![](images/streamlit-interface.svg){width=80%}
-
 ### Setting Up Databases
 
 When you first run the app, you'll need to specify two database paths:
@@ -155,8 +153,6 @@ extracted_text = extract_text_from_image(image_path)
 
 print(extracted_text)
 ```
-
-![](images/ocr-flow.svg){width=80%}
 
 The OCR system automatically:
 
@@ -298,8 +294,6 @@ print(df.describe())
 ```
 
 ### Budget Management
-
-![](images/budget-overview.svg){width=80%}
 
 Set and track budget limits for categories or monthly totals:
 

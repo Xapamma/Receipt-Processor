@@ -1,0 +1,15 @@
+{
+    "store_name": "Walmart",
+    "date": "03/21/25",
+    "time": "06:25:24",
+    "total_amount": 3.22,
+    "items_sold_count": 1,
+    "transactions": [
+        {
+            "item_name": "SHRPIECSLZC",
+            "sku": "007164138262",
+            "price": 2.97,
+            "category": "household"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "store_name": "WM Supercenter",
+    "date": "06/07/25",
+    "time": "18:02:04",
+    "total_amount": 252.23,
+    "items_sold_count": 13,
+    "transactions": [
+        {
+            "item_name": "TIREROTATION",
+            "sku": "007874224341",
+            "price": 5.0,
+            "category": "household"
+        },
+        {
+            "item_name": "TIRE FEE",
+            "sku": "000003700848",
+            "price": 5.0,
+            "category": "auto"
+        },
+        {
+            "item_name": "ROT BALLIFE",
+            "sku": "068113124592",
+            "price": null,
+            "category": "household"
+        },
+        {
+            "item_name": "NEW TIRE",
+            "sku": "060538899928",
+            "price": null,
+            "category": "auto"
+        },
+        {
+            "item_name": "DTAS21560R1 6",
+            "sku": "074131796308",
+            "price": 73.0,
+            "category": "household"
+        },
+        {
+            "item_name": "DTAS2156OR1 6",
+            "sku": "074131796308",
+            "price": 73.0,
+            "category": "household"
+        },
+        {
+            "item_name": "Ror BAL",
+            "sku": "068113194456",
+            "price": null,
+            "category": "household"
+        }
+    ]
+}
