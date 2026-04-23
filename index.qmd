@@ -2,8 +2,6 @@
 title: "Receipt Processor"
 ---
 
-# Receipt Processor
-
 Welcome to the Receipt Processor documentation site. This project helps you extract structured information from receipt images and text, store results in a database, and analyze spending by vendor, category, and time.
 
 ## Navigate This Site

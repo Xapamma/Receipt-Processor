@@ -2,8 +2,6 @@
 title: "Receipt Processor Tutorial"
 ---
 
-# Receipt Processor Tutorial
-
 Welcome to the Receipt Processor tutorial! This guide will help you install and use the Receipt Processor package to extract, store, and analyze receipt data with ease.
 
 ## What is Receipt Processor?
