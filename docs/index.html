@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Receipt Processor – Receipt Processor Docs</title>
+<title>Receipt Processor Docs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,9 +122,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
-  <li><a href="#main-pipeline" id="toc-main-pipeline" class="nav-link" data-scroll-target="#main-pipeline">Main Pipeline</a></li>
+  <li><a href="#receipt-processor" id="toc-receipt-processor" class="nav-link active" data-scroll-target="#receipt-processor">Receipt Processor</a>
+  <ul class="collapse">
+  <li><a href="#navigate-this-site" id="toc-navigate-this-site" class="nav-link" data-scroll-target="#navigate-this-site">Navigate This Site</a></li>
+  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick Start</a></li>
+  <li><a href="#what-this-project-includes" id="toc-what-this-project-includes" class="nav-link" data-scroll-target="#what-this-project-includes">What This Project Includes</a></li>
+  <li><a href="#need-help" id="toc-need-help" class="nav-link" data-scroll-target="#need-help">Need Help?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -150,18 +154,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This package provides tools for processing and analyzing receipts. It automates the collection of receipt data, including vendor information, item details, and financial summaries for analysis.</p>
-<p>Test this out with our streamlit app <a href="https://receipt-processor.streamlit.app/">here</a>!</p>
+<section id="receipt-processor" class="level1">
+<h1>Receipt Processor</h1>
+<p>Welcome to the Receipt Processor documentation site. This project helps you extract structured information from receipt images and text, store results in a database, and analyze spending by vendor, category, and time.</p>
+<section id="navigate-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="navigate-this-site">Navigate This Site</h2>
+<ul>
+<li><strong>Tutorial</strong> — Start with the <a href="./tutorial.html">Tutorial</a> for step-by-step installation, environment setup, and guided examples.</li>
+<li><strong>Documentation</strong> — Explore the <a href="./api.html">API reference</a> to learn which package functions are available and how to use them.</li>
+<li><strong>Technical Report</strong> — Read the <a href="./technical-report.html">Technical Report</a> for project motivation, data preparation, analysis, and limitations.</li>
+</ul>
 </section>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
+<section id="quick-start" class="level2">
+<h2 class="anchored" data-anchor-id="quick-start">Quick Start</h2>
+<ol type="1">
+<li>Visit the <strong>Tutorial</strong> to set up your Python environment and install dependencies.</li>
+<li>Run the Streamlit app with <code>streamlit run app.py</code> to interactively upload receipts and inspect extracted data.</li>
+<li>Use the <strong>Documentation</strong> page for function references and integration examples.</li>
+</ol>
 </section>
-<section id="main-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="main-pipeline">Main Pipeline</h2>
+<section id="what-this-project-includes" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-project-includes">What This Project Includes</h2>
+<ul>
+<li>OCR-based text extraction for receipt images</li>
+<li>Receipt parsing and structured data extraction</li>
+<li>SQLite database support for receipts, items, budgets, and analytics</li>
+<li>A Streamlit app interface for uploading receipts and reviewing results</li>
+<li>Guided tutorials, API reference documentation, and a technical report</li>
+</ul>
+</section>
+<section id="need-help" class="level2">
+<h2 class="anchored" data-anchor-id="need-help">Need Help?</h2>
+<p>If you are new to Receipt Processor, start with the <a href="./tutorial.html">Tutorial</a>. If you want code usage examples, open the <a href="./api.html">Documentation</a>. For the research context and dataset story, read the <a href="./technical-report.html">Technical Report</a>.</p>
+<blockquote class="blockquote">
+<p>Use the site navbar to move between Home, Documentation, Tutorial, and Technical Report.</p>
+</blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

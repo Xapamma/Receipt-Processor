@@ -1,16 +1,33 @@
----
+﻿---
 title: "Receipt Processor"
 ---
 
-## Overview
+# Receipt Processor
 
-This package provides tools for processing and analyzing receipts. It automates the collection of receipt data, including vendor information, item details, and financial summaries for analysis.
+Welcome to the Receipt Processor documentation site. This project helps you extract structured information from receipt images and text, store results in a database, and analyze spending by vendor, category, and time.
 
-Test this out with our streamlit app [here](https://receipt-processor.streamlit.app/)!
+## Navigate This Site
 
-## Key Features
+-   **Tutorial** — Start with the [Tutorial](tutorial.qmd) for step-by-step installation, environment setup, and guided examples.
+-   **Documentation** — Explore the [API reference](api.qmd) to learn which package functions are available and how to use them.
+-   **Technical Report** — Read the [Technical Report](technical-report.qmd) for project motivation, data preparation, analysis, and limitations.
 
+## Quick Start
 
+1.  Visit the **Tutorial** to set up your Python environment and install dependencies.
+2.  Run the Streamlit app with `streamlit run app.py` to interactively upload receipts and inspect extracted data.
+3.  Use the **Documentation** page for function references and integration examples.
 
-## Main Pipeline
+## What This Project Includes
 
+-   OCR-based text extraction for receipt images
+-   Receipt parsing and structured data extraction
+-   SQLite database support for receipts, items, budgets, and analytics
+-   A Streamlit app interface for uploading receipts and reviewing results
+-   Guided tutorials, API reference documentation, and a technical report
+
+## Need Help?
+
+If you are new to Receipt Processor, start with the [Tutorial](tutorial.qmd). If you want code usage examples, open the [Documentation](api.qmd). For the research context and dataset story, read the [Technical Report](technical-report.qmd).
+
+> Use the site navbar to move between Home, Documentation, Tutorial, and Technical Report.
