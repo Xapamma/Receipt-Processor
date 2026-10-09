@@ -9,6 +9,7 @@ Welcome to the Receipt Processor documentation site. This project helps you extr
 -   **Tutorial** — Start with the [Tutorial](tutorial.qmd) for step-by-step installation, environment setup, and guided examples.
 -   **Documentation** — Explore the [API reference](api.qmd) to learn which package functions are available and how to use them.
 -   **Technical Report** — Read the [Technical Report](technical-report.qmd) for project motivation, data preparation, analysis, and limitations.
+-   **GitHub Repository** — View the [source code and project history](https://github.com/Xapamma/Receipt-Processor).
 
 ## Quick Start
 

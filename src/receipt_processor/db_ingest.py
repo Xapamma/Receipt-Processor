@@ -1,10 +1,17 @@
 import json
 import os
 import sqlite3
+from contextlib import closing, contextmanager
 from datetime import datetime
 
 DEFAULT_RECEIPTS_DB = "data/receipts.db"
 DEFAULT_BUDGET_DB = "data/budget.db"
+
+
+@contextmanager
+def _database_connection(db_path):
+    with closing(sqlite3.connect(db_path)) as conn, conn:
+        yield conn
 
 
 def _to_float(value, default=0.0):
@@ -136,7 +143,7 @@ def initialize_database(db_path=DEFAULT_RECEIPTS_DB):
     - Ensures `receipts` and `items` tables exist.
     - Enables SQLite foreign key enforcement for the connection.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         cursor.execute("PRAGMA foreign_keys = ON;")
@@ -181,7 +188,7 @@ def initialize_budget_database(db_path=DEFAULT_BUDGET_DB):
     Side effects:
     - Ensures `monthly_budgets` and `category_budgets` tables exist.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         cursor.execute(
@@ -239,7 +246,7 @@ def insert_receipt(data, db_path=DEFAULT_RECEIPTS_DB):
     receipt_total = _to_float(data.get("total_amount"), default=0.0)
     items_with_tax = allocate_weighted_item_tax(transactions, receipt_total)
 
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         cursor.execute(
@@ -314,7 +321,7 @@ def update_receipt_details(receipt_id, date, time, vendor, total_amount, items, 
     """
     allocated_items = allocate_weighted_item_tax(items, total_amount)
 
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
 
@@ -369,7 +376,7 @@ def delete_receipt(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
     Returns:
     - `True` if the receipt existed and was deleted, otherwise `False`.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
 
@@ -398,7 +405,7 @@ def reset_database(db_path=DEFAULT_RECEIPTS_DB, confirm=False):
     if not confirm:
         raise ValueError("Set confirm=True to reset the database.")
 
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("PRAGMA foreign_keys = ON;")
         cursor.execute("DROP TABLE IF EXISTS items;")
@@ -409,7 +416,7 @@ def reset_database(db_path=DEFAULT_RECEIPTS_DB, confirm=False):
 
 def print_db_snapshot(db_path=DEFAULT_RECEIPTS_DB):
     """Print current `receipts` and `items` table rows for quick debugging."""
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         print("\nReceipts:")

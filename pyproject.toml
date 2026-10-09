@@ -1,9 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "receipt-processor"
 version = "0.1.1"
 requires-python = ">=3.11,<3.12"
 readme = "README.md"
 description = "Process and analyze receipt data"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+]
 
 dependencies = [
     "numpy<2",
@@ -26,6 +35,11 @@ dependencies = [
     "plotly>=6.7.0",
     "torch<2.3",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Xapamma/Receipt-Processor"
+Repository = "https://github.com/Xapamma/Receipt-Processor"
+Documentation = "https://xapamma.github.io/Receipt-Processor/"
 
 [project.scripts]
 receipt-processor-app = "receipt_processor.launcher:main"

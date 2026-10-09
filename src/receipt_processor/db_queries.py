@@ -1,8 +1,12 @@
-import sqlite3
 
 import pandas as pd
 
-from .db_ingest import DEFAULT_BUDGET_DB, DEFAULT_RECEIPTS_DB, initialize_budget_database
+from .db_ingest import (
+    DEFAULT_BUDGET_DB,
+    DEFAULT_RECEIPTS_DB,
+    _database_connection,
+    initialize_budget_database,
+)
 
 
 def get_total_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_DB):
@@ -16,7 +20,7 @@ def get_total_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPTS_
     Returns:
     - Float total spend. Returns `0.0` when no rows match.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         query = "SELECT SUM(total_amount) FROM receipts"
@@ -49,7 +53,7 @@ def get_monthly_spending(start_date=None, end_date=None, db_path=DEFAULT_RECEIPT
     Returns:
     - Dict mapping month key (`YYYY-MM`) to total spend.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         query = """
@@ -88,7 +92,7 @@ def get_category_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEI
     - Dict mapping category name to total spend.
     - Missing/empty categories are returned as `"Uncategorized"`.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         query = """
@@ -127,7 +131,7 @@ def get_vendor_breakdown(start_date=None, end_date=None, db_path=DEFAULT_RECEIPT
     Returns:
     - Dict mapping vendor name to total spend.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         query = """
@@ -164,7 +168,7 @@ def get_recent_receipts(limit=10, db_path=DEFAULT_RECEIPTS_DB):
     Returns:
     - List of dicts with keys: `id`, `date`, `time`, `vendor`, `total_amount`.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         query = """
@@ -199,7 +203,7 @@ def get_receipt_details(receipt_id, db_path=DEFAULT_RECEIPTS_DB):
     - Dict containing receipt fields and an `items` list if found.
     - `None` if the receipt does not exist.
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
 
         cursor.execute(
@@ -252,7 +256,7 @@ def export_receipts_to_dataframe(db_path=DEFAULT_RECEIPTS_DB):
       `item_name`, `price`, `allocated_tax`, `price_with_tax`, `category`.
     - Each receipt appears once per item row (receipt-level fields repeat).
     """
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         query = """
         SELECT
             r.id AS receipt_id,
@@ -297,7 +301,7 @@ def get_monthly_budget(month_key, db_path=DEFAULT_BUDGET_DB):
     - Float total budget if present, otherwise `None`.
     """
     initialize_budget_database(db_path=db_path)
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
             "SELECT total_budget FROM monthly_budgets WHERE month_key = ?",
@@ -316,7 +320,7 @@ def save_monthly_budget(month_key, total_budget, db_path=DEFAULT_BUDGET_DB):
     - db_path: Path to the budget SQLite database file.
     """
     initialize_budget_database(db_path=db_path)
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
             """
@@ -342,7 +346,7 @@ def get_category_budgets(month_key, db_path=DEFAULT_BUDGET_DB):
     - Dict mapping category name to budget float.
     """
     initialize_budget_database(db_path=db_path)
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
             """
@@ -366,7 +370,7 @@ def save_category_budget(month_key, category, budget, db_path=DEFAULT_BUDGET_DB)
     - db_path: Path to the budget SQLite database file.
     """
     initialize_budget_database(db_path=db_path)
-    with sqlite3.connect(db_path) as conn:
+    with _database_connection(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute(
             """

@@ -5,6 +5,7 @@ while the packaged app code lives under `receipt_processor`.
 """
 
 from pathlib import Path
+import runpy
 import sys
 
 repo_root = Path(__file__).resolve().parent
@@ -21,8 +22,15 @@ if loaded_pkg is not None:
         try:
             loaded_file = Path(loaded_path).resolve()
             if not loaded_file.is_relative_to(src_dir.resolve()):
-                del sys.modules["receipt_processor"]
+                for module_name in tuple(sys.modules):
+                    if module_name == "receipt_processor" or module_name.startswith(
+                        "receipt_processor."
+                    ):
+                        del sys.modules[module_name]
         except OSError:
             pass
 
-from receipt_processor.streamlit_app import *  # noqa: F401,F403
+runpy.run_path(
+    str(src_dir / "receipt_processor" / "streamlit_app.py"),
+    run_name="__main__",
+)

@@ -22,7 +22,7 @@ Receipt Processor is a Python package for extracting, structuring, and analyzing
 
 ### Install from PyPI
 
-When published, you can install Receipt Processor directly from PyPI:
+Install the published Receipt Processor package from PyPI:
 
 ```bash
 pip install receipt-processor
